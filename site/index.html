@@ -140,6 +140,14 @@ tr.det td{background:var(--accent-soft)!important}
 }
 
 @media print{.tabs,.bar,.noprint,.sm a,.dbtn,.mo{display:none!important}body{background:#fff;color:#000}.wrap,.info div{border-color:#999}}
+
+/* Explicit mobile-safe date clearing: native Android/iOS pickers may lack Clear. */
+.date-input-tools{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:6px}
+.date-input-tools input[type=date]{flex:1 1 155px;min-width:0;max-width:100%;width:auto;margin:0}
+.date-clear-btn{flex:0 0 auto;min-height:40px;padding:7px 11px;border:1.5px solid var(--accent);border-radius:8px;background:transparent;color:var(--accent);font:inherit;font-size:.87rem;font-weight:700;cursor:pointer}
+.date-clear-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.date-clear-btn:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:620px){.date-input-tools{align-items:stretch}.date-input-tools input[type=date]{min-height:44px}.date-clear-btn{min-height:44px;padding:7px 12px}}
 </style>
 <meta name="description" content="শিশুর টিকার চার্ট বাংলাদেশ: সরকারি EPI ও ঐচ্ছিক বেসরকারি টিকার বয়সভিত্তিক পরিকল্পনা, বাস্তব ডোজের তারিখ, সতর্কতা ও অফলাইন ব্যবহারের সুবিধা। Bangladesh child vaccination planner.">
 <meta name="theme-color" content="#0e7c86"><meta name="application-name" content="Child Vaccine Planner Bangladesh">
@@ -424,10 +432,10 @@ function render(){
   if(v.id==="rv3"&&S.rotaBrand==="unknown")notes.push(lang==="bn"?"শুধু ৩-ডোজ ব্র্যান্ড হলে":"Only for a 3-dose product");
   if(v.id==="rv1")notes.push((lang==="bn"?"১ম ডোজের শেষ বয়সসীমা: ":"First-dose age cutoff: ")+fmt(dl));
   var sourceLabel=r.source==="confirmed"?(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ":"Clinician-confirmed date"):r.source==="recalculated"?(lang==="bn"?"আগের ডোজ অনুযায়ী পুনর্গণিত":"Auto-recalculated from prior dose"):(lang==="bn"?"জন্মতারিখভিত্তিক পরিকল্পনা":"Baseline age-based estimate");
-  var dateCell="<span class=date>"+fmt(r.d)+"</span><span class=plan-source>"+sourceLabel+"</span>"+ex+"<span class=sm><a href='"+gcal(r,t)+"' target=_blank rel='noopener noreferrer'>"+t.cal+"</a></span>"+"<span class=sm><label class=ovl>"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ (ঐচ্ছিক)":"Clinician-confirmed date (optional)")+"<input type=date class=ov data-id='"+v.id+"' value='"+((S.ov&&S.ov[v.id])||"")+"'></label></span>";
+  var dateCell="<span class=date>"+fmt(r.d)+"</span><span class=plan-source>"+sourceLabel+"</span>"+ex+"<span class=sm><a href='"+gcal(r,t)+"' target=_blank rel='noopener noreferrer'>"+t.cal+"</a></span>"+"<span class=sm><label class=ovl>"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ (ঐচ্ছিক)":"Clinician-confirmed date (optional)")+"</label><span class='date-input-tools'><input type=date class=ov data-id='"+v.id+"' value='"+((S.ov&&S.ov[v.id])||"")+"' aria-label='"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ":"Clinician-confirmed date")+" — "+v.id+"'><button type='button' class='date-clear-btn' data-kind='confirmed' data-id='"+v.id+"' "+((S.ov&&S.ov[v.id])?"":"disabled")+" aria-label='"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ মুছুন":"Clear clinician-confirmed date")+" — "+v.id+"'>"+(lang==="bn"?"মুছুন":"Clear")+"</button></span></span>";
   var prod=productForRow(v.id),prodText=prod?("<span class=sm>"+(lang==="bn"?"ব্র্যান্ড / পণ্য: ":"Selected product: ")+productLabel(prod)+"</span>"):"";
   var nameCell="<span class=vn>"+c[0]+"</span>"+prodText+"<span class=sm>"+c[2].replace("{D}",fmt(dl))+"</span>"+(notes.length?"<span class='inline-note'>"+notes.join(" · ")+"</span>":"")+"<button class='btn o dbtn' data-id='"+v.id+"'>"+t.view+"</button>";
-  var actualCell="<input class='actual' type='date' data-id='"+v.id+"' value='"+actual+"' aria-label='Actual date of "+v.id+"'>"+(actual?"<span class=sm>"+(lang==="bn"?"রেকর্ড করা হয়েছে":"Recorded")+"</span>":"");
+  var actualCell="<span class='date-input-tools'><input class='actual' type='date' data-id='"+v.id+"' value='"+actual+"' aria-label='Actual date of "+v.id+"'><button type='button' class='date-clear-btn' data-kind='actual' data-id='"+v.id+"' "+(actual?"":"disabled")+" aria-label='"+(lang==="bn"?"প্রকৃত টিকা দেওয়ার তারিখ মুছুন":"Clear actual vaccination date")+" — "+v.id+"'>"+(lang==="bn"?"মুছুন":"Clear")+"</button></span>"+(actual?"<span class=sm>"+(lang==="bn"?"রেকর্ড করা হয়েছে":"Recorded")+"</span>":"");
   return "<tr class='"+(done?"done":"")+"'><td><input type=checkbox data-id='"+v.id+"'"+(done?" checked":"")+" aria-label='"+c[0]+"'></td>"+(sec==="a"?"<td class=prog-cell><span class=status>"+(g?(lang==="bn"?"সরকারি":"EPI"):(lang==="bn"?"বেসরকারি":"Private"))+"</span></td>":"")+"<td class=name-cell>"+nameCell+"</td><td class=age-cell>"+c[1]+"</td><td class=date-cell>"+dateCell+"</td><td class=actual-cell>"+actualCell+"</td></tr>";
  }).join("");
  $("foot").innerHTML=(sec==="g"?t.fg:sec==="p"?t.f:t.fg.concat(t.f)).map(function(x){return "<li>"+x+"</li>"}).join("");
@@ -436,6 +444,12 @@ function render(){
  document.querySelectorAll(".dbtn").forEach(function(el){el.onclick=function(){openDet(el.dataset.id,el)}});
  document.querySelectorAll("input.ov").forEach(function(el){el.onchange=function(){S.ov=S.ov||{};if(el.value)S.ov[el.dataset.id]=el.value;else delete S.ov[el.dataset.id];persist();render()}});
  document.querySelectorAll("input.actual").forEach(function(el){el.onchange=function(){S.actual=S.actual||{};if(el.value){S.actual[el.dataset.id]=el.value;S.done[el.dataset.id]=true}else{delete S.actual[el.dataset.id];S.done[el.dataset.id]=false}persist();render()}});
+ document.querySelectorAll("button.date-clear-btn").forEach(function(btn){btn.onclick=function(){
+  var id=btn.dataset.id;
+  if(btn.dataset.kind==="confirmed"){if(S.ov)delete S.ov[id]}
+  else if(btn.dataset.kind==="actual"){if(S.actual)delete S.actual[id];S.done=S.done||{};S.done[id]=false}
+  persist();render();
+ }});
  document.querySelectorAll('input[type=checkbox]').forEach(function(el){el.onchange=function(){S.done[el.dataset.id]=el.checked;if(!el.checked&&S.actual)delete S.actual[el.dataset.id];persist();render()}});
 }
 $("rotaBrand").onchange=function(){S.rotaBrand=this.value;persist();render()};
