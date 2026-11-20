@@ -1,0 +1,9 @@
+
+:root{--bg:#f2f7f8;--surface:#fff;--ink:#16303a;--mute:#5a717a;--line:#cfdde1;--accent:#0e7c86;--warn:#9a5b0a;--warn-soft:#fbefd9;--accent-soft:#dff0f1}*{box-sizing:border-box}body{font-family:system-ui,-apple-system,"Segoe UI","Nirmala UI","Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--ink);margin:0}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1180px;margin:auto;padding:13px 20px;border-bottom:1px solid var(--line)}
+.site-brand{font-weight:800;color:var(--accent);text-decoration:none;font-size:1.03rem}
+.site-links{display:flex;gap:12px;flex-wrap:wrap}.site-links a,.site-footer a{color:var(--accent);text-decoration:none;font-weight:600;font-size:.85rem}.site-links a:hover,.site-footer a:hover{text-decoration:underline}
+.site-footer{max-width:1180px;margin:30px auto 0;border-top:1px solid var(--line);padding:20px;color:var(--mute);font-size:.89rem}.site-footer p{margin:6px 0}.site-footer small{display:block;margin-top:12px}
+.utility-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.utility-row button{font:inherit;font-size:.82rem;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--surface);color:var(--ink);cursor:pointer}
+.site-main{max-width:900px;margin:0 auto;padding:24px 18px;line-height:1.72}.site-main h1{font-size:clamp(1.55rem,4vw,2.1rem);margin-bottom:10px}.site-main h2{font-size:1.2rem;margin-top:28px}.site-main a{color:var(--accent)}.site-main p,.site-main li{font-size:1rem}.site-main .lede{font-size:1.05rem;color:var(--mute)}.site-main .note{padding:13px;border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:6px}.site-main article{margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+@media(max-width:650px){.site-nav{padding:12px}.site-links{gap:9px}.site-links a{font-size:.78rem}.site-footer{padding:16px}.site-main{padding:18px 14px}}
