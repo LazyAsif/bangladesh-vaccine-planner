@@ -7,3 +7,8 @@ Static no-build deploy: Framework None; build command blank; output `site`; root
 v1.5 adds shared language switching and technical QA. The preference is stored only in browser localStorage. No backend is added and existing vaccination records are not migrated or deleted. Source and content limitations are described on the existing Sources/Disclaimer pages.
 
 See `DEPLOY_v1.5.md`, `QA_REPORT.md`, and the internal `CHANGELOG.md`.
+
+
+## v1.6 UI release
+
+Presentation-only redesign with `site/assets/ui-v1.6.css`, `site/assets/ui-v1.6.js` and `site/assets/logo.svg`. The existing calculator engine and localStorage key are retained. See `CHANGELOG.md`, `DEPLOY_v1.6.md`, `ROLLBACK_TO_v1.5.md`.

@@ -1,3 +1,32 @@
+# Child Vaccine Planner — Version History
+
+## v1.6 — Release Candidate (21 November 2026)
+
+### Added
+- Presentation-only mobile navigation: Chart, Centres, Articles and More; safe-area padding and accessible More panel.
+- Header settings menu with persistent Bangla/English and dark/light controls.
+- Collapsible private vaccine product information with per-field help buttons.
+- Responsive vertical vaccine timeline cards, readable completion/upcoming/overdue indicators, and government/private presentation cues.
+- Print/PDF browser action, real `.ics` calendar file export, and private-data-free website sharing via Web Share API (with link-copy fallback).
+- Compact sources/guidance disclosure and discreet reminder text near chart; self-contained shield/cross SVG logo.
+- Local progressive install reminder after a second page visit (browser support permitting).
+
+### Changed
+- Calm light and dark CSS palettes, improved typography, spacing and mobile target sizes.
+- DOB form and primary vaccination schedule action receive stronger visual priority; centre discovery becomes secondary.
+- Public-facing content remains one selected language where translations exist.
+- Service worker version advanced to v1.6.
+
+### Safety and compatibility
+- Preserved vaccine scheduling and date-calculation JavaScript, all dose/input IDs, saved record storage key and existing export handlers.
+- No account analytics, backend or automatic sharing of child/vaccine data added.
+- A complete product-label/clinical schedule audit and independent user testing remain required before public medical use.
+
+### Status
+Release Candidate, not released until verified on Cloudflare Desktop/Android/iPhone. v1.5 preserved for rollback.
+
+---
+
 # Child Vaccine Planner — Internal Changelog
 
 ## v1.5 — Release Candidate (21 November 2026)
