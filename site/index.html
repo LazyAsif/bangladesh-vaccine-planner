@@ -148,6 +148,21 @@ tr.det td{background:var(--accent-soft)!important}
 .date-clear-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .date-clear-btn:disabled{opacity:.45;cursor:not-allowed}
 @media(max-width:620px){.date-input-tools{align-items:stretch}.date-input-tools input[type=date]{min-height:44px}.date-clear-btn{min-height:44px;padding:7px 12px}}
+
+/* v1.3: first-screen centre discovery, aligned with chart form */
+.home-start-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);align-items:stretch;gap:18px;margin-top:16px}
+.home-start-grid #setup{display:block;width:100%;max-width:none;margin:0;min-width:0}
+.home-centres{display:flex;flex-direction:column;justify-content:center;gap:15px;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:0}
+.home-centres h2{margin:0;font-size:1.23rem;line-height:1.4;color:var(--ink)}
+.home-centres p{margin:0;color:var(--mute);font-size:.91rem;line-height:1.55}
+.home-centres-actions{display:grid;grid-template-columns:1fr;gap:11px}
+.home-centres-actions a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:11px 12px;border:1.5px solid var(--accent);border-radius:9px;background:var(--accent);color:var(--onacc);text-decoration:none;font-weight:700;font-size:.89rem;line-height:1.4;overflow-wrap:anywhere}
+.home-centres-actions a:last-child{background:transparent;color:var(--accent)}
+.home-centres-actions a:hover{filter:brightness(.94)}
+.home-centres-actions a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(max-width:700px){.home-start-grid{grid-template-columns:1fr;gap:12px;margin-top:14px}.home-start-grid #setup{margin:0}.home-centres{padding:16px}.home-centres-actions{grid-template-columns:1fr}}
+@media(min-width:701px) and (max-width:780px){.home-centres{padding:14px}.home-centres h2{font-size:1.05rem}}
+@media print{.home-centres{display:none}}
 </style>
 <meta name="description" content="শিশুর টিকার চার্ট বাংলাদেশ: সরকারি EPI ও ঐচ্ছিক বেসরকারি টিকার বয়সভিত্তিক পরিকল্পনা, বাস্তব ডোজের তারিখ, সতর্কতা ও অফলাইন ব্যবহারের সুবিধা। Bangladesh child vaccination planner.">
 <meta name="theme-color" content="#0e7c86"><meta name="application-name" content="Child Vaccine Planner Bangladesh">
@@ -175,6 +190,7 @@ tr.det td{background:var(--accent-soft)!important}
     </div>
   </div>
 
+  <div id="homeStart" class="home-start-grid hide">
   <form id="setup" class="hide" novalidate>
     <label for="nm" id="l-nm"></label>
     <input type="text" id="nm" maxlength="60" autocomplete="off">
@@ -183,6 +199,15 @@ tr.det td{background:var(--accent-soft)!important}
     <p class="err" id="err" role="alert"></p>
     <button class="btn" type="submit" id="go"></button>
   </form>
+  <aside class="home-centres" aria-labelledby="home-centres-title">
+    <h2 id="home-centres-title">টিকাদান কেন্দ্র খুঁজুন / Find Vaccination Centres</h2>
+    <p>সরকারি EPI তথ্যসূত্র অথবা বেসরকারি টিকাদান কেন্দ্রের তালিকা দেখুন। / Explore government EPI sources or private vaccination centre listings.</p>
+    <div class="home-centres-actions">
+      <a href="./centres/index.html#government" aria-label="See EPI Centre / সরকারি টিকা কেন্দ্র দেখুন">See EPI Centre / সরকারি টিকা কেন্দ্র দেখুন</a>
+      <a href="./centres/index.html#private" aria-label="See Private Vaccination Centres / বেসরকারি টিকা কেন্দ্র দেখুন">See Private Vaccination Centres / বেসরকারি টিকা কেন্দ্র দেখুন</a>
+    </div>
+  </aside>
+  </div>
 
   <section id="view" class="hide">
     <div class="tabs sec noprint" role="group" aria-label="Section"><button id="s-g" aria-pressed="true"></button><button id="s-p" aria-pressed="false"></button><button id="s-a" aria-pressed="false">সব / All</button></div>
@@ -399,7 +424,7 @@ function route(){var t=T[lang];if(curId)fillDet();if(typeof showMsg==="function"
  $("b-bn").setAttribute("aria-pressed",lang==="bn");$("b-en").setAttribute("aria-pressed",lang==="en");
  $("title").textContent=nm()?t.tn(nm()):t.t;$("sub").textContent=t.s;
  $("s-g").textContent=t.sg;$("s-p").textContent=t.sp;$("s-a").textContent=lang==="bn"?"সব একসঙ্গে":"Combined";$("s-g").setAttribute("aria-pressed",sec==="g");$("s-p").setAttribute("aria-pressed",sec==="p");$("s-a").setAttribute("aria-pressed",sec==="a");$("l-nm").textContent=t.nm;$("l-dob").textContent=t.dob;$("go").textContent=t.go;
- var has=!!S.dob;$("setup").classList.toggle("hide",has);$("view").classList.toggle("hide",!has);
+ var has=!!S.dob;$("homeStart").classList.toggle("hide",has);$("setup").classList.toggle("hide",has);$("view").classList.toggle("hide",!has);
  if(has)render()}
 function gcal(r,t){var n=nm()||"",c=r.v[lang];var title=(n?n+" – ":"")+c[0]+" ("+(r.source==="confirmed"?"clinician-confirmed":"planning estimate")+")";var det=c[2].replace("{D}",fmt(dlDate()))+". "+(productForRow(r.v.id)?"Selected product: "+productLabel(productForRow(r.v.id))+". ":"")+(r.source==="confirmed"?"Clinician-confirmed date entered by caregiver.":"Computed date — confirm with vaccinator before administration.");
  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title)+"&dates="+ymd(r.d)+"/"+ymd(addD(r.d,1))+"&details="+encodeURIComponent(det)}
@@ -468,7 +493,7 @@ $("csv").onclick=async function(){var fn="vaccine-reminders-"+(sec==="g"?"govt":
   if(d){await d.save({filename:fn,data:data})}
   else{var bl=new Blob([data],{type:"text/csv;charset=utf-8"}),u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download=fn;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},1000)}
   mk="icsOk";msgx=""}catch(e){mk="icsNo";msgx=e&&e.code?" ("+e.code+")":""}showMsg()};
-$("edit").onclick=function(){$("nm").value=S.name||"";$("dob").value=S.dob||"";S.editingDob=S.dob;S.dob="";$("setup").classList.remove("hide");$("view").classList.add("hide");var d=$("dob");d.value=d.value}
+$("edit").onclick=function(){$("nm").value=S.name||"";$("dob").value=S.dob||"";S.editingDob=S.dob;S.dob="";$("homeStart").classList.remove("hide");$("setup").classList.remove("hide");$("view").classList.add("hide");var d=$("dob");d.value=d.value}
 $("setup").onsubmit=function(e){e.preventDefault();var v=$("dob").value,t=T[lang];
  if(!v||pd(v)>today()||pd(v).getFullYear()<2000){$("err").textContent=t.er;return}
  var old=S.dob||S.editingDob;S.name=$("nm").value.trim();if(old&&old!==v){S.done={};S.ov={};S.actual={}}S.dob=v;delete S.editingDob;$("err").textContent="";persist();route()};

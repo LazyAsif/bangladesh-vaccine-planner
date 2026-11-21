@@ -15,7 +15,7 @@
     cards.innerHTML=rows.map(r=>'<article class="private-card"><div class="private-card-top"><h3>'+safe(r.name)+'</h3><span class="private-kind">'+safe(r.kind)+'</span></div><p><strong>ঠিকানা / Address:</strong> '+safe(r.address)+', Bangladesh</p><p><strong>সেবা / Service:</strong> '+safe(r.service)+'</p><p><strong>ফোন / Phone:</strong> <a href="tel:'+safe(r.phone)+'">'+safe(r.phone_display)+'</a></p><div class="dir-actions"><a href="'+safe(r.url)+'" rel="noopener noreferrer" target="_blank">Official service/source ↗</a></div></article>').join('');
   }
   function view(tab){const government=tab==='government';gov.hidden=!government;priv.hidden=government;btnGov.setAttribute('aria-pressed',government?'true':'false');btnPriv.setAttribute('aria-pressed',government?'false':'true');}
-  btnGov.addEventListener('click',()=>view('government'));btnPriv.addEventListener('click',()=>view('private'));
+  btnGov.addEventListener('click',()=>{history.replaceState(null,'','#government');view('government')});btnPriv.addEventListener('click',()=>{history.replaceState(null,'','#private');view('private')});window.addEventListener('hashchange',()=>view(location.hash==='#government'?'government':'private'));
   div.addEventListener('change',()=>{districtOptions();render()});dist.addEventListener('change',render);query.addEventListener('input',render);
   districtOptions();render();view(location.hash==='#government'?'government':'private');
 })();

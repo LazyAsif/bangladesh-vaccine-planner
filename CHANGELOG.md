@@ -1,5 +1,23 @@
 # Child Vaccine Planner — Internal Changelog (developer only)
 
+## v1.3 — 21 November 2026 (Release candidate; not yet deployed)
+### Added
+- Responsive vaccination-centre discovery panel beside the birth-date form on the landing screen, stacked below the form on mobile.
+- Two direct destination links: **See EPI Centre / সরকারি টিকা কেন্দ্র দেখুন** → `/centres/index.html#government`; **See Private Vaccination Centres / বেসরকারি টিকা কেন্দ্র দেখুন** → `/centres/index.html#private`.
+### Changed
+- Retained the home navigation without an additional Vaccine Centres tab, per owner request.
+- Directory tabs now preserve the selected category in the URL hash and respond to hash navigation.
+- PWA service worker cache key updated to `bd-child-vax-public-v1.3`.
+### Unchanged
+- Vaccine dates and medical content; calculator storage and saved vaccination records; other pages and existing private centres data.
+- Public footer stays as the single Bengali medical disclaimer; version history remains developer-only.
+### Modified files
+- `site/index.html`, `site/assets/private-centres.js`, `site/service-worker.js`, `CHANGELOG.md`.
+### QA
+- Static structure, link targets and JavaScript syntax validated. Android/iPhone visual and PWA offline test pending after Cloudflare deployment.
+
+# Child Vaccine Planner — Internal Changelog (developer only)
+
 ## v1.2 — 21 November 2026 (Release candidate; deployment pending)
 ### Changed
 - Removed visible version label and public changelog link from all public page footers.
