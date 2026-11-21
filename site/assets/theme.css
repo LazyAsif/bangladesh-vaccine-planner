@@ -1,0 +1,14 @@
+/* v1.1 theme and PWA navigation */
+:root[data-theme="light"]{--bg:#f2f7f8;--surface:#fff;--ink:#16303a;--mute:#5a717a;--line:#cfdde1;--accent:#0e7c86;--accent-soft:#dff0f1;--warn:#9a5b0a;--warn-soft:#fbefd9;--onacc:#fff;color-scheme:light}
+:root[data-theme="dark"]{--bg:#0f1b20;--surface:#17272e;--ink:#e6f0f2;--mute:#9fb4bb;--line:#2b414a;--accent:#5cc4cd;--accent-soft:#1b3a40;--warn:#f0b866;--warn-soft:#3a2e17;--onacc:#0f1b20;color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]){--bg:#0f1b20;--surface:#17272e;--ink:#e6f0f2;--mute:#9fb4bb;--line:#2b414a;--accent:#5cc4cd;--accent-soft:#1b3a40;--warn:#f0b866;--warn-soft:#3a2e17;--onacc:#0f1b20;color-scheme:dark}}
+.site-theme-btn{background:var(--surface);border:1px solid var(--accent);border-radius:8px;padding:8px 11px;color:var(--accent);font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+.site-theme-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(display-mode:standalone){#site-install-button{display:none!important}}
+html.pwa-standalone #site-install-button{display:none!important}
+.v11-version{padding:10px 18px;text-align:center;color:var(--mute);font-size:.8rem}.v11-version a{color:var(--accent)}
+.site-nav,.site-footer{background:var(--bg)}.site-links{align-items:center}
+.dir-tools{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.dir-tools label{display:block;font-weight:700;margin:0 0 4px}.dir-tools select,.dir-tools input{display:block;width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid var(--line);color:var(--ink);background:var(--surface);font:inherit}
+.dir-panel{padding:18px;margin:16px 0;background:var(--surface);border:1px solid var(--line);border-radius:12px}.dir-panel h2{margin-top:0}.dir-actions{display:flex;gap:8px;flex-wrap:wrap}.dir-actions a{display:inline-flex;padding:9px 12px;border:1px solid var(--accent);border-radius:8px;text-decoration:none;font-weight:700}
+.dir-status{border-left:4px solid var(--warn);padding:11px 14px;background:var(--warn-soft);border-radius:5px;margin-top:14px}
+@media(max-width:550px){.dir-tools{grid-template-columns:1fr}.site-theme-btn{min-height:42px}}
