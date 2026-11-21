@@ -33,3 +33,18 @@ The site is **deployment-ready from a technical perspective**, but **not medical
 The pages now use relative links ending in `index.html`, so opening `site/index.html` directly from an extracted ZIP also allows About, Articles, Sources and other pages to open without a local web server. For PWA installation and offline caching, use HTTPS or `http://localhost` instead: `file://` cannot run service workers.
 
 **Important:** Extract the entire ZIP before opening `site/index.html`. Do not move `index.html` away from the `site/` directory or its other pages/assets.
+
+## Mobile date clear fix (November 2026)
+
+- Each actual dose date and clinician-confirmed date has its own **Clear / মুছুন** button.
+- Clearing an actual dose date also resets its Done checkbox; dependent proposed dates are recalculated from the remaining records.
+- Clearing a clinician-confirmed date restores the automatically calculated planning date (based on birth date and earlier recorded doses).
+- No other vaccination records are deleted. The PWA service-worker cache version was incremented.
+- To update Cloudflare Pages, replace `site/index.html`, `site/service-worker.js` in GitHub and commit them. The complete ZIP includes all existing files too.
+
+
+## v1.1 Change Summary
+See CHANGELOG.md. Includes a partial government vaccination centre *finder* with 8 division/64 district navigation and links to official registries. It does NOT yet represent a complete verified registry of actual EPI sessions/centres. To keep district centre data current, obtain validated EPI microplanning export and validate operational status/phone numbers with DGHS prior to publishing such data.
+
+## v1.2
+Public version labels removed; private vaccination providers with source-backed contact data added to the government directory. Developer changelog remains `CHANGELOG.md`. See `DEPLOY_v1.2.md`.

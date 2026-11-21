@@ -1,0 +1,101 @@
+{
+  "verified_on": "2026-11-21",
+  "records": [
+    {
+      "name": "Labaid Vaccination Center",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "address": "House 01, Road 04, Dhanmondi, Dhaka 1205",
+      "phone": "+880258610793",
+      "phone_display": "+88 02 58610793–8",
+      "service": "শিশু ও প্রাপ্তবয়স্কদের বিভিন্ন টিকা; ব্র্যান্ড ও স্টক ফোনে নিশ্চিত করুন।",
+      "service_en": "Child and adult vaccines; call for product availability.",
+      "url": "https://www.labaid.com.bd/en/department/vaccination-center-2",
+      "kind": "Private hospital"
+    },
+    {
+      "name": "Khidmah Hospital Vaccination Center",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "address": "C-287/2-3, Khilgaon Bishwa Road, Dhaka 1219",
+      "phone": "09606063030",
+      "phone_display": "09606063030 (ext. 104); +8801958661543",
+      "service": "রোটাভাইরাস, ভ্যারিসেলা, টাইফয়েডসহ টিকাদান সেবার উল্লেখ আছে।",
+      "service_en": "Vaccination service including rotavirus, varicella and typhoid.",
+      "url": "https://www.khidmahhospital.com/service-details/vaccination-center1722661631",
+      "kind": "Private hospital"
+    },
+    {
+      "name": "Dhaka Central International Medical College & Hospital Vaccination Center",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "address": "2/1 Ring Road, Shyamoli, Dhaka 1207",
+      "phone": "10651",
+      "phone_display": "10651; 09610-910651",
+      "service": "শিশু ও প্রাপ্তবয়স্কদের টিকাদান; নবজাতক ও বহির্বিভাগের শিশুদের সেবা।",
+      "service_en": "Child and adult immunisation, including newborn and outpatient services.",
+      "url": "https://dcimch.com/page/vaccination-center?lang=en",
+      "kind": "Private hospital"
+    },
+    {
+      "name": "Dhaka Community Hospital Trust Vaccination Centre",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "address": "190/1 Boro Moghbazar Wireless Railgate, Dhaka 1217",
+      "phone": "01849243452",
+      "phone_display": "01849243452 (vaccination information)",
+      "service": "প্রাইভেট টিকা ও সরকারি EPI—দুই সেবাই তাদের ওয়েবসাইটে উল্লেখিত; সেশন ও খরচ নিশ্চিত করুন।",
+      "service_en": "Both private vaccination and government EPI services listed; confirm sessions and charges.",
+      "url": "https://dchtrust.org/e-p-i-vaccination/",
+      "kind": "Non-government hospital/trust"
+    },
+    {
+      "name": "Uttara Crescent Vaccination Centre",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "address": "Unit 2: House 40, Rabindra Sarani, Sector 7, Uttara, Dhaka 1230",
+      "phone": "10666",
+      "phone_display": "10666; 09666710665",
+      "service": "শিশু ও প্রাপ্তবয়স্কদের টিকাদান; তাদের ওয়েবসাইটে সরকারিভাবে নির্ধারিত শিশুর টিকা সেশনের উল্লেখও আছে।",
+      "service_en": "Child and adult vaccines; government child vaccination sessions are also advertised.",
+      "url": "https://uchbd.com/index.php/department/50",
+      "kind": "Private clinic"
+    },
+    {
+      "name": "PMK Hospital & Diagnostic Centre",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "address": "Zirabo, Ashulia, Savar, Dhaka 1341",
+      "phone": "01877702598",
+      "phone_display": "01877702598",
+      "service": "শিশুদের EPI টিকাদান সেবা প্রতিষ্ঠানটির ওয়েবসাইটে উল্লেখ আছে।",
+      "service_en": "EPI immunisation services reported by the hospital.",
+      "url": "https://pmkhospital.com/service-details/epi-vaccination-services",
+      "kind": "Non-government hospital"
+    },
+    {
+      "name": "KPJ Specialized Hospital & Nursing College Vaccination Centre",
+      "division": "Dhaka",
+      "district": "Gazipur",
+      "address": "Gazipur, near DEPZ, Bangladesh",
+      "phone": "09644552233",
+      "phone_display": "09644552233",
+      "service": "টিকাদান কেন্দ্র এবং শিশুদের জন্য Hepatitis A-সহ টিকার তথ্য প্রতিষ্ঠানটির ওয়েবসাইটে প্রকাশিত।",
+      "service_en": "A vaccination centre; hospital lists vaccines including paediatric Hepatitis A.",
+      "url": "https://www.kpjdhaka.com/",
+      "kind": "Private hospital"
+    },
+    {
+      "name": "Evercare Hospital Chattogram Vaccination Centre",
+      "division": "Chattogram",
+      "district": "Chattogram",
+      "address": "Plot H1, Anannya CDA Residential Area, Oxygen–Kuwaish Road, Chattogram 4337",
+      "phone": "10663",
+      "phone_display": "10663",
+      "service": "শিশুদের EPI ও বেসরকারি টিকাদান সেবার তথ্য প্রকাশিত।",
+      "service_en": "EPI and other vaccinations for children, as reported by the hospital.",
+      "url": "https://www.evercarebd.com/en/chattogram/news/epi-vaccination-services-evercare-hospital-chattogram",
+      "kind": "Private hospital"
+    }
+  ]
+}

@@ -7,3 +7,23 @@
 .utility-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.utility-row button{font:inherit;font-size:.82rem;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--surface);color:var(--ink);cursor:pointer}
 .site-main{max-width:900px;margin:0 auto;padding:24px 18px;line-height:1.72}.site-main h1{font-size:clamp(1.55rem,4vw,2.1rem);margin-bottom:10px}.site-main h2{font-size:1.2rem;margin-top:28px}.site-main a{color:var(--accent)}.site-main p,.site-main li{font-size:1rem}.site-main .lede{font-size:1.05rem;color:var(--mute)}.site-main .note{padding:13px;border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:6px}.site-main article{margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line)}
 @media(max-width:650px){.site-nav{padding:12px}.site-links{gap:9px}.site-links a{font-size:.78rem}.site-footer{padding:16px}.site-main{padding:18px 14px}}
+
+
+/* Vaccine centre directory · v1.2 */
+.centre-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.centre-tabs button{border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:10px;padding:11px 15px;cursor:pointer;font:inherit;font-weight:700}
+.centre-tabs button[aria-pressed="true"]{background:var(--accent);color:white}
+.dir-tools{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.dir-tools label,.dir-search label{display:block;font-weight:700;margin-bottom:6px}
+.dir-tools select,.dir-search input{display:block;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:11px;font:inherit;color:var(--ink);min-width:0}
+.dir-search{margin:12px 0}.private-count{color:var(--mute);font-size:.91rem}
+.private-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:13px;margin:15px 0 24px}
+.private-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0;overflow-wrap:anywhere}
+.private-card h3{margin:0;font-size:1.08rem;line-height:1.4}.private-card p{font-size:.92rem;margin:9px 0}
+.private-card-top{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.private-kind{border-radius:6px;background:var(--accent-soft);padding:3px 7px;font-size:.75rem;color:var(--ink)}
+.private-empty{padding:18px;background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+.dir-status{background:var(--warn-soft);border-left:4px solid var(--warn);padding:13px;border-radius:5px}
+.dir-panel{background:var(--surface);border:1px solid var(--line);padding:18px;border-radius:12px}
+.dir-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.dir-actions a{display:inline-block;border:1px solid var(--accent);border-radius:8px;padding:7px 10px;font-size:.9rem;text-decoration:none;color:var(--accent)}
+@media(max-width:580px){.dir-tools{grid-template-columns:1fr}.centre-tabs button{flex:1}.private-list{grid-template-columns:1fr}}

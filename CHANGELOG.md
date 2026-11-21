@@ -1,6 +1,27 @@
+# Child Vaccine Planner — Internal Changelog (developer only)
+
+## v1.2 — 21 November 2026 (Release candidate; deployment pending)
+### Changed
+- Removed visible version label and public changelog link from all public page footers.
+- Public footer now shows only the exact Bengali clinical disclaimer provided by the owner.
+- Removed public `Content checked`, version and analytics-status footer metadata.
+- Removed public `/changelog/` page from the deployed site; historical entries retained in this repository markdown.
+- Vaccine Centres page now provides Private and Government tabs; Government EPI source lookup preserved.
+### Added
+- 8 non-government hospital / clinic vaccination-service listings, grouped by division/district, with addresses, published phone numbers and official source links; source-reviewed 21 November 2026.
+- Search and division/district filters for private listings.
+- Static offline-ready dataset and versioned service worker cache.
+### Limitations
+- This is a limited verified-source shortlist, NOT a full national private-centre database or a guarantee of active services, stock, costs or current phone operability.
+- Source publication is not the same as phone confirmation. Confirm before travelling.
+### QA
+- Automated source-file/path checks and JavaScript syntax checks; live-device/browser PWA verification pending.
+### Files
+- `site/index.html`, all public HTML footers, `site/centres/index.html`, `site/assets/site.css`, `site/assets/private-centres.js`, `site/assets/private-centres.json`, `site/service-worker.js`; public site changelog route removed.
+
 # Child Vaccine Planner — Changelog
 
-## v1.1 — 21 November 2026 (Deployment pending)
+## v1.1 — 21 November 2026 (Deployed; reported by owner)
 ### Added
 - Government Vaccine Centres / সরকারি টিকাদান কেন্দ্র menu: all eight divisions and 64 district selections.
 - Official DGHS Facility Registry and EPI session/microplanning source links; no unverified phone numbers or centre claims.
