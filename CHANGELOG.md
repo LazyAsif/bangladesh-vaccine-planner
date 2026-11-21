@@ -1,3 +1,29 @@
+# Child Vaccine Planner – Internal Changelog
+
+## v1.4 — Release Candidate (21 November 2026)
+
+### Added
+- Shared sticky, responsive header on all 14 website HTML pages.
+- Accessible hamburger navigation for widths at or below 1100 px, including mobile and compact tablets.
+- Menu behaviour for outside-click, Escape key, viewport changes, and keyboard focus return.
+- 44 px minimum touch targets in collapsed navigation, with scrollable menu for smaller screens.
+
+### Changed
+- Desktop navigation remains on one row; header uses a bounded container and consistent spacing.
+- Removed dependence on multi-row wrapping for the header navigation without changing existing menu destinations.
+- Service-worker public cache key bumped to v1.4; added header CSS/JS to offline assets.
+
+### Preserved
+- PWA install prompt and standalone-mode hiding, bilingual page content, dark/light toggle.
+- v1.3 government/private vaccination centre buttons and directory navigation.
+- Existing vaccination calculator, actual dose history, clinician overrides, local records and calendar export.
+- Footer disclaimer remains the sole public footer message. Changelog is internal only.
+
+### QA
+- Static verification of shared markup, links, and JS syntax. Manual device/browser verification required before final release.
+
+---
+
 # Child Vaccine Planner — Internal Changelog (developer only)
 
 ## v1.3 — 21 November 2026 (Release candidate; not yet deployed)
