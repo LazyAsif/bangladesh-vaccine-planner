@@ -5,7 +5,7 @@
   var trigger=header.querySelector('.site-menu-toggle');
   var panel=header.querySelector('#site-menu-panel');
   if(!trigger||!panel)return;
-  var cutoff=window.matchMedia('(max-width: 1100px)');
+  var cutoff=window.matchMedia('(max-width: 1200px)');
   function isOpen(){return trigger.getAttribute('aria-expanded')==='true'}
   function setOpen(open,returnFocus){
     var shouldOpen=!!open&&cutoff.matches;
