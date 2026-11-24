@@ -1,5 +1,23 @@
 # Child Vaccine Planner — Version History
 
+## v1.7 — Release Candidate (24 November 2026)
+
+### Added
+- Each vaccine dose in the vertical timeline has its own bilingual accordion control (expand/collapse), with a compact name and planned-date summary.
+- The first incomplete dose opens by default; expand/collapse state survives the chart's normal re-render cycle within the current page.
+- Web browser Settings panel includes the existing Install App action (using the original browser install handler).
+
+### Changed
+- Installed standalone desktop and mobile PWAs hide the Install App option; a normal browser tab retains access to the action.
+- Print/PDF layout expands compact cards for a legible complete timeline.
+- Service-worker public-cache version advanced to v1.7, pre-caching new v1.7 assets.
+
+### Preserved
+- Existing vaccine dates, dose-interval logic, product selectors, actual-dose records, clinician overrides, language/theme preferences, localStorage schema and privacy model.
+
+### Verification
+- Syntax and isolated Chromium DOM interaction tests passed; live mobile installation and full regression testing remain pending.
+
 ## v1.6 — Release Candidate (21 November 2026)
 
 ### Added

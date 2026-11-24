@@ -1,0 +1,21 @@
+/* Child Vaccine Planner v1.7: compact timeline accordions and installation settings */
+.cvp-settings-panel .cvp-settings-install{display:flex!important;align-items:center;justify-content:center;min-height:44px;width:100%;margin:0;padding:10px 12px;background:var(--accent);color:var(--onacc);border:1px solid var(--accent);border-radius:10px;cursor:pointer;font-weight:750}
+.cvp-settings-panel .cvp-settings-install[hidden],.cvp-settings-panel .cvp-install-caption[hidden],.cvp-more-dialog .cvp-v17-install[hidden]{display:none!important}
+.cvp-install-caption{font-size:.85rem;color:var(--mute);margin:4px 0 -3px}
+#view .wrap tr[data-cvp-accordion="true"] td:first-child{gap:10px;min-width:0;align-items:center}
+#view .wrap .cvp-card-toggle{flex:1;min-width:0;display:flex;align-items:center;gap:10px;background:transparent;border:0;color:var(--ink);border-radius:9px;padding:8px 7px;min-height:52px;text-align:left;cursor:pointer;font:inherit}
+#view .wrap .cvp-card-toggle:hover{background:var(--accent-soft)}
+#view .wrap .cvp-card-summary{display:grid;gap:2px;min-width:0;flex:1}
+#view .wrap .cvp-card-name{font-size:1rem;line-height:1.4;overflow-wrap:anywhere}
+#view .wrap .cvp-card-date{color:var(--mute);font-weight:500;font-size:.78rem;line-height:1.4}
+#view .wrap .cvp-toggle-action{font-size:.78rem;color:var(--accent);font-weight:700;white-space:nowrap}
+#view .wrap .cvp-toggle-indicator{display:grid;place-items:center;width:28px;height:28px;flex:none;background:var(--accent-soft);border-radius:50%;font-weight:800;font-size:1.3rem;line-height:1}
+#view .wrap tr.cvp-accordion-closed{gap:0;padding-top:10px;padding-bottom:10px}
+#view .wrap tr.cvp-accordion-closed > td:not(:first-child){display:none!important}
+#view .wrap tr.cvp-accordion-closed::before{top:28px}
+#view .wrap tr.cvp-accordion-open > td:not(:first-child){animation:cvp-accordion-enter .14s ease-out}
+@keyframes cvp-accordion-enter{from{opacity:.55}to{opacity:1}}
+@media(max-width:650px){#view .wrap .cvp-toggle-action{display:none}#view .wrap .cvp-card-toggle{gap:5px}#view .wrap .cvp-card-name{font-size:.95rem}}
+@media(prefers-reduced-motion:reduce){#view .wrap tr.cvp-accordion-open > td:not(:first-child){animation:none}}
+/* Print the whole medical timeline even when a user has collapsed cards. */
+@media print{#view .wrap tr.cvp-accordion-closed > td:not(:first-child){display:block!important}#view .wrap .cvp-card-toggle{display:none!important}}
