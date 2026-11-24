@@ -179,16 +179,15 @@ tr.det td{background:var(--accent-soft)!important}
 .site-main{max-width:900px;margin:0 auto;padding:24px 18px;line-height:1.72}.site-main h1{font-size:clamp(1.55rem,4vw,2.1rem);margin-bottom:10px}.site-main h2{font-size:1.2rem;margin-top:28px}.site-main a{color:var(--accent)}.site-main p,.site-main li{font-size:1rem}.site-main .lede{font-size:1.05rem;color:var(--mute)}.site-main .note{padding:13px;border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:6px}.site-main article{margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line)}
 @media(max-width:650px){.site-nav{padding:12px}.site-links{gap:9px}.site-links a{font-size:.78rem}.site-footer{padding:16px}.site-main{padding:18px 14px}}
 </style>
-<link href="./assets/install.css" rel="stylesheet"/><link href="assets/theme.css" rel="stylesheet"/><link href="assets/header-v1.4.css" rel="stylesheet"/><link href="./assets/language-v1.5.css" rel="stylesheet"/><link rel="stylesheet" href="assets/ui-v1.6.css"><link rel="stylesheet" href="assets/ui-v1.7.css"></head>
+<link href="./assets/install.css" rel="stylesheet"/><link href="assets/theme.css" rel="stylesheet"/><link href="assets/header-v1.4.css" rel="stylesheet"/><link href="./assets/language-v1.5.css" rel="stylesheet"/><link href="assets/ui-v1.6.css" rel="stylesheet"/><link href="assets/ui-v1.7.css" rel="stylesheet"/><link href="assets/ui-v1.8.css" rel="stylesheet"/></head>
 <body>
 <header class="app-header"><nav aria-label="Site navigation" class="site-nav"><a class="site-brand" href="./index.html">💉 <span><span class="cvp-only-bn">শিশুর টিকার চার্ট</span><span class="cvp-only-en">Child Vaccine Planner</span></span></a><button aria-controls="site-menu-panel" aria-expanded="false" aria-label="Open navigation menu" class="site-menu-toggle" type="button"><span aria-hidden="true" class="site-menu-icon"><span></span><span></span><span></span></span><span class="site-menu-label"><span class="cvp-only-bn">মেনু</span><span class="cvp-only-en">Menu</span></span></button><div class="site-links" id="site-menu-panel"><a href="./index.html"><span class="cvp-only-bn">চার্ট দেখুন</span><span class="cvp-only-en">See Chart</span></a><a href="./articles/index.html"><span class="cvp-only-bn">নিবন্ধ</span><span class="cvp-only-en">Articles</span></a><a href="./sources/index.html"><span class="cvp-only-bn">উৎস</span><span class="cvp-only-en">Sources</span></a><a href="./about/index.html"><span class="cvp-only-bn">সম্পর্কে</span><span class="cvp-only-en">About</span></a><a href="./privacy/index.html"><span class="cvp-only-bn">গোপনীয়তা</span><span class="cvp-only-en">Privacy</span></a><a href="./contact/index.html"><span class="cvp-only-bn">যোগাযোগ</span><span class="cvp-only-en">Contact</span></a><div aria-label="Language / ভাষা" class="site-language-switch" role="group"><button aria-label="বাংলা ভাষা" aria-pressed="true" data-cvp-language="bn" type="button">বাংলা</button><button aria-label="English language" aria-pressed="false" data-cvp-language="en" type="button">English</button></div><button aria-label="Toggle light and dark mode" class="site-theme-btn" id="site-theme-button" type="button">◐ Theme</button><button class="site-install-btn" data-cvp-label-bn="অ্যাপ ইনস্টল" data-cvp-label-en="Install App" id="site-install-button" type="button">⬇ অ্যাপ ইনস্টল</button></div></nav></header>
 <main>
-<div class="top">
-<div><h1 id="title"></h1><p class="sub" id="sub"></p></div>
-
-</div>
+<div class="top cvp-v18-hero">
+<div class="cvp-v18-hero-copy"><div class="cvp-v18-eyebrow"><span class="cvp-v18-eyebrow-dot">✦</span><span class="cvp-only-bn">আপনার শিশুর সুস্থ আগামী</span><span class="cvp-only-en">A healthier start for every child</span></div><h1 id="title"></h1><p class="sub" id="sub"></p><div class="cvp-v18-hero-trust"><span><b>✓</b><span class="cvp-only-bn">সরকারি ও ঐচ্ছিক টিকা</span><span class="cvp-only-en">EPI &amp; optional vaccines</span></span><span><b>✓</b><span class="cvp-only-bn">অফলাইনে ব্যবহারযোগ্য</span><span class="cvp-only-en">Works offline</span></span><span><b>✓</b><span class="cvp-only-bn">তথ্য আপনার ডিভাইসেই</span><span class="cvp-only-en">Your records stay on device</span></span></div></div>
+<div aria-hidden="true" class="cvp-v18-hero-visual"><div class="cvp-v18-visual-halo"></div><img alt="" decoding="async" height="420" loading="eager" src="./assets/hero-family-v1.8.svg" width="560"/><div class="cvp-v18-floating-card"><span class="cvp-v18-floating-icon">♥</span><span><span class="cvp-only-bn">প্রতিটি ডোজ, সঠিক সময়ে</span><span class="cvp-only-en">Every dose, on time</span></span></div></div></div>
 <div class="home-start-grid hide" id="homeStart">
-<form class="hide" id="setup" novalidate="">
+<form class="hide" id="setup" novalidate=""><p class="cvp-v18-form-eyebrow"><span class="cvp-only-bn">শুরু করুন এখানেই</span><span class="cvp-only-en">Start your plan</span></p><h2 class="cvp-v18-form-heading"><span class="cvp-only-bn">শিশুর জন্মতারিখ দিন</span><span class="cvp-only-en">Enter your child's date of birth</span></h2>
 <label for="nm" id="l-nm"></label>
 <input autocomplete="off" id="nm" maxlength="60" type="text"/>
 <label for="dob" id="l-dob"></label>
@@ -196,7 +195,7 @@ tr.det td{background:var(--accent-soft)!important}
 <p class="err" id="err" role="alert"></p>
 <button class="btn" id="go" type="submit"></button>
 </form>
-<aside aria-labelledby="home-centres-title" class="home-centres">
+<aside aria-labelledby="home-centres-title" class="home-centres"><div aria-hidden="true" class="cvp-v18-centre-icon">⌖</div>
 <h2 id="home-centres-title"><span class="cvp-only-bn">টিকাদান কেন্দ্র খুঁজুন</span><span class="cvp-only-en">Find Vaccination Centres</span></h2>
 <p><span class="cvp-only-bn">সরকারি EPI তথ্যসূত্র অথবা বেসরকারি টিকাদান কেন্দ্রের তালিকা দেখুন।</span><span class="cvp-only-en">Explore government EPI sources or private vaccination centre listings.</span></p>
 <div class="home-centres-actions">
@@ -204,7 +203,7 @@ tr.det td{background:var(--accent-soft)!important}
 <a aria-label="See Private Vaccination Centres / বেসরকারি টিকা কেন্দ্র দেখুন" href="./centres/index.html#private"><span class="cvp-only-bn">বেসরকারি টিকাকেন্দ্র দেখুন</span><span class="cvp-only-en">See Private Vaccination Centres</span></a>
 </div>
 </aside>
-</div>
+</div><section aria-label="Planner features" class="cvp-v18-benefits"><div><span class="cvp-v18-benefit-icon">◷</span><div><strong><span class="cvp-only-bn">তারিখের পরিকল্পনা</span><span class="cvp-only-en">Personalised dates</span></strong><p><span class="cvp-only-bn">জন্মতারিখ অনুযায়ী টিকার পরিকল্পনা</span><span class="cvp-only-en">Schedule based on date of birth</span></p></div></div><div><span class="cvp-v18-benefit-icon">✓</span><div><strong><span class="cvp-only-bn">ডোজ রেকর্ড</span><span class="cvp-only-en">Track every dose</span></strong><p><span class="cvp-only-bn">টিকা দেওয়ার প্রকৃত দিন সংরক্ষণ</span><span class="cvp-only-en">Keep actual vaccination dates</span></p></div></div><div><span class="cvp-v18-benefit-icon">♧</span><div><strong><span class="cvp-only-bn">শান্ত ও নিরাপদ অভিজ্ঞতা</span><span class="cvp-only-en">Designed for peace of mind</span></strong><p><span class="cvp-only-bn">অফলাইন ব্যবহারের সুবিধা</span><span class="cvp-only-en">Access your planner offline</span></p></div></div></section>
 <section class="hide" id="view">
 <div aria-label="Section" class="tabs sec noprint" role="group"><button aria-pressed="true" id="s-g"></button><button aria-pressed="false" id="s-p"></button><button aria-pressed="false" id="s-a">সব / All</button></div>
 <div class="info" id="info"></div>
@@ -525,5 +524,5 @@ if('serviceWorker' in navigator && location.protocol==='https:'){
 }
 </script>
 <footer class="site-footer"><p>স্বাস্থ্য-সম্পর্কিত সিদ্ধান্তের জন্য EPI কার্ড ও স্বাস্থ্যকর্মীর নির্দেশনা অনুসরণ করুন। এই সাইট DGHS-এর সরকারি ওয়েবসাইট নয়।</p></footer>
-<script defer="" src="./assets/install.js"></script><script defer="" src="assets/theme.js"></script><script defer="" src="assets/header-v1.4.js"></script><script defer="True" src="./assets/language-v1.5.js"></script><script src="assets/ui-v1.6.js" defer></script><script defer src="assets/ui-v1.7.js"></script></body>
+<script defer="" src="./assets/install.js"></script><script defer="" src="assets/theme.js"></script><script defer="" src="assets/header-v1.4.js"></script><script defer="True" src="./assets/language-v1.5.js"></script><script defer="" src="assets/ui-v1.6.js"></script><script defer="" src="assets/ui-v1.7.js"></script></body>
 </html>

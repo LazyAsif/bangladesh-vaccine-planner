@@ -1,3 +1,32 @@
+# Child Vaccine Planner v1.8 — Premium Healthcare UI/UX (Release Candidate)
+
+Date: 24 November 2026  
+Status: Release Candidate — not yet live or device-verified
+
+## Added
+- Original, locally stored vector hero illustration representing a parent, child and healthcare professional.
+- A premium, illustration-led homepage with trust cues and the child's birth-date task given visual priority.
+- A three-feature benefit row supporting personalised planning, actual-dose tracking and offline use.
+- Shared visual design system in `site/assets/ui-v1.8.css`, including desktop/mobile adjustments and dark-theme styles.
+
+## Changed
+- Homepage chart form and vaccination-centre discovery restyled as a clear primary and secondary journey.
+- Information page typography/cards, vaccination-timeline card appearance, settings/accordion spacing and focus states refined.
+- Service-worker cache changed to `bd-child-vax-public-v1.8` and includes the new CSS and SVG.
+
+## Preserved
+- Original vaccine schedule calculations, dose intervals, recorded-date inputs, clinician overrides, localStorage keys and export/share controls.
+- Existing bilingual, theme, bottom navigation, timeline accordion and PWA installation behaviour.
+- Website disclaimer and existing centre directory.
+
+## Validation
+- All original inline homepage JavaScript preserved exactly.
+- HTML local-path references, standalone/inline JS syntax, service worker asset list, ZIP integrity checked.
+- Browser-based rendering and interaction automation blocked by runtime access restrictions; live Android/iPhone/Desktop regression testing is outstanding.
+- No clinical review or Lighthouse score is claimed for this visual release.
+
+---
+
 # Child Vaccine Planner — Version History
 
 ## v1.7 — Release Candidate (24 November 2026)
