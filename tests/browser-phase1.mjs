@@ -16,7 +16,10 @@ if (!binary) throw Error('Set CVP_TEST_BROWSER to a Chromium executable.');
 const temp=fs.realpathSync(os.tmpdir()),profile=fs.mkdtempSync(path.join(temp,'cvp-browser-'));
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.webmanifest':'application/manifest+json'};
 let legacy=true, offline=false;
-const legacySite=process.env.CVP_V110_SITE && path.resolve(process.env.CVP_V110_SITE);
+const phase2=process.argv.includes('--phase2');
+const previous=phase2?process.env.CVP_PHASE1_SITE:process.env.CVP_V110_SITE;
+const legacySite=previous && path.resolve(previous);
+if(phase2 && (!legacySite || !process.env.CVP_TEST_PFX))throw Error('Phase 2 upgrade QA requires CVP_PHASE1_SITE and CVP_TEST_PFX.');
 const tls=process.env.CVP_TEST_PFX;
 const serve=(req,res)=>{
   if (offline) {req.socket.destroy();return;}
@@ -76,6 +79,10 @@ try {
     return {run,visit,sessionId};
   }
   await rpc('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:profile});
+  if(phase2){
+    const {exerciseProfiles}=await import('./browser-phase2.mjs');
+    await exerciseProfiles({page,rpc,until,profile,upgrade:()=>{legacy=false},disconnect:()=>{offline=true},rollback:()=>{offline=false;legacy=true}});
+  }else{
   const a=await page(),run=a.run;
   const saved={dob:'2024-01-31',name:"শিশু O'Brien\r\n\t<i>text</i>",done:{g0:true,rv3:false,g00:false},
     actual:{g1:'2024-04-10'},ov:{g1:'2024-04-08'},rotaBrand:'rotarix',products:{fluHistory:'one'},t:7};
@@ -289,6 +296,7 @@ try {
   await until(()=>run("document.querySelector('#backup-status').textContent.includes('Could not verify the recovery copy')"),'session failure status');
   assert.equal(await run("localStorage.getItem(CVPBackup.keys[0])"),beforeBlocked);
   console.log('PASS unavailable tab recovery storage prevents replacement');
+  }
   await rpc('Browser.close');
 } finally {
   ws?.close();

@@ -76,6 +76,7 @@
     if (!tbody) return;
     const openState = new Map();
     let defaultSet = false;
+    window.addEventListener('cvp-profile-change', () => { openState.clear(); defaultSet = false; });
     function enhance() {
       const rows = Array.from(tbody.querySelectorAll(':scope > tr'));
       if (!rows.length) return;

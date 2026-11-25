@@ -1,0 +1,29 @@
+#profiles {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+#profiles [hidden], #setup[hidden] { display: none !important }
+#profiles h2, #profiles h3 { margin: 0 0 .5rem }
+#profiles label { display: block; margin: .5rem 0 .25rem }
+#profiles select, #profiles input, #profiles button {
+  box-sizing: border-box;
+  min-width: 0; max-width: 100%; min-height: 44px;
+  font: inherit; white-space: normal;
+}
+#profiles select, #profiles input {
+  width: 100%; padding: .45rem; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+}
+#profile-actions, #legacy-sources, #profile-preview { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: .75rem }
+#profiles :is(p,h3,pre,label) { flex-basis: 100%; margin-block: .25rem }
+#profiles pre { white-space: pre-wrap; font: inherit; min-width: 0 }
+#profile-preview { padding: .75rem; border: 1px solid var(--accent); border-radius: 8px }
+#profiles :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+#profiles :empty { margin: 0 }
+#profiles input[type=checkbox] { width: 1.25rem; vertical-align: middle; margin-right: .5rem }
+@media(max-width:600px) { #profiles button { width: 100% } }
