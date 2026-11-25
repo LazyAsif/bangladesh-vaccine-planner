@@ -1,0 +1,110 @@
+/* Child Vaccine Planner v1.9 — mobile-first fixes, shared by website/PWA */
+:root{--cvp19-header-glass:rgba(246,250,249,.86);--cvp19-faq-line:#dbe7e5}
+:root[data-theme="dark"]{--cvp19-header-glass:rgba(24,37,42,.88);--cvp19-faq-line:#374c52}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="dark"]){--cvp19-header-glass:rgba(24,37,42,.88);--cvp19-faq-line:#374c52}}
+html{min-width:0;max-width:100%;scroll-padding-top:calc(82px + env(safe-area-inset-top,0px))}
+body{min-width:0;max-width:100%;overflow-x:clip}
+main,.site-main,.app-header .site-nav,.app-header .site-links,#view,#view .wrap,#view .wrap table,#view .wrap tbody,#view .wrap tr{min-width:0;max-width:100%}
+.app-header{width:100%;max-width:none;inset-inline:0;top:0;background:var(--cvp19-header-glass)!important;-webkit-backdrop-filter:blur(14px) saturate(145%);backdrop-filter:blur(14px) saturate(145%);border-bottom:1px solid var(--cvp18-border);box-shadow:0 3px 18px rgba(26,71,80,.06);isolation:isolate}
+.app-header .site-nav{padding-top:calc(9px + env(safe-area-inset-top,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-left:max(16px,env(safe-area-inset-left,0px));margin-inline:auto}
+.app-header .site-brand{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.app-header .site-links{min-width:0}
+:where(button,input,select,textarea){font-size:16px}
+button,a,input,select,textarea,summary{touch-action:manipulation}
+#view .wrap{width:100%;overflow:visible}
+#view .wrap table,#view .wrap tbody{display:block;width:100%;table-layout:fixed;min-width:0!important}
+#view .wrap tr{box-sizing:border-box;min-width:0;width:100%;max-width:100%;overflow-wrap:anywhere}
+#view .wrap td{min-width:0!important;max-width:100%;overflow-wrap:anywhere}
+#view .wrap td:first-child{min-width:0}
+#view .wrap .cvp-card-toggle{min-width:0;width:100%;max-width:100%;overflow:hidden;flex:1 1 0;padding-inline:3px}
+#view .wrap .cvp-card-summary{min-width:0;max-width:100%;overflow:hidden;overflow-wrap:anywhere}
+#view .wrap .cvp-card-name,#view .wrap .cvp-card-date{max-width:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal}
+#view .wrap .cvp-toggle-indicator{flex:0 0 28px}
+#view .wrap td input[type=date],#view .wrap td input[type=text],#view .wrap td select{min-width:0;max-width:100%;font-size:16px}
+#view .wrap .date-input-tools{min-width:0;max-width:100%}
+#view .wrap td .date-input-tools>*{max-width:100%}
+#view .bar{min-width:0;max-width:100%;gap:8px}
+#view .bar>*{min-width:0;max-width:100%;white-space:normal}
+#view .info>div{min-width:0!important;overflow-wrap:anywhere}
+#view .cvp-chart-tools{min-width:0}
+#view .cvp-chart-tools button{white-space:normal}
+#view .settings,#view .product-grid,#view .product-field,#view .cvp-product-disclosure{min-width:0;max-width:100%}
+#view .product-grid select{min-width:0;width:100%;font-size:16px}
+.cvp-faq{max-width:1040px;margin:40px auto 18px;padding:0 2px}
+.cvp-faq h2{text-align:center;color:var(--cvp18-ink);font-size:clamp(1.42rem,2.7vw,2rem);line-height:1.4;margin:0 0 19px}
+.cvp-faq details{background:var(--surface);border:1px solid var(--cvp19-faq-line);border-radius:17px;margin:0 0 11px;padding:2px 16px;box-shadow:0 2px 9px rgba(32,75,78,.035)}
+.cvp-faq summary{list-style:none;display:flex;align-items:center;gap:12px;min-height:58px;padding:12px 0;cursor:pointer;color:var(--cvp18-ink);font-weight:750;font-size:1rem;line-height:1.55}
+.cvp-faq summary::-webkit-details-marker{display:none}
+.cvp-faq summary::after{content:'+';margin-left:auto;color:var(--accent);font-size:1.42rem;font-weight:700;line-height:1}
+.cvp-faq details[open] summary::after{content:'−'}
+.cvp-faq details[open] summary{border-bottom:1px solid var(--cvp19-faq-line)}
+.cvp-faq details p{font-size:1rem;line-height:1.7;margin:11px 0 16px;color:var(--cvp18-muted)}
+.cvp-faq summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:7px}
+body:has(#view:not(.hide)) .cvp-faq{display:none}
+@media(max-width:767px){
+ :root{--header-height:60px}
+ html{scroll-padding-top:calc(67px + env(safe-area-inset-top,0px))}
+ body{font-size:16px!important;line-height:1.65;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))!important}
+ main,.site-main{width:100%;max-width:100%;min-width:0;padding-inline:max(12px,env(safe-area-inset-left,0px)) max(12px,env(safe-area-inset-right,0px));padding-bottom:24px}
+ .app-header .site-nav{min-height:60px;padding:8px max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px))}
+ .app-header .site-brand{font-size:clamp(.91rem,3.7vw,1.04rem);width:100%;max-width:100%}
+ .cvp-mobnav{padding:7px max(7px,env(safe-area-inset-right,0px)) calc(9px + env(safe-area-inset-bottom,0px)) max(7px,env(safe-area-inset-left,0px));background:var(--surface);width:100%;min-height:68px}
+ .cvp-mobnav a,.cvp-mobnav button{min-width:0;min-height:48px;line-height:1.35;font-size:clamp(.72rem,2.9vw,.85rem);white-space:normal;overflow-wrap:anywhere}
+ .cvp-install-nudge{bottom:calc(87px + env(safe-area-inset-bottom,0px))}
+ #view .wrap table{display:block;width:100%;min-width:0!important}
+ #view .wrap tbody{display:block;width:calc(100% - 11px);margin-left:9px;padding-left:13px;min-width:0!important}
+ #view .wrap tr{grid-template-columns:minmax(0,1fr)!important;gap:9px;margin-bottom:12px;padding:12px 10px;border-radius:13px}
+ #view .wrap tr::before{left:-23px;width:13px;height:13px}
+ #view .wrap tr td,#view .wrap tr td.name-cell,#view .wrap tr td.age-cell,#view .wrap tr td.date-cell,#view .wrap tr td.actual-cell,#view .wrap tr td.prog-cell{grid-column:1/-1;min-width:0!important;width:100%;max-width:100%}
+ #view .wrap tr td:first-child{display:flex!important;align-items:center;max-width:100%;gap:5px}
+ #view .wrap tr td input[type=checkbox]{flex:none;width:24px;height:24px}
+ #view .wrap .cvp-card-toggle{gap:5px;padding:7px 1px}
+ #view .wrap .cvp-card-name{font-size:clamp(.92rem,3.65vw,1.02rem)}
+ #view .wrap .cvp-card-date{font-size:.82rem}
+ #view .wrap .date-input-tools{display:flex;flex-wrap:wrap;gap:7px}
+ #view .wrap .date-input-tools input{width:100%;flex:1 1 175px;min-width:0;font-size:16px}
+ #view .wrap .date-input-tools button{min-height:44px;flex:0 0 auto}
+ #view .wrap .date-cell .date,#view .wrap .sm,#view .wrap td{font-size:clamp(.875rem,3.6vw,1rem)}
+ #view .info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #view .info>div{width:auto;min-width:0;flex:auto;padding:11px}
+ #view .info>div:last-child{grid-column:1/-1}
+ #view .bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ #view .bar .btn{font-size:.9rem;min-height:48px;width:100%;max-width:100%;padding:10px 8px;white-space:normal;line-height:1.4}
+ #view .bar .btn:first-child{grid-column:1/-1}
+ #view .cvp-chart-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ #view .cvp-chart-tools button{font-size:.88rem;padding:9px 7px;min-height:44px}
+ .cvp-v18-hero,.home-start-grid,.home-centres,.cvp-v18-benefits{max-width:100%;min-width:0}
+ .cvp-v18-hero-visual{overflow:hidden}
+ .home-centres-actions a{min-height:48px}
+ .cvp-faq{margin-top:25px;padding:0 1px}
+ .cvp-faq summary{font-size:1rem;min-height:54px}
+ .cvp-faq details{padding-inline:14px}
+ .site-footer{max-width:100%;padding:18px max(13px,env(safe-area-inset-right,0px)) 15px max(13px,env(safe-area-inset-left,0px));margin-bottom:8px;overflow-wrap:anywhere}
+ .dir-tools{grid-template-columns:minmax(0,1fr)!important}
+ .centre-tabs{min-width:0;flex-wrap:wrap}
+ .private-list{grid-template-columns:minmax(0,1fr)}
+ .site-main article{overflow-wrap:anywhere}
+ input,select,textarea{font-size:16px!important}
+ button,.btn,.dbtn,input[type='date'],input[type='text'],select,.site-main .dir-actions a{min-height:44px}
+ .mo .dlg{width:min(100%,640px);max-height:calc(100dvh - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow:auto;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:359px){
+ .cvp-v18-hero{padding:18px 14px 12px}
+ .cvp-v18-hero h1{font-size:1.58rem}
+ #view .bar,#view .cvp-chart-tools{grid-template-columns:minmax(0,1fr)}
+ #view .bar .btn:first-child{grid-column:1}
+ #view .info{grid-template-columns:minmax(0,1fr)}
+ #view .info>div:last-child{grid-column:1}
+ #view .wrap tbody{padding-left:12px;margin-left:8px;width:calc(100% - 9px)}
+}
+@media(display-mode:standalone){body{min-height:100dvh}}
+@supports(padding:max(0px)){.cvp-more-dialog{padding-bottom:max(20px,calc(20px + env(safe-area-inset-bottom,0px)))}}
+@media(prefers-reduced-motion:reduce){.cvp-faq *{scroll-behavior:auto!important}}
+@media print{.cvp-faq{display:none!important}.app-header{position:static;background:#fff!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* Finger-sized completion control and links within a vaccine card. */
+@media(max-width:767px){
+ #view .wrap tr td input[type="checkbox"]{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;margin:0 4px 0 0}
+ #view .wrap tr a,#view .wrap tr .dbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 10px;max-width:100%;white-space:normal;text-align:center}
+ #view .wrap tr .cvp-card-toggle{min-height:48px}
+ #view .wrap .date-input-tools input[type="date"]{min-width:0;max-width:100%}
+}

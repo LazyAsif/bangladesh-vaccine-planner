@@ -1,11 +1,7 @@
-# Child Vaccine Planner v1.8 — Premium UI/UX
+# Child Vaccine Planner v1.9 — Static Cloudflare Pages PWA
 
-Cloudflare Pages deployment-ready static PWA. Based on the exact Child Vaccine Planner v1.7 complete project.
+Project root contains `site/` and `functions/`. Cloudflare Pages uses framework `None`, no build command, build output `site`, root directory repository root. No frameworks or external scripts required.
 
-## Install as a replacement
+v1.9 refines the 320–768px experience and fixes PWA assets/cache without touching vaccine calculations or personal records. See `CHANGELOG.md`, `DEPLOY_v1.9.md` and `QA_REPORT_v1.9.md`.
 
-Use `Child_Vaccine_Planner_v1.8_Changed_Files.zip` for the existing GitHub repository. Drag the `site` folder plus `CHANGELOG.md`, `DEPLOY_v1.8.md`, and `QA_REPORT_v1.8.md` into the GitHub repository root. Check paths start with `site/`, not `site/site/`. Commit to `main` only after backup. Cloudflare Pages deploys automatically.
-
-The current published website will not change until this ZIP is committed. No browser storage migrations are included.
-
-Read `DEPLOY_v1.8.md` for validation and rollback steps.
+The planner is not an official DGHS service or clinical decision tool. Vaccine eligibility and dose schedules require the EPI card and qualified vaccinator.

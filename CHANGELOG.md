@@ -1,3 +1,26 @@
+# Child Vaccine Planner — Internal Changelog
+
+## v1.9 — Release Candidate (25 November 2026)
+
+### Fixed
+- Mobile timeline accordion cards overflowing beyond the viewport on 320–390px screens; enforce min-width, wrapping and one-column vaccine detail layout.
+- Narrow-screen button/input layouts, Bengali wrapping and date-picker tap targets.
+- Sticky header edge/background mismatch; full-width translucent matching background with subtle blur.
+- Safe-area padding in standalone PWA and fixed mobile navigation.
+- Missing PWA icon (192/512) and social-preview PNG assets referenced by v1.8 package.
+- Service worker install now separates critical shell from optional assets so an optional asset failing does not break initial offline registration.
+
+### Added
+- Three accessible bilingual FAQ accordions on homepage: optional vaccines, missed doses, privacy.
+- Proper maskable PWA icons and updated manifest definitions.
+- Mobile-first CSS override `site/assets/mobile-v1.9.css` applied to all HTML pages.
+
+### Preserved
+- All vaccine schedule arithmetic, actual-dose tracking, clinician date overrides, localStorage keys, languages, timeline accordion actions, theme, directory, export, and offline navigation.
+
+### Validation
+- HTML and asset integrity, JS syntax, mobile Chromium emulation 320/360/390/430/768px, FAQ interactions, and schedule-date regression checks. Physical Android and iPhone Safari testing remains necessary.
+
 # Child Vaccine Planner v1.8 — Premium Healthcare UI/UX (Release Candidate)
 
 Date: 24 November 2026  
