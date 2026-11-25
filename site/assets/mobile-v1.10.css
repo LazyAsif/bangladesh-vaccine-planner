@@ -1,0 +1,101 @@
+/* Child Vaccine Planner v1.10 — emergency mobile timeline layout repair.
+   Presentation only: no changes to vaccine calculation, DOM records or storage. */
+@media screen and (max-width: 767px) {
+  /* Earlier pre-timeline stylesheet absolutely positioned the first cell. The
+     accordion reuses that cell, so it must be returned to the normal flow. */
+  #view .wrap, #view .wrap table, #view .wrap tbody {
+    display:block!important; min-width:0!important; max-width:100%!important;
+    box-sizing:border-box!important; overflow:visible!important;
+  }
+  #view .wrap tbody {
+    width:calc(100% - 16px)!important;
+    margin:0 0 0 8px!important;
+    padding-left:15px!important;
+    border-left:3px solid var(--accent);
+  }
+  #view .wrap tbody > tr {
+    display:flex!important; flex-direction:column!important;
+    grid-template-columns:none!important; align-items:stretch!important;
+    gap:10px!important; width:100%!important; min-width:0!important;
+    max-width:100%!important; height:auto!important; min-height:0!important;
+    overflow:visible!important; margin:0 0 13px!important;
+    padding:13px 12px!important; position:relative!important;
+    isolation:isolate;
+  }
+  #view .wrap tbody > tr::before {left:-27px!important;top:22px!important;}
+  #view .wrap tbody > tr > td,
+  #view .wrap tbody > tr > td:first-child,
+  #view .wrap tbody > tr > td.name-cell,
+  #view .wrap tbody > tr > td.age-cell,
+  #view .wrap tbody > tr > td.date-cell,
+  #view .wrap tbody > tr > td.actual-cell,
+  #view .wrap tbody > tr > td.prog-cell {
+    position:static!important; inset:auto!important; float:none!important;
+    display:block!important; width:100%!important; max-width:100%!important;
+    min-width:0!important; height:auto!important; min-height:0!important;
+    padding:0!important; margin:0!important; order:0!important;
+    grid-column:auto!important; grid-row:auto!important; flex:none!important;
+    transform:none!important; clear:both!important;
+    box-sizing:border-box!important; overflow-wrap:anywhere!important;
+  }
+  #view .wrap tbody > tr > td:first-child {
+    display:flex!important; flex-direction:row!important; align-items:flex-start!important;
+    justify-content:flex-start!important; gap:10px!important;
+  }
+  #view .wrap tbody > tr > td:first-child input[type="checkbox"] {
+    position:static!important; flex:0 0 44px!important; width:44px!important;
+    height:44px!important; min-width:44px!important; min-height:44px!important;
+    margin:3px 0 0!important; padding:0!important; align-self:flex-start;
+  }
+  #view .wrap tbody > tr > td:first-child .cvp-card-toggle {
+    position:static!important; display:flex!important; align-items:center!important;
+    flex:1 1 0!important; width:auto!important; min-width:0!important;
+    max-width:100%!important; min-height:50px!important; height:auto!important;
+    padding:6px 3px!important; margin:0!important; gap:8px!important;
+    overflow:visible!important; white-space:normal!important;
+  }
+  #view .wrap .cvp-card-summary {display:flex!important; flex:1 1 0!important;
+    min-width:0!important; flex-direction:column!important; gap:3px!important;
+    overflow-wrap:anywhere!important; overflow:visible!important;}
+  #view .wrap .cvp-card-name {font-size:1rem!important;line-height:1.46!important;
+    font-weight:750;overflow-wrap:anywhere!important;white-space:normal!important;}
+  #view .wrap .cvp-card-date {font-size:.82rem!important;line-height:1.5!important;
+    overflow-wrap:anywhere!important;white-space:normal!important;}
+  #view .wrap .cvp-toggle-indicator {flex:0 0 34px!important; width:34px!important;
+    height:34px!important; margin-left:auto!important; align-self:center!important;}
+  #view .wrap tbody > tr > td.name-cell,
+  #view .wrap tbody > tr > td.age-cell,
+  #view .wrap tbody > tr > td.date-cell,
+  #view .wrap tbody > tr > td.actual-cell {padding:9px 0 0!important;
+    border-top:1px solid var(--line)!important;}
+  #view .wrap tbody > tr > td.name-cell .vn {display:block;line-height:1.5!important;
+    padding-right:0!important;overflow-wrap:anywhere!important;}
+  #view .wrap tbody > tr > td.prog-cell {padding-top:5px!important;}
+  #view .wrap tbody > tr.cvp-accordion-closed > td:not(:first-child) {display:none!important;}
+  #view .wrap tbody > tr .date-input-tools {width:100%!important; display:flex!important;
+    flex-wrap:wrap!important; gap:7px!important; min-width:0!important;}
+  #view .wrap tbody > tr .date-input-tools input[type="date"] {
+    width:auto!important; flex:1 1 160px!important; min-width:0!important;
+    max-width:100%!important; min-height:46px!important; font-size:16px!important;
+  }
+  #view .wrap tbody > tr .date-input-tools button {flex:0 0 auto!important;
+    min-height:44px!important;min-width:44px!important;}
+  #view .wrap tbody > tr label, #view .wrap tbody > tr .sm,
+  #view .wrap tbody > tr .date {white-space:normal!important;
+    overflow-wrap:anywhere!important;line-height:1.55!important;}
+  #view .wrap tbody > tr .cvp-status {white-space:normal!important;}
+  #view .wrap tbody > tr .dbtn {max-width:100%!important;white-space:normal!important;}
+  #view .wrap tbody > tr * {box-sizing:border-box;}
+}
+@media screen and (max-width: 359px) {
+  #view .wrap tbody {margin-left:7px!important;padding-left:13px!important;}
+  #view .wrap tbody > tr {padding:11px 9px!important;}
+  #view .wrap tbody > tr > td:first-child {gap:7px!important;}
+  #view .wrap tbody > tr > td:first-child input[type="checkbox"] {
+    flex-basis:44px!important;width:44px!important;height:44px!important;
+    min-width:44px!important;min-height:44px!important;}
+}
+@media print {
+  /* Keep printing independent of the mobile accordion display rules. */
+  #view .wrap tbody > tr.cvp-accordion-closed > td:not(:first-child) {display:table-cell!important;}
+}

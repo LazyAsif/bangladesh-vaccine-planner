@@ -5,3 +5,7 @@ Project root contains `site/` and `functions/`. Cloudflare Pages uses framework 
 v1.9 refines the 320–768px experience and fixes PWA assets/cache without touching vaccine calculations or personal records. See `CHANGELOG.md`, `DEPLOY_v1.9.md` and `QA_REPORT_v1.9.md`.
 
 The planner is not an official DGHS service or clinical decision tool. Vaccine eligibility and dose schedules require the EPI card and qualified vaccinator.
+
+
+## v1.10 mobile repair
+Critical vaccine timeline first-cell overlap fixed using `site/assets/mobile-v1.10.css`. See `QA_REPORT_v1.10.md` and `DEPLOY_v1.10.md`. No vaccination logic, saved record keys or clinical rules changed.

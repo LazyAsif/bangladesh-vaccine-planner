@@ -1,5 +1,23 @@
 # Child Vaccine Planner — Internal Changelog
 
+## v1.10 — Release Candidate (25 November 2026)
+
+### Fixed
+- Critical mobile accordion overlap on Android/Redmi 13C: legacy mobile table CSS absolutely positioned the first table cell even after accordion conversion. Reset the first cell into document flow and stack all table cells as flexible vaccine cards below 768px.
+- Checkbox, vaccine name, date summary and expand/collapse button no longer compete for the same space; date controls and detailed data align vertically.
+- Chart cards cannot expand past the viewport; input/date wrapping remains responsive on 320–412px screens.
+- Updated the PWA service-worker cache to `bd-child-vax-public-v1.10` and precached the new CSS.
+
+### Preserved
+- Vaccination calculations, age limits, product selection, clinician overrides, recorded vaccination dates, localStorage keys, bilingual labels, accordion behaviour, themes, and existing PWA features.
+
+### Validation
+- Chromium inline HTML/CSS/JS rendering tested at 320, 360, 390, 393, 412, 768px; no page horizontal overflow and no overlapping first cell/other content. 16 sample vaccination rows rendered with functional accordion open/close and an actual-dose date change.
+- The local browser harness reported an invalid URL from a URL-dependent feature because the document has no hosted origin; live HTTPS Android/PWA regression is still required.
+- Physical Redmi 13C and iPhone testing is pending. This is a CSS-level software fix, not a medical schedule revision.
+
+---
+
 ## v1.9 — Release Candidate (25 November 2026)
 
 ### Fixed

@@ -1,6 +1,6 @@
 // Child Vaccine Planner v1.9 — offline PWA, no personal-data caching
-const CACHE='bd-child-vax-public-v1.9';
-const SHELL=['/','/index.html','/manifest.webmanifest','/assets/site.css','/assets/ui-v1.6.css','/assets/ui-v1.6.js','/assets/ui-v1.7.css','/assets/ui-v1.7.js','/assets/ui-v1.8.css','/assets/mobile-v1.9.css','/assets/header-v1.4.css','/assets/header-v1.4.js','/assets/language-v1.5.css','/assets/language-v1.5.js','/assets/install.css','/assets/install.js','/assets/theme.css','/assets/theme.js'];
+const CACHE='bd-child-vax-public-v1.10';
+const SHELL=['/','/index.html','/manifest.webmanifest','/assets/site.css','/assets/ui-v1.6.css','/assets/ui-v1.6.js','/assets/ui-v1.7.css','/assets/ui-v1.7.js','/assets/ui-v1.8.css','/assets/mobile-v1.9.css','/assets/mobile-v1.10.css','/assets/header-v1.4.css','/assets/header-v1.4.js','/assets/language-v1.5.css','/assets/language-v1.5.js','/assets/install.css','/assets/install.js','/assets/theme.css','/assets/theme.js'];
 const EXTRA=['/assets/logo.svg','/assets/hero-family-v1.8.svg','/assets/icons/icon-192.png','/assets/icons/icon-512.png','/assets/icons/icon-192-maskable.png','/assets/icons/icon-512-maskable.png','/assets/social-preview.png','/assets/centres.js','/assets/private-centres.js','/assets/private-centres.json','/assets/districts.json','/centres/','/articles/','/articles/bcg/','/articles/six-weeks/','/articles/missed-vaccine/','/articles/rotavirus/','/articles/mr-mmr/','/articles/typhoid/','/about/','/privacy/','/contact/','/medical-disclaimer/','/sources/'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(async cache=>{
   await cache.addAll(SHELL); // Critical shell must be complete.
