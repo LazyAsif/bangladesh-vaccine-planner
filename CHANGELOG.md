@@ -1,5 +1,9 @@
 # Child Vaccine Planner — Internal Changelog
 
+## Phase 1 preview · homepage button spacing
+
+- Added a 14 px gap between the identity-form actions. At 600 px and below, the buttons stack at full form width. The updated homepage ships in PWA cache `bd-child-vax-public-phase1-r3`.
+
 ## Phase 1 corrective candidate · 25 November 2026
 
 - Rejected dose dates return to the accepted value with an adjacent bilingual alert. The chart and backup panel report the same result.

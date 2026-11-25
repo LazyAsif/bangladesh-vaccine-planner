@@ -30,7 +30,7 @@ Extract locally with relative paths intact. In the repository root, `site/`, `fu
 
 1. Record the known-good v1.10 commit or keep a verified complete v1.10 archive. Review the changed-file inventory and the outstanding device checks with the owner.
 2. The owner manually uploads the **extracted files** at repository root and checks the paths in the GitHub diff. Commit all runtime files together so the homepage, required resources and worker agree. Use the existing Cloudflare Pages project settings: repository root, framework None, empty build command and static output `site`.
-3. After the owner's commit triggers Pages, verify the deployment and open the planner online first. Confirm the new backup panel appears, both `/assets/backup-v1.*` files load, and the worker uses `bd-child-vax-public-phase1-r2`. Close and reopen the installed app online before the offline check.
+3. For the homepage spacing update on the existing `v2-phase1-preview` branch, use `Child_Vaccine_Planner_v2_Phase1_Button_Spacing_Changed_Files.zip`. After the owner's commit triggers Pages, open the planner online first and verify worker cache `bd-child-vax-public-phase1-r3`. Close and reopen the installed app online before the offline check.
 4. On an isolated test profile, confirm a synthetic raw backup can be previewed, cancelled, restored and exported again. Verify offline restart and the existing accordion on narrow screens. The QA report identifies the outstanding physical-device and production HTTPS checks.
 
 ## Rollback

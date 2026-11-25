@@ -1,5 +1,11 @@
 # Phase 1 corrective QA · 25 November 2026
 
+## Homepage spacing update · preview cache r3
+
+The Chromium edit-form check measured the visible buttons at **320, 360, 390, 393, 412, 600, 768 and 1280 CSS pixels** in Bangla and English, Light and Dark (32 combinations). The gap was 14 px; through 600 px the buttons filled the form width in a vertical stack. At 1280 px the schedule and backup buttons shared a row. All visible controls measured at least 44 px tall, their text stayed inside their bounds, and the page had no horizontal overflow.
+
+All 10 Node tests and the existing Chromium regression suite passed with synthetic data, including the archived v1.10 engine comparison, PWA cache upgrade to r3, offline navigation and restore. These were browser-emulation checks; physical devices were not tested.
+
 **READY for owner release review.** The final local run passed 10 Node tests and the Chromium integration suite. All data was synthetic. No production or remote repository was accessed.
 
 ## Baseline and method

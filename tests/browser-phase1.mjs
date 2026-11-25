@@ -127,6 +127,41 @@ try {
   assert.equal(await run('new URL(document.querySelector(".calendar-row-link").href).searchParams.get("text").startsWith(S.name)'),true);
   assert.equal(await run('document.getElementById("title").querySelector("i")===null'),true);
   console.log('PASS recovery, duplicate rejection, cancel, export/import, verify and safe calendar link');
+  await reopened.run("document.querySelector('#edit').click()");
+  function measureActions() {
+    const group=document.querySelector('.setup-actions');
+    const bounds=group.getBoundingClientRect();
+    const buttons=Array.from(group.querySelectorAll('button'),button=>{
+      const box=button.getBoundingClientRect(), range=document.createRange();
+      range.selectNodeContents(button);
+      const text=range.getBoundingClientRect();
+      return {x:box.left,y:box.top,right:box.right,bottom:box.bottom,height:box.height,
+        fits:text.width>0 && text.left>=box.left-1 && text.right<=box.right+1 && text.top>=box.top-1 && text.bottom<=box.bottom+1};
+    });
+    return {buttons,left:bounds.left,right:bounds.right,scroll:document.documentElement.scrollWidth};
+  }
+  for(const width of [320,360,390,393,412,600,768,1280]){
+    await rpc('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<=768},reopened.sessionId);
+    for(const language of ['bn','en']) for(const theme of ['dark','light']){
+      await reopened.run('cvpLanguage.set('+JSON.stringify(language)+');if(document.documentElement.dataset.theme!== '+JSON.stringify(theme)+')document.querySelector("#site-theme-button").click()');
+      const layout=await reopened.run('('+measureActions.toString()+')()');
+      const label=[width,language,theme].join(' ');
+      assert(layout.scroll<=width,label+' overflow');
+      const [primary,backup]=layout.buttons;
+      for(const [i,button] of layout.buttons.entries()){
+        assert(button.height>=44 && button.fits,label+' touch target or text bounds');
+        if(width<=600) assert(Math.abs(button.x-layout.left)<1 && Math.abs(button.right-layout.right)<1,label+' full width');
+        if(i){
+          const previous=layout.buttons[i-1],sameRow=button.y===previous.y;
+          const gap=sameRow ? button.x-previous.right : button.y-previous.bottom;
+          assert.equal(gap,14,label+' button gap');
+          if(width<=600) assert(!sameRow,label+' stacked');
+        }
+      }
+      if(width===1280) assert.equal(primary.y,backup.y,label+' desktop pair alignment');
+    }
+  }
+  console.log('PASS homepage edit actions: 14px gaps, full-width mobile stack, touch targets and text bounds across 32 layouts');
   async function dob(value,accept) {
     await run("document.querySelector('#edit').click();document.querySelector('#dob').value="+JSON.stringify(value)+";window.confirm=()=>"+accept+";document.querySelector('#setup').requestSubmit()");
   }
@@ -194,7 +229,7 @@ try {
   assert.equal(await run('JSON.parse(localStorage.getItem(CVPBackup.keys[0])).name'),'Second tab');
   console.log('PASS real two-tab conflict during preview and stale edit');
   await run("(async()=>{const reg=await navigator.serviceWorker.ready;await reg.update();return true})()");
-  await until(()=>run("caches.keys().then(k=>k.includes('bd-child-vax-public-phase1-r2')&&!k.includes('bd-child-vax-public-v1.10'))"),'updated worker');
+  await until(()=>run("caches.keys().then(k=>k.includes('bd-child-vax-public-phase1-r3')&&!k.includes('bd-child-vax-public-v1.10'))"),'updated worker');
   assert.equal(await run("caches.match('/assets/backup-v1.js').then(Boolean)"),true);
   offline=true;
   for(const [url,selector] of [['/centres/index.html','#divselect'],['/articles/index.html','a[href*="bcg"]']]){

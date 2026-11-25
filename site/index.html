@@ -153,6 +153,11 @@ tr.det td{background:var(--accent-soft)!important}
 /* v1.3: first-screen centre discovery, aligned with chart form */
 .home-start-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);align-items:stretch;gap:18px;margin-top:16px}
 .home-start-grid #setup{display:block;width:100%;max-width:none;margin:0;min-width:0}
+.setup-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+#setup .setup-actions .btn{min-height:44px;max-width:100%;white-space:normal}
+#setup .setup-actions #go{margin-top:0}
+.setup-actions [hidden]{display:none}
+@media(max-width:600px){.setup-actions{flex-direction:column}.setup-actions .btn{width:100%}}
 .home-centres{display:flex;flex-direction:column;justify-content:center;gap:15px;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:0}
 .home-centres h2{margin:0;font-size:1.23rem;line-height:1.4;color:var(--ink)}
 .home-centres p{margin:0;color:var(--mute);font-size:.91rem;line-height:1.55}
@@ -194,7 +199,11 @@ tr.det td{background:var(--accent-soft)!important}
 <label for="dob" id="l-dob"></label>
 <input id="dob" required="" type="date" aria-describedby="err"/>
 <p class="err" id="err" role="alert"></p>
-<button class="btn" id="go" type="submit"></button><button class="btn o" id="cancel-edit" type="button" hidden></button><button class="btn o" id="backup-before-edit" type="button" hidden></button>
+<div class="setup-actions">
+<button class="btn" id="go" type="submit"></button>
+<button class="btn o" id="backup-before-edit" type="button" hidden></button>
+<button class="btn o" id="cancel-edit" type="button" hidden></button>
+</div>
 </form>
 <aside aria-labelledby="home-centres-title" class="home-centres"><div aria-hidden="true" class="cvp-v18-centre-icon">⌖</div>
 <h2 id="home-centres-title"><span class="cvp-only-bn">টিকাদান কেন্দ্র খুঁজুন</span><span class="cvp-only-en">Find Vaccination Centres</span></h2>
