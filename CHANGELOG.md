@@ -1,5 +1,25 @@
 # Child Vaccine Planner — Internal Changelog
 
+## Phase 1 preview · homepage button spacing
+
+- Added a 14 px gap between the identity-form actions. At 600 px and below, the buttons stack at full form width. The updated homepage ships in PWA cache `bd-child-vax-public-phase1-r3`.
+
+## Phase 1 corrective candidate · 25 November 2026
+
+- Rejected dose dates return to the accepted value with an adjacent bilingual alert. The chart and backup panel report the same result.
+- A DOB-only edit preserves the exact stored name, including embedded whitespace. Restore detects an unsubmitted identity form and requires separate consent to discard it.
+- Replacement requires acknowledgement about closing other planner windows. A verified tab-session copy preserves the intended restore across reloads. An external overwrite triggers comparison and export options; recovery requires a user action.
+- Worker cache `bd-child-vax-public-phase1-r2` includes the Centres and Articles landing pages in the required install shell. Offline index links resolve to the correct cached directory. Uncached pages return an offline message.
+- Updated tests cover the actual archived v1.10 writer, session-storage failure, first offline directory visits, 393 px and original engine parity. Physical-device and production checks remain pending.
+
+## Phase 1 — Data Safety, Backup & Restore · local review candidate (25 November 2026)
+
+- Read and validate the v4 and v3 storage keys independently. Surface damaged and conflicting copies for recovery. A failed save retains an exportable draft and displays its actual storage status.
+- Download a versioned single-child JSON backup or preview a supported historical raw file locally. Confirm replacement after comparing records. Check both keys before writing and verify the payload after writing.
+- Preserve the original record fields, dates, hidden rows and completion flags. A DOB correction retains clinical history and warns about date inconsistencies.
+- Add Bangla and English recovery controls and a mobile comparison panel. Cache the new assets under `bd-child-vax-public-phase1-r1`.
+- Added synthetic engine snapshots, storage tests and Chromium integration tests. See `QA_REPORT_PHASE_1.md` and `DEPLOY_PHASE_1.md` before owner review.
+
 ## v1.10 — Release Candidate (25 November 2026)
 
 ### Fixed
