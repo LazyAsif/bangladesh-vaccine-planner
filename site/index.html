@@ -179,7 +179,7 @@ tr.det td{background:var(--accent-soft)!important}
 .site-main{max-width:900px;margin:0 auto;padding:24px 18px;line-height:1.72}.site-main h1{font-size:clamp(1.55rem,4vw,2.1rem);margin-bottom:10px}.site-main h2{font-size:1.2rem;margin-top:28px}.site-main a{color:var(--accent)}.site-main p,.site-main li{font-size:1rem}.site-main .lede{font-size:1.05rem;color:var(--mute)}.site-main .note{padding:13px;border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:6px}.site-main article{margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line)}
 @media(max-width:650px){.site-nav{padding:12px}.site-links{gap:9px}.site-links a{font-size:.78rem}.site-footer{padding:16px}.site-main{padding:18px 14px}}
 </style>
-<link href="./assets/install.css" rel="stylesheet"/><link href="assets/theme.css" rel="stylesheet"/><link href="assets/header-v1.4.css" rel="stylesheet"/><link href="./assets/language-v1.5.css" rel="stylesheet"/><link href="assets/ui-v1.6.css" rel="stylesheet"/><link href="assets/ui-v1.7.css" rel="stylesheet"/><link href="assets/ui-v1.8.css" rel="stylesheet"/><link href="assets/mobile-v1.9.css" rel="stylesheet"/><link href="assets/mobile-v1.10.css" rel="stylesheet"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="default" name="apple-mobile-web-app-status-bar-style"/></head>
+<link href="./assets/install.css" rel="stylesheet"/><link href="assets/theme.css" rel="stylesheet"/><link href="assets/header-v1.4.css" rel="stylesheet"/><link href="./assets/language-v1.5.css" rel="stylesheet"/><link href="assets/ui-v1.6.css" rel="stylesheet"/><link href="assets/ui-v1.7.css" rel="stylesheet"/><link href="assets/ui-v1.8.css" rel="stylesheet"/><link href="assets/mobile-v1.9.css" rel="stylesheet"/><link href="assets/mobile-v1.10.css" rel="stylesheet"/><link href="assets/backup-v1.css" rel="stylesheet"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="default" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
 <header class="app-header"><nav aria-label="Site navigation" class="site-nav"><a class="site-brand" href="./index.html">💉 <span><span class="cvp-only-bn">শিশুর টিকার চার্ট</span><span class="cvp-only-en">Child Vaccine Planner</span></span></a><button aria-controls="site-menu-panel" aria-expanded="false" aria-label="Open navigation menu" class="site-menu-toggle" type="button"><span aria-hidden="true" class="site-menu-icon"><span></span><span></span><span></span></span><span class="site-menu-label"><span class="cvp-only-bn">মেনু</span><span class="cvp-only-en">Menu</span></span></button><div class="site-links" id="site-menu-panel"><a href="./index.html"><span class="cvp-only-bn">চার্ট দেখুন</span><span class="cvp-only-en">See Chart</span></a><a href="./articles/index.html"><span class="cvp-only-bn">নিবন্ধ</span><span class="cvp-only-en">Articles</span></a><a href="./sources/index.html"><span class="cvp-only-bn">উৎস</span><span class="cvp-only-en">Sources</span></a><a href="./about/index.html"><span class="cvp-only-bn">সম্পর্কে</span><span class="cvp-only-en">About</span></a><a href="./privacy/index.html"><span class="cvp-only-bn">গোপনীয়তা</span><span class="cvp-only-en">Privacy</span></a><a href="./contact/index.html"><span class="cvp-only-bn">যোগাযোগ</span><span class="cvp-only-en">Contact</span></a><div aria-label="Language / ভাষা" class="site-language-switch" role="group"><button aria-label="বাংলা ভাষা" aria-pressed="true" data-cvp-language="bn" type="button">বাংলা</button><button aria-label="English language" aria-pressed="false" data-cvp-language="en" type="button">English</button></div><button aria-label="Toggle light and dark mode" class="site-theme-btn" id="site-theme-button" type="button">◐ Theme</button><button class="site-install-btn" data-cvp-label-bn="অ্যাপ ইনস্টল" data-cvp-label-en="Install App" id="site-install-button" type="button">⬇ অ্যাপ ইনস্টল</button></div></nav></header>
 <main>
@@ -190,10 +190,11 @@ tr.det td{background:var(--accent-soft)!important}
 <form class="hide" id="setup" novalidate=""><p class="cvp-v18-form-eyebrow"><span class="cvp-only-bn">শুরু করুন এখানেই</span><span class="cvp-only-en">Start your plan</span></p><h2 class="cvp-v18-form-heading"><span class="cvp-only-bn">শিশুর জন্মতারিখ দিন</span><span class="cvp-only-en">Enter your child's date of birth</span></h2>
 <label for="nm" id="l-nm"></label>
 <input autocomplete="off" id="nm" maxlength="60" type="text"/>
+<div id="original-name" hidden><span></span><pre></pre></div>
 <label for="dob" id="l-dob"></label>
-<input id="dob" required="" type="date"/>
+<input id="dob" required="" type="date" aria-describedby="err"/>
 <p class="err" id="err" role="alert"></p>
-<button class="btn" id="go" type="submit"></button>
+<button class="btn" id="go" type="submit"></button><button class="btn o" id="cancel-edit" type="button" hidden></button><button class="btn o" id="backup-before-edit" type="button" hidden></button>
 </form>
 <aside aria-labelledby="home-centres-title" class="home-centres"><div aria-hidden="true" class="cvp-v18-centre-icon">⌖</div>
 <h2 id="home-centres-title"><span class="cvp-only-bn">টিকাদান কেন্দ্র খুঁজুন</span><span class="cvp-only-en">Find Vaccination Centres</span></h2>
@@ -232,7 +233,16 @@ tr.det td{background:var(--accent-soft)!important}
 <p class="sm noprint" id="store"></p>
 <div class="foot"><strong>Sources / উৎস (local Bangladesh approval must still be checked):</strong> <a href="https://iris.who.int/bitstream/handle/10665/378480/Bangladesh-EPI-Fact%20Sheet-2024.pdf?sequence=1" rel="noopener" target="_blank">WHO Bangladesh EPI fact sheet (schedule)</a> · <a href="https://www.bssnews.net/news-flash/405464" rel="noopener" target="_blank">BSS/DGHS TCV announcement, July 2026</a> · <a href="https://www.cdc.gov/pinkbook/hcp/table-of-contents/chapter-19-rotavirus.html" rel="noopener" target="_blank">CDC product-based vaccination notes</a> · <a href="https://www.medicines.org.uk/emc/product/2739/smpc" rel="noopener" target="_blank">Rotarix product label</a> · <a href="https://www.fda.gov/media/75718/download" rel="noopener" target="_blank">RotaTeq product label</a>. <a href="https://www.cdc.gov/flu/hcp/vax-summary/acip-recommendations.html" rel="noopener" target="_blank">Influenza dosing</a> · <a href="https://immunisationhandbook.health.gov.au/resources/tables/table-recommended-doses-and-schedules-for-monovalent-hepatitis-a-vaccines" rel="noopener" target="_blank">Hepatitis A products</a> · <a href="https://www.cdc.gov/chickenpox/hcp/vaccine-considerations/" rel="noopener" target="_blank">Varicella routine schedules</a> · <a href="https://www.cdc.gov/pinkbook/hcp/table-of-contents/chapter-22-varicella.html" rel="noopener" target="_blank">MMRV cautions</a>. Check local guidance and the child's EPI card.</div>
 </section>
-<div class="utility-row noprint"><button id="exportBackup" type="button">⬇ Export my local record / রেকর্ড সংরক্ষণ</button><button id="clearRecords" type="button">🗑 Delete saved record / তথ্য মুছুন</button></div>
+<section id="backup-panel" class="noprint" aria-labelledby="backup-title">
+<h2 id="backup-title"></h2><p id="backup-hint"></p>
+<div id="backup-actions" class="backup-actions"></div>
+<label for="backup-file" id="file-label"></label>
+<input type="file" id="backup-file" accept=".json,application/json"/>
+<p id="backup-lock"></p><div id="backup-copies"></div>
+<p id="backup-status" role="status" aria-live="polite"></p>
+<div id="restore-recovery"></div>
+<div id="backup-comparison" tabindex="-1" hidden></div>
+</section>
 <section aria-labelledby="cvp-faq-title" class="cvp-faq">
 <h2 id="cvp-faq-title"><span class="cvp-only-bn">সাধারণ প্রশ্ন</span><span class="cvp-only-en">Frequently Asked Questions</span></h2>
 <details><summary><span class="cvp-only-bn">ঐচ্ছিক বেসরকারি টিকা কি সবার জন্য?</span><span class="cvp-only-en">Does every child need optional private vaccines?</span></summary><p><span class="cvp-only-bn">না। শিশুর বয়স, টিকার ব্র্যান্ড, আগের ডোজ এবং স্থানীয় নির্দেশনা অনুযায়ী প্রয়োজন ভিন্ন হতে পারে। শিশুর চিকিৎসক বা প্রশিক্ষিত টিকাদানকারীর সঙ্গে যাচাই করুন।</span><span class="cvp-only-en">Not necessarily. Eligibility can vary by age, product, previous doses and local guidance. Confirm with the child's clinician or trained vaccinator.</span></p></details>
@@ -241,6 +251,7 @@ tr.det td{background:var(--accent-soft)!important}
 </section>
 </main>
 <div class="mo hide" id="mo"><div aria-modal="true" class="dlg" id="dlg" role="dialog" tabindex="-1"><button class="x" id="dx" type="button">✕</button><div id="dc"></div></div></div>
+<script src="./assets/backup-v1.js"></script>
 <script>
 var T={
 bn:{t:"শিশুর টিকার চার্ট",tn:function(n){return n+"-এর টিকার চার্ট"},s:"সরকারি EPI ও ঐচ্ছিক বেসরকারি টিকা, তারিখসহ",sg:"সরকারি (EPI, বিনামূল্যে)",sp:"বেসরকারি (ঐচ্ছিক)",ov:"কার্ডের তারিখ (ঐচ্ছিক)",fg:["তারিখগুলো জন্ম তারিখ থেকে হিসাব করা আনুমানিক দিন। কার্ডের তারিখ ও কেন্দ্রের সেশনের দিনই চূড়ান্ত। কার্ডের তারিখ পেলে “কার্ডের তারিখ” ঘরে বসিয়ে দিন।","সব টিকার বয়স ও ডোজের ব্যবধান এক নয়। নির্ধারিত তারিখ ও কেন্দ্রের নির্দেশনা মিলিয়ে নিন।","পেন্টা হলো ডিপিটি, হেপাটাইটিস-বি ও হিবের একত্র টিকা। বিসিজি যক্ষ্মার, ওপিভি ও আইপিভি পোলিওর, পিসিভি নিউমোনিয়ার, এমআর হাম-রুবেলার, টিসিভি টাইফয়েডের টিকা।","হালকা অসুস্থতায় সাধারণত টিকা পিছানোর প্রয়োজন নেই; গুরুতর অসুস্থতা থাকলে স্বাস্থ্যকর্মীর মূল্যায়ন জরুরি।","কোনো ডোজ বাদ পড়লে স্বাস্থ্যকর্মীকে জানান। EPI-র সব টিকা ও কার্ড বিনামূল্যে।"],
@@ -328,9 +339,15 @@ hepa:{bn:"জন্ডিস, দুর্বলতা ও লিভারের
 varc:{bn:"সারা গায়ে ফোসকা ও জ্বর হয়; ত্বকের সংক্রমণ, নিউমোনিয়া বা মস্তিষ্কের প্রদাহ হতে পারে। পরে শিংলস হওয়ার ঝুঁকিও থাকে।",en:"It causes blisters all over and fever; skin infection, pneumonia or brain inflammation can follow, and shingles may occur later."},
 mmr:{bn:"হাম, মাম্পস ও রুবেলার জটিলতা: নিউমোনিয়া, মস্তিষ্কের প্রদাহ, মাম্পসে বধিরতা বা অণ্ডকোষের প্রদাহ।",en:"Complications of measles, mumps and rubella include pneumonia, brain inflammation, and deafness or testicular inflammation from mumps."}
 },AT={bcg:"bcg",opv:"oral",rota:"oral"},curId=null,lastBtn=null;
-function calList(){var t=T[lang],now=today();return "<h4>"+(sec==="g"?t.sg:sec==="p"?t.sp:(lang==="bn"?"সরকারি + বেসরকারি":"Government + private"))+"</h4><p>"+t.ci+"</p>"+sched().map(function(r){return "<p><a href=\""+gcal(r,t)+"\" target=_blank rel=\"noopener noreferrer\">📅 "+fmt(r.d)+" – "+r.v[lang][0]+"</a></p>"}).join("")}
-function det(id){if(id==="__cal")return calList();var t=T[lang];return K[id].map(function(k){var d=D[k][lang],f=[d[1],R[k][lang],d[2],d[3],t.act[AT[k]||"inj"],d[4]];return "<div class=dv><h4>"+d[0]+"</h4>"+t.dl.map(function(l,i){return "<p><b>"+l+":</b> "+f[i]+"</p>"}).join("")+"</div>"}).join("")+"<p class=sm>"+t.dn+"</p>"}
-function fillDet(){$("dc").innerHTML=det(curId);$("dx").setAttribute("aria-label",T[lang].hide);$("dlg").setAttribute("aria-label",T[lang].view)}
+function calList(){
+ var t=T[lang],list=document.createDocumentFragment(),h=document.createElement("h4"),intro=document.createElement("p");
+ h.textContent=sec==="g"?t.sg:sec==="p"?t.sp:(lang==="bn"?"সরকারি + বেসরকারি":"Government + private");
+ intro.textContent=t.ci;list.append(h,intro);
+ sched().forEach(function(r){var p=document.createElement("p"),a=document.createElement("a");a.href=gcal(r,t);a.target="_blank";a.rel="noopener noreferrer";a.textContent="📅 "+fmt(r.d)+" – "+r.v[lang][0];p.append(a);list.append(p)});
+ return list;
+}
+function det(id){var t=T[lang];return K[id].map(function(k){var d=D[k][lang],f=[d[1],R[k][lang],d[2],d[3],t.act[AT[k]||"inj"],d[4]];return "<div class=dv><h4>"+d[0]+"</h4>"+t.dl.map(function(l,i){return "<p><b>"+l+":</b> "+f[i]+"</p>"}).join("")+"</div>"}).join("")+"<p class=sm>"+t.dn+"</p>"}
+function fillDet(){if(curId==="__cal")$("dc").replaceChildren(calList());else $("dc").innerHTML=det(curId);$("dx").setAttribute("aria-label",T[lang].hide);$("dlg").setAttribute("aria-label",T[lang].view)}
 function openDet(id,b){curId=id;lastBtn=b;fillDet();$("mo").classList.remove("hide");document.body.style.overflow="hidden";$("dx").focus()}
 function closeDet(){curId=null;$("mo").classList.add("hide");document.body.style.overflow="";if(lastBtn&&document.contains(lastBtn))lastBtn.focus()}
 var sec="a",lang="bn",S={name:"",dob:"",done:{},ov:{},actual:{},rotaBrand:"unknown",products:{},t:0},$=function(i){return document.getElementById(i)};
@@ -419,14 +436,17 @@ function rowWarnings(r,b){
 }
 function dlDate(){return addD(pd(S.dob),104)}
 function nm(){return S.name&&S.name.trim()}
-function persist(){S.t=Date.now();try{localStorage.setItem("vax-combined-blank-v4",JSON.stringify(S))}catch(e){} st()}
-function st(){$("store").textContent=S.dob?(lang==="bn"?"এই ডিভাইসে সংরক্ষিত; ব্রাউজার ডাটা মুছলে হারাতে পারে।":"Saved on this device only; clearing browser data may erase it."):""}
+var recordPanel, editingProfile=false, formStart={name:"",dob:""};
+function identityDraft(){
+ return $("nm").value!==formStart.name || $("dob").value!==formStart.dob || $("dob").validity.badInput;
+}
+function st(){if(recordPanel)recordPanel.draw()}
 function route(){var t=T[lang];if(curId)fillDet();if(typeof showMsg==="function")showMsg();document.documentElement.lang=lang;document.body.className=lang==="en"?"en":"";
  
  $("title").textContent=nm()?t.tn(nm()):t.t;$("sub").textContent=t.s;
  $("s-g").textContent=t.sg;$("s-p").textContent=t.sp;$("s-a").textContent=lang==="bn"?"সব একসঙ্গে":"Combined";$("s-g").setAttribute("aria-pressed",sec==="g");$("s-p").setAttribute("aria-pressed",sec==="p");$("s-a").setAttribute("aria-pressed",sec==="a");$("l-nm").textContent=t.nm;$("l-dob").textContent=t.dob;$("go").textContent=t.go;
- var has=!!S.dob;$("homeStart").classList.toggle("hide",has);$("setup").classList.toggle("hide",has);$("view").classList.toggle("hide",!has);
- if(has)render()}
+ var has=!!S.dob&&!editingProfile;$("homeStart").classList.toggle("hide",has);$("setup").classList.toggle("hide",has);$("view").classList.toggle("hide",!has);
+ if(has)render();st()}
 function gcal(r,t){var n=nm()||"",c=r.v[lang];var title=(n?n+" – ":"")+c[0]+" ("+(r.source==="confirmed"?"clinician-confirmed":"planning estimate")+")";var det=c[2].replace("{D}",fmt(dlDate()))+". "+(productForRow(r.v.id)?"Selected product: "+productLabel(productForRow(r.v.id))+". ":"")+(r.source==="confirmed"?"Clinician-confirmed date entered by caregiver.":"Computed date — confirm with vaccinator before administration.");
  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title)+"&dates="+ymd(r.d)+"/"+ymd(addD(r.d,1))+"&details="+encodeURIComponent(det)}
 function render(){
@@ -458,28 +478,44 @@ function render(){
   if(v.id==="rv3"&&S.rotaBrand==="unknown")notes.push(lang==="bn"?"শুধু ৩-ডোজ ব্র্যান্ড হলে":"Only for a 3-dose product");
   if(v.id==="rv1")notes.push((lang==="bn"?"১ম ডোজের শেষ বয়সসীমা: ":"First-dose age cutoff: ")+fmt(dl));
   var sourceLabel=r.source==="confirmed"?(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ":"Clinician-confirmed date"):r.source==="recalculated"?(lang==="bn"?"আগের ডোজ অনুযায়ী পুনর্গণিত":"Auto-recalculated from prior dose"):(lang==="bn"?"জন্মতারিখভিত্তিক পরিকল্পনা":"Baseline age-based estimate");
-  var dateCell="<span class=date>"+fmt(r.d)+"</span><span class=plan-source>"+sourceLabel+"</span>"+ex+"<span class=sm><a href='"+gcal(r,t)+"' target=_blank rel='noopener noreferrer'>"+t.cal+"</a></span>"+"<span class=sm><label class=ovl>"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ (ঐচ্ছিক)":"Clinician-confirmed date (optional)")+"</label><span class='date-input-tools'><input type=date class=ov data-id='"+v.id+"' value='"+((S.ov&&S.ov[v.id])||"")+"' aria-label='"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ":"Clinician-confirmed date")+" — "+v.id+"'><button type='button' class='date-clear-btn' data-kind='confirmed' data-id='"+v.id+"' "+((S.ov&&S.ov[v.id])?"":"disabled")+" aria-label='"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ মুছুন":"Clear clinician-confirmed date")+" — "+v.id+"'>"+(lang==="bn"?"মুছুন":"Clear")+"</button></span></span>";
+  var dateCell="<span class=date>"+fmt(r.d)+"</span><span class=plan-source>"+sourceLabel+"</span>"+ex+"<span class=sm><a class='calendar-row-link' target=_blank rel='noopener noreferrer'>"+t.cal+"</a></span>"+"<span class=sm><label class=ovl>"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ (ঐচ্ছিক)":"Clinician-confirmed date (optional)")+"</label><span class='date-input-tools'><input type=date class=ov data-id='"+v.id+"' aria-label='"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ":"Clinician-confirmed date")+" — "+v.id+"'><button type='button' class='date-clear-btn' data-kind='confirmed' data-id='"+v.id+"' "+((S.ov&&S.ov[v.id])?"":"disabled")+" aria-label='"+(lang==="bn"?"চিকিৎসক-নিশ্চিত তারিখ মুছুন":"Clear clinician-confirmed date")+" — "+v.id+"'>"+(lang==="bn"?"মুছুন":"Clear")+"</button></span></span>";
   var prod=productForRow(v.id),prodText=prod?("<span class=sm>"+(lang==="bn"?"ব্র্যান্ড / পণ্য: ":"Selected product: ")+productLabel(prod)+"</span>"):"";
   var nameCell="<span class=vn>"+c[0]+"</span>"+prodText+"<span class=sm>"+c[2].replace("{D}",fmt(dl))+"</span>"+(notes.length?"<span class='inline-note'>"+notes.join(" · ")+"</span>":"")+"<button class='btn o dbtn' data-id='"+v.id+"'>"+t.view+"</button>";
-  var actualCell="<span class='date-input-tools'><input class='actual' type='date' data-id='"+v.id+"' value='"+actual+"' aria-label='Actual date of "+v.id+"'><button type='button' class='date-clear-btn' data-kind='actual' data-id='"+v.id+"' "+(actual?"":"disabled")+" aria-label='"+(lang==="bn"?"প্রকৃত টিকা দেওয়ার তারিখ মুছুন":"Clear actual vaccination date")+" — "+v.id+"'>"+(lang==="bn"?"মুছুন":"Clear")+"</button></span>"+(actual?"<span class=sm>"+(lang==="bn"?"রেকর্ড করা হয়েছে":"Recorded")+"</span>":"");
+  var actualCell="<span class='date-input-tools'><input class='actual' type='date' data-id='"+v.id+"' aria-label='Actual date of "+v.id+"'><button type='button' class='date-clear-btn' data-kind='actual' data-id='"+v.id+"' "+(actual?"":"disabled")+" aria-label='"+(lang==="bn"?"প্রকৃত টিকা দেওয়ার তারিখ মুছুন":"Clear actual vaccination date")+" — "+v.id+"'>"+(lang==="bn"?"মুছুন":"Clear")+"</button></span>"+(actual?"<span class=sm>"+(lang==="bn"?"রেকর্ড করা হয়েছে":"Recorded")+"</span>":"");
   return "<tr class='"+(done?"done":"")+"'><td><input type=checkbox data-id='"+v.id+"'"+(done?" checked":"")+" aria-label='"+c[0]+"'></td>"+(sec==="a"?"<td class=prog-cell><span class=status>"+(g?(lang==="bn"?"সরকারি":"EPI"):(lang==="bn"?"বেসরকারি":"Private"))+"</span></td>":"")+"<td class=name-cell>"+nameCell+"</td><td class=age-cell>"+c[1]+"</td><td class=date-cell>"+dateCell+"</td><td class=actual-cell>"+actualCell+"</td></tr>";
  }).join("");
  $("foot").innerHTML=(sec==="g"?t.fg:sec==="p"?t.f:t.fg.concat(t.f)).map(function(x){return "<li>"+x+"</li>"}).join("");
  $("foot").innerHTML+="<li>"+(lang==="bn"?"আগের প্রকৃত তারিখ থেকে বাকি ডোজের প্রাথমিক পরিকল্পনা স্বয়ংক্রিয়ভাবে বদলায়; চিকিৎসক-নিশ্চিত তারিখ প্রাধান্য পায়। এটি চিকিৎসকের নির্ধারিত ক্যাচ-আপ নির্দেশ নয়।":"Later planning dates recalculate from recorded doses; clinician-confirmed dates take precedence. Calculations are not a clinician-approved catch-up prescription.")+"</li>";
- st();
- document.querySelectorAll(".dbtn").forEach(function(el){el.onclick=function(){openDet(el.dataset.id,el)}});
- document.querySelectorAll("input.ov").forEach(function(el){el.onchange=function(){S.ov=S.ov||{};if(el.value)S.ov[el.dataset.id]=el.value;else delete S.ov[el.dataset.id];persist();render()}});
- document.querySelectorAll("input.actual").forEach(function(el){el.onchange=function(){S.actual=S.actual||{};if(el.value){S.actual[el.dataset.id]=el.value;S.done[el.dataset.id]=true}else{delete S.actual[el.dataset.id];S.done[el.dataset.id]=false}persist();render()}});
- document.querySelectorAll("button.date-clear-btn").forEach(function(btn){btn.onclick=function(){
-  var id=btn.dataset.id;
-  if(btn.dataset.kind==="confirmed"){if(S.ov)delete S.ov[id]}
-  else if(btn.dataset.kind==="actual"){if(S.actual)delete S.actual[id];S.done=S.done||{};S.done[id]=false}
-  persist();render();
- }});
- document.querySelectorAll('input[type=checkbox]').forEach(function(el){el.onchange=function(){S.done[el.dataset.id]=el.checked;if(!el.checked&&S.actual)delete S.actual[el.dataset.id];persist();render()}});
+ $("rows").querySelectorAll("tr").forEach(function(tr,index){
+  var r=rows[index],id=r.v.id;
+  tr.querySelector(".calendar-row-link").href=gcal(r,t);
+  tr.querySelector(".ov").value=S.ov[id]||"";
+  tr.querySelector(".actual").value=S.actual[id]||"";
+  tr.querySelector(".dbtn").onclick=function(){openDet(id,this)};
+  function updateDate(kind,value,badInput){
+   if(badInput || (value&&!CVPBackup.date(value))){
+    var input=tr.querySelector(kind==="actual"?".actual":".ov");
+    input.value=S[kind][id]||"";recordPanel.rejectDate(id,kind);return;
+   }
+   recordPanel.edit(function(record){
+    if(value){(record[kind] ||= {})[id]=value}
+    else if(record[kind])delete record[kind][id];
+    if(kind==="actual")(record.done ||= {})[id]=!!value;
+   });
+  }
+  tr.querySelector(".ov").onchange=function(){updateDate("ov",this.value,this.validity.badInput)};
+  tr.querySelector(".actual").onchange=function(){updateDate("actual",this.value,this.validity.badInput)};
+  tr.querySelectorAll(".date-clear-btn").forEach(function(btn){btn.onclick=function(){updateDate(btn.dataset.kind==="confirmed"?"ov":"actual","")}});
+  tr.querySelector("input[type=checkbox]").onchange=function(){
+   var checked=this.checked;
+   recordPanel.edit(function(record){(record.done ||= {})[id]=checked;if(!checked&&record.actual)delete record.actual[id]});
+  };
+ });
 }
-$("rotaBrand").onchange=function(){S.rotaBrand=this.value;persist();render()};
-["fluBrand","fluHistory","hepBrand","varBrand","varTiming","mmrBrand"].forEach(function(id){$(id).onchange=function(){S.products=S.products||{};S.products[id]=this.value;persist();render()}});
+$("rotaBrand").onchange=function(){var value=this.value;recordPanel.edit(function(record){record.rotaBrand=value})};
+["fluBrand","fluHistory","hepBrand","varBrand","varTiming","mmrBrand"].forEach(function(id){
+ $(id).onchange=function(){var value=this.value;recordPanel.edit(function(record){(record.products ||= {})[id]=value})};
+});
 
 function q(s){return '"'+String(s).replace(/"/g,'""')+'"'}
 function us(d){return ("0"+(d.getMonth()+1)).slice(-2)+"/"+("0"+d.getDate()).slice(-2)+"/"+d.getFullYear()}
@@ -494,37 +530,32 @@ $("csv").onclick=async function(){var fn="vaccine-reminders-"+(sec==="g"?"govt":
   if(d){await d.save({filename:fn,data:data})}
   else{var bl=new Blob([data],{type:"text/csv;charset=utf-8"}),u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download=fn;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},1000)}
   mk="icsOk";msgx=""}catch(e){mk="icsNo";msgx=e&&e.code?" ("+e.code+")":""}showMsg()};
-$("edit").onclick=function(){$("nm").value=S.name||"";$("dob").value=S.dob||"";S.editingDob=S.dob;S.dob="";$("homeStart").classList.remove("hide");$("setup").classList.remove("hide");$("view").classList.add("hide");var d=$("dob");d.value=d.value}
-$("setup").onsubmit=function(e){e.preventDefault();var v=$("dob").value,t=T[lang];
- if(!v||pd(v)>today()||pd(v).getFullYear()<2000){$("err").textContent=t.er;return}
- var old=S.dob||S.editingDob;S.name=$("nm").value.trim();if(old&&old!==v){S.done={};S.ov={};S.actual={}}S.dob=v;delete S.editingDob;$("err").textContent="";persist();route()};
+$("edit").onclick=function(){
+ editingProfile=true;$("nm").value=S.name||"";$("dob").value=S.dob||"";
+ formStart={name:$("nm").value,dob:$("dob").value};$("err").textContent="";route();$("dob").focus();
+};
+$("cancel-edit").onclick=function(){editingProfile=false;formStart={name:"",dob:""};$("nm").value="";$("dob").value="";recordPanel.clearDateIssue();route()};
+$("setup").onsubmit=function(e){
+ e.preventDefault();var v=$("dob").value;
+ if(!CVPBackup.date(v)||pd(v)>today()||pd(v).getFullYear()<2000){recordPanel.rejectDate("dob","dob");return}
+ $("err").textContent="";recordPanel.identity($("nm").value,v,$("nm").value!==formStart.name);
+};
 $("dob").max=iso(today());
 function setLang(l){lang=l;route()}
 $("mo").onclick=function(e){if(e.target===$("mo"))closeDet()};$("dx").onclick=closeDet;document.addEventListener("keydown",function(e){if(e.key==="Escape"&&curId)closeDet()});
 $("s-g").onclick=function(){sec="g";route()};$("s-p").onclick=function(){sec="p";route()};$("s-a").onclick=function(){sec="a";route()};
 
 window.addEventListener("cvp-language-change",function(e){if(e.detail&&e.detail.lang)setLang(e.detail.lang)});
-try{var j=JSON.parse(localStorage.getItem("vax-combined-blank-v4")||localStorage.getItem("vax-combined-blank-v3")||"null");if(j)S=Object.assign(S,j)}catch(e){}
-try{lang=localStorage.getItem("cvp-language-v1")==="en"?"en":"bn"}catch(e){lang="bn"}route();
-
-
-
-// Local-only backup: users control all export and deletion.
-(function(){
- var btn=document.getElementById('exportBackup');
- var del=document.getElementById('clearRecords');
- if(btn)btn.addEventListener('click',function(){
-  var raw=localStorage.getItem('vax-combined-blank-v4')||localStorage.getItem('vax-combined-blank-v3');
-  if(!raw){alert('No saved vaccination record found on this device.');return;}
-  var blob=new Blob([raw],{type:'application/json;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=u;a.download='my-vaccine-record-local-backup.json';a.click();setTimeout(function(){URL.revokeObjectURL(u)},1000);
- });
- if(del)del.addEventListener('click',function(){
-  if(!confirm('Delete the saved vaccine record from this browser? This cannot be undone.'))return;
-  ['vax-combined-blank-v4','vax-combined-blank-v3'].forEach(function(k){localStorage.removeItem(k)});
-  location.reload();
- });
-})();
+try{lang=localStorage.getItem("cvp-language-v1")==="en"?"en":"bn"}catch(e){lang="bn"}
+recordPanel=startRecordPanel({
+ language:function(){return lang},editing:function(){return editingProfile},formDraft:identityDraft,
+ storedName:function(){return editingProfile && formStart.name!==S.name ? S.name : ""},
+ show:function(record){
+  S=record;editingProfile=false;formStart={name:"",dob:""};$("nm").value="";$("dob").value="";$("err").textContent="";
+  if(curId)closeDet();route()
+ }
+});
+S=recordPanel.initial;route();
 if('serviceWorker' in navigator && location.protocol==='https:'){
  window.addEventListener('load',function(){navigator.serviceWorker.register('./service-worker.js').catch(function(){});});
 }

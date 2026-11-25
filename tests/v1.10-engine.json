@@ -1,0 +1,873 @@
+[
+  [
+    {
+      "id": "g0",
+      "date": "2024-01-31",
+      "baseline": "2024-01-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g1",
+      "date": "2024-03-13",
+      "baseline": "2024-03-13",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv1",
+      "date": "2024-03-13",
+      "baseline": "2024-03-13",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Product-specific age limits need confirmation; generic CDC/US age limits are not a substitute for the selected label / পণ্যের নিজস্ব বয়সসীমা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g2",
+      "date": "2024-04-10",
+      "baseline": "2024-04-10",
+      "earliest": "2024-04-10",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv2",
+      "date": "2024-04-10",
+      "baseline": "2024-04-10",
+      "earliest": "2024-04-10",
+      "source": "baseline",
+      "warnings": [
+        "Product-specific age limits need confirmation; generic CDC/US age limits are not a substitute for the selected label / পণ্যের নিজস্ব বয়সসীমা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g3",
+      "date": "2024-05-08",
+      "baseline": "2024-05-08",
+      "earliest": "2024-05-08",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv3",
+      "date": "2024-05-08",
+      "baseline": "2024-05-08",
+      "earliest": "2024-05-08",
+      "source": "baseline",
+      "warnings": [
+        "Product-specific age limits need confirmation; generic CDC/US age limits are not a substitute for the selected label / পণ্যের নিজস্ব বয়সসীমা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "fl1",
+      "date": "2024-07-31",
+      "baseline": "2024-07-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "fl2",
+      "date": "2024-08-28",
+      "baseline": "2024-08-28",
+      "earliest": "2024-08-28",
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "g4",
+      "date": "2024-10-31",
+      "baseline": "2024-10-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "ha1",
+      "date": "2025-01-31",
+      "baseline": "2025-01-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "vz1",
+      "date": "2025-01-31",
+      "baseline": "2025-01-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g5",
+      "date": "2025-04-30",
+      "baseline": "2025-04-30",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "mm",
+      "date": "2025-04-30",
+      "baseline": "2025-04-30",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Coordinate private MMR with EPI MR; do not omit or substitute EPI doses automatically / EPI MR-এর বিকল্প স্বয়ংক্রিয়ভাবে নয়"
+      ]
+    },
+    {
+      "id": "vz2",
+      "date": "2025-04-30",
+      "baseline": "2025-04-30",
+      "earliest": "2025-04-30",
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন",
+        "Early second dose (not the usual 4–6-year routine timing); vaccinator must confirm / দ্বিতীয় ডোজ আগে দেওয়ার পরিকল্পনা চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "ha2",
+      "date": "2025-07-31",
+      "baseline": "2025-07-31",
+      "earliest": "2025-07-31",
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    }
+  ],
+  [
+    {
+      "id": "g0",
+      "date": "2024-02-29",
+      "baseline": "2024-02-29",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g1",
+      "date": "2024-04-11",
+      "baseline": "2024-04-11",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv1",
+      "date": "2024-04-11",
+      "baseline": "2024-04-11",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Beyond conservative routine first-dose cut-off (14 weeks 6 days) / প্রথম ডোজের নিয়মিত বয়সসীমা পেরিয়েছে"
+      ]
+    },
+    {
+      "id": "g2",
+      "date": "2024-05-09",
+      "baseline": "2024-05-09",
+      "earliest": "2024-05-09",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g3",
+      "date": "2024-06-06",
+      "baseline": "2024-06-06",
+      "earliest": "2024-06-06",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv2",
+      "date": "2024-07-28",
+      "baseline": "2024-05-09",
+      "earliest": "2024-07-28",
+      "source": "recalculated",
+      "warnings": [
+        "Rotarix labelled 24-week completion limit exceeded / Rotarix ২৪ সপ্তাহের সীমা পেরিয়েছে"
+      ]
+    },
+    {
+      "id": "fl1",
+      "date": "2024-08-29",
+      "baseline": "2024-08-29",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g4",
+      "date": "2024-11-29",
+      "baseline": "2024-11-29",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "ha1",
+      "date": "2025-02-28",
+      "baseline": "2025-02-28",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "vz1",
+      "date": "2025-02-28",
+      "baseline": "2025-02-28",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g5",
+      "date": "2025-05-29",
+      "baseline": "2025-05-29",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "mm",
+      "date": "2025-05-29",
+      "baseline": "2025-05-29",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Coordinate private MMR with EPI MR; do not omit or substitute EPI doses automatically / EPI MR-এর বিকল্প স্বয়ংক্রিয়ভাবে নয়"
+      ]
+    },
+    {
+      "id": "ha2",
+      "date": "2025-08-29",
+      "baseline": "2025-08-29",
+      "earliest": "2025-08-28",
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "vz2",
+      "date": "2028-02-29",
+      "baseline": "2028-02-29",
+      "earliest": "2025-05-28",
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন"
+      ]
+    }
+  ],
+  [
+    {
+      "id": "g0",
+      "date": "2024-01-31",
+      "baseline": "2024-01-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g1",
+      "date": "2024-03-13",
+      "baseline": "2024-03-13",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv1",
+      "date": "2024-03-13",
+      "baseline": "2024-03-13",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Product-specific age limits need confirmation; generic CDC/US age limits are not a substitute for the selected label / পণ্যের নিজস্ব বয়সসীমা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "rv2",
+      "date": "2024-04-10",
+      "baseline": "2024-04-10",
+      "earliest": "2024-04-10",
+      "source": "baseline",
+      "warnings": [
+        "Product-specific age limits need confirmation; generic CDC/US age limits are not a substitute for the selected label / পণ্যের নিজস্ব বয়সসীমা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g2",
+      "date": "2024-05-01",
+      "baseline": "2024-04-10",
+      "earliest": "2024-05-08",
+      "source": "confirmed",
+      "warnings": []
+    },
+    {
+      "id": "rv3",
+      "date": "2024-05-08",
+      "baseline": "2024-05-08",
+      "earliest": "2024-05-08",
+      "source": "baseline",
+      "warnings": [
+        "Product-specific age limits need confirmation; generic CDC/US age limits are not a substitute for the selected label / পণ্যের নিজস্ব বয়সসীমা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g3",
+      "date": "2024-06-07",
+      "baseline": "2024-05-08",
+      "earliest": "2024-06-07",
+      "source": "recalculated",
+      "warnings": []
+    },
+    {
+      "id": "fl1",
+      "date": "2024-07-31",
+      "baseline": "2024-07-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "fl2",
+      "date": "2024-08-28",
+      "baseline": "2024-08-28",
+      "earliest": "2024-08-28",
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "g4",
+      "date": "2024-10-31",
+      "baseline": "2024-10-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "ha1",
+      "date": "2025-01-31",
+      "baseline": "2025-01-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "vz1",
+      "date": "2025-01-31",
+      "baseline": "2025-01-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g5",
+      "date": "2025-04-30",
+      "baseline": "2025-04-30",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "mm",
+      "date": "2025-04-30",
+      "baseline": "2025-04-30",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Coordinate private MMR with EPI MR; do not omit or substitute EPI doses automatically / EPI MR-এর বিকল্প স্বয়ংক্রিয়ভাবে নয়"
+      ]
+    },
+    {
+      "id": "vz2",
+      "date": "2025-04-30",
+      "baseline": "2025-04-30",
+      "earliest": "2025-04-30",
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন",
+        "Early second dose (not the usual 4–6-year routine timing); vaccinator must confirm / দ্বিতীয় ডোজ আগে দেওয়ার পরিকল্পনা চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "ha2",
+      "date": "2025-07-31",
+      "baseline": "2025-07-31",
+      "earliest": "2025-07-31",
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    }
+  ],
+  [
+    {
+      "id": "g0",
+      "date": "2023-12-31",
+      "baseline": "2023-12-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g1",
+      "date": "2024-02-11",
+      "baseline": "2024-02-11",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g2",
+      "date": "2024-03-10",
+      "baseline": "2024-03-10",
+      "earliest": "2024-03-10",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv1",
+      "date": "2024-04-01",
+      "baseline": "2024-02-11",
+      "earliest": null,
+      "source": "confirmed",
+      "warnings": [
+        "RotaTeq label: first dose starts at 6–12 weeks; date exceeds 12 weeks / RotaTeq-এর প্রথম ডোজের লেবেল সীমা পেরিয়েছে"
+      ]
+    },
+    {
+      "id": "g3",
+      "date": "2024-04-07",
+      "baseline": "2024-04-07",
+      "earliest": "2024-04-07",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv2",
+      "date": "2024-06-30",
+      "baseline": "2024-03-10",
+      "earliest": "2024-04-29",
+      "source": "confirmed",
+      "warnings": [
+        "RotaTeq label indicates 4–10-week interval; clinician review needed / RotaTeq ৪–১০ সপ্তাহ ব্যবধান যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "fl1",
+      "date": "2024-06-30",
+      "baseline": "2024-06-30",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "fl2",
+      "date": "2024-07-28",
+      "baseline": "2024-07-28",
+      "earliest": "2024-07-28",
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "rv3",
+      "date": "2024-09-01",
+      "baseline": "2024-04-07",
+      "earliest": "2024-07-28",
+      "source": "confirmed",
+      "warnings": [
+        "Beyond conservative 8-month routine limit / ৮ মাসের প্রচলিত বয়সসীমার বাইরে",
+        "RotaTeq labelled 32-week completion limit exceeded / RotaTeq ৩২ সপ্তাহের সীমা পেরিয়েছে"
+      ]
+    },
+    {
+      "id": "g4",
+      "date": "2024-09-30",
+      "baseline": "2024-09-30",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "ha1",
+      "date": "2024-12-31",
+      "baseline": "2024-12-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "vz1",
+      "date": "2024-12-31",
+      "baseline": "2024-12-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g5",
+      "date": "2025-03-31",
+      "baseline": "2025-03-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "mm",
+      "date": "2025-03-31",
+      "baseline": "2025-03-31",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Coordinate private MMR with EPI MR; do not omit or substitute EPI doses automatically / EPI MR-এর বিকল্প স্বয়ংক্রিয়ভাবে নয়",
+        "MMRV also contains varicella: check both records; higher febrile-seizure risk for first dose at 12–47 months than separate MMR + varicella / MMRV প্রথম ডোজে জ্বরজনিত খিঁচুনির ঝুঁকি বেশি"
+      ]
+    },
+    {
+      "id": "vz2",
+      "date": "2025-03-31",
+      "baseline": "2025-03-31",
+      "earliest": "2025-03-31",
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন",
+        "Early second dose (not the usual 4–6-year routine timing); vaccinator must confirm / দ্বিতীয় ডোজ আগে দেওয়ার পরিকল্পনা চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "ha2",
+      "date": "2026-01-01",
+      "baseline": "2025-06-30",
+      "earliest": "2025-06-30",
+      "source": "confirmed",
+      "warnings": []
+    }
+  ],
+  [
+    {
+      "id": "g0",
+      "date": "2024-01-01",
+      "baseline": "2024-01-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g1",
+      "date": "2024-02-12",
+      "baseline": "2024-02-12",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g2",
+      "date": "2024-03-11",
+      "baseline": "2024-03-11",
+      "earliest": "2024-03-11",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g3",
+      "date": "2024-04-08",
+      "baseline": "2024-04-08",
+      "earliest": "2024-04-08",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv1",
+      "date": "2024-04-14",
+      "baseline": "2024-02-12",
+      "earliest": null,
+      "source": "confirmed",
+      "warnings": []
+    },
+    {
+      "id": "rv2",
+      "date": "2024-06-17",
+      "baseline": "2024-03-11",
+      "earliest": "2024-05-12",
+      "source": "confirmed",
+      "warnings": []
+    },
+    {
+      "id": "fl1",
+      "date": "2024-07-01",
+      "baseline": "2024-07-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "fl2",
+      "date": "2024-07-29",
+      "baseline": "2024-07-29",
+      "earliest": "2024-07-29",
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "g4",
+      "date": "2024-10-01",
+      "baseline": "2024-10-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "ha1",
+      "date": "2025-01-01",
+      "baseline": "2025-01-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "vz1",
+      "date": "2025-01-01",
+      "baseline": "2025-01-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g5",
+      "date": "2025-04-01",
+      "baseline": "2025-04-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "mm",
+      "date": "2025-04-01",
+      "baseline": "2025-04-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Coordinate private MMR with EPI MR; do not omit or substitute EPI doses automatically / EPI MR-এর বিকল্প স্বয়ংক্রিয়ভাবে নয়"
+      ]
+    },
+    {
+      "id": "vz2",
+      "date": "2025-04-01",
+      "baseline": "2025-04-01",
+      "earliest": "2025-04-01",
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন",
+        "Early second dose (not the usual 4–6-year routine timing); vaccinator must confirm / দ্বিতীয় ডোজ আগে দেওয়ার পরিকল্পনা চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "ha2",
+      "date": "2026-02-02",
+      "baseline": "2025-07-01",
+      "earliest": "2025-07-01",
+      "source": "confirmed",
+      "warnings": [
+        "Beyond Havrix Junior labelled 6–12-month booster window; clinician review / Havrix বুস্টার সময় যাচাই"
+      ]
+    }
+  ],
+  [
+    {
+      "id": "g0",
+      "date": "2024-01-01",
+      "baseline": "2024-01-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g1",
+      "date": "2024-02-12",
+      "baseline": "2024-02-12",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "g2",
+      "date": "2024-03-11",
+      "baseline": "2024-03-11",
+      "earliest": "2024-03-11",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv1",
+      "date": "2024-03-25",
+      "baseline": "2024-02-12",
+      "earliest": null,
+      "source": "confirmed",
+      "warnings": []
+    },
+    {
+      "id": "g3",
+      "date": "2024-04-08",
+      "baseline": "2024-04-08",
+      "earliest": "2024-04-08",
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "rv2",
+      "date": "2024-06-03",
+      "baseline": "2024-03-11",
+      "earliest": "2024-04-22",
+      "source": "confirmed",
+      "warnings": []
+    },
+    {
+      "id": "fl1",
+      "date": "2024-07-01",
+      "baseline": "2024-07-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "fl2",
+      "date": "2024-07-29",
+      "baseline": "2024-07-29",
+      "earliest": "2024-07-29",
+      "source": "baseline",
+      "warnings": [
+        "Influenza product and paediatric age approval require clinician confirmation / ফ্লু টিকার বয়সসীমা যাচাই প্রয়োজন",
+        "Flu history unknown: second dose provisional; clinician must confirm / ফ্লুর দ্বিতীয় ডোজ চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "rv3",
+      "date": "2024-08-12",
+      "baseline": "2024-04-08",
+      "earliest": "2024-07-01",
+      "source": "confirmed",
+      "warnings": []
+    },
+    {
+      "id": "g4",
+      "date": "2024-10-01",
+      "baseline": "2024-10-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "ha1",
+      "date": "2025-01-01",
+      "baseline": "2025-01-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "vz1",
+      "date": "2025-01-01",
+      "baseline": "2025-01-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন"
+      ]
+    },
+    {
+      "id": "g5",
+      "date": "2025-04-01",
+      "baseline": "2025-04-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": []
+    },
+    {
+      "id": "mm",
+      "date": "2025-04-01",
+      "baseline": "2025-04-01",
+      "earliest": null,
+      "source": "baseline",
+      "warnings": [
+        "Coordinate private MMR with EPI MR; do not omit or substitute EPI doses automatically / EPI MR-এর বিকল্প স্বয়ংক্রিয়ভাবে নয়"
+      ]
+    },
+    {
+      "id": "vz2",
+      "date": "2025-04-01",
+      "baseline": "2025-04-01",
+      "earliest": "2025-04-01",
+      "source": "baseline",
+      "warnings": [
+        "Varicella product-specific timing requires clinician confirmation / চিকেনপক্স টিকার ব্যবধান যাচাই প্রয়োজন",
+        "Early second dose (not the usual 4–6-year routine timing); vaccinator must confirm / দ্বিতীয় ডোজ আগে দেওয়ার পরিকল্পনা চিকিৎসক নিশ্চিত করবেন"
+      ]
+    },
+    {
+      "id": "ha2",
+      "date": "2025-07-01",
+      "baseline": "2025-07-01",
+      "earliest": "2025-07-01",
+      "source": "baseline",
+      "warnings": [
+        "Hepatitis A product and booster window require clinician confirmation / হেপাটাইটিস-এ টিকা যাচাই প্রয়োজন"
+      ]
+    }
+  ]
+]
