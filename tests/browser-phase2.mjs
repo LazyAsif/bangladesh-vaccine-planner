@@ -4,6 +4,11 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 
 export async function exerciseProfiles({page,rpc,until,profile,upgrade,disconnect,rollback}){
+  if(process.argv.includes('--navigation-only')){
+    upgrade();
+    const {checkNavigation}=await import('./navigation-phase2.mjs');
+    return checkNavigation({page,rpc,until,disconnect});
+  }
   const a=await page(), run=a.run;
   const F='cvp-profiles-v1',v4='vax-combined-blank-v4',v3='vax-combined-blank-v3';
   const r={name:"  শিশু O'Brien\r\n<i>fixture</i>  ",dob:'2024-01-31',done:{g0:true,g00:true,rv3:false},actual:{g1:'2024-04-10'},ov:{g1:'2024-04-08',rv3:'2024-08-01'},products:{fluHistory:'one'},rotaBrand:'rotarix',t:7};
@@ -87,7 +92,7 @@ export async function exerciseProfiles({page,rpc,until,profile,upgrade,disconnec
   const old=await page();await old.visit('/');
   upgrade();
   await run('(async()=>{const reg=await navigator.serviceWorker.ready;await reg.update()})()');
-  await waitFor('caches.keys().then(keys=>keys.includes("bd-child-vax-public-phase2-r2")&&!keys.includes("bd-child-vax-public-phase1-r3"))');
+  await waitFor('caches.keys().then(keys=>keys.includes("bd-child-vax-public-phase2-r3")&&!keys.includes("bd-child-vax-public-phase1-r3"))');
   await a.visit('/index.html');
   assert.ok(await run('document.querySelector("#migrate-v4")&&!!document.querySelector("#migrate-v3")'));
   await checkZero(async()=>{await click('profile-entry');await waitFor('document.body.dataset.plannerView==="children"');await click('migrate-v3');assert.match(await preview(),/v3/);await click('cancel-profile')});
@@ -265,7 +270,7 @@ export async function exerciseProfiles({page,rpc,until,profile,upgrade,disconnec
     assert.equal(await readOnly.run('document.querySelector("#add-child").disabled && !document.querySelector("#export-family").disabled'),true);
     const ics=await download('cvp-ics','child-vaccine-planner.ics');assert.match(ics,/BEGIN:VEVENT/);
     assert.ok(ics.includes('DTSTART;VALUE=DATE:'+dob.replaceAll('-','')));
-    const cached=await run('caches.open("bd-child-vax-public-phase2-r2").then(async c=>(await c.keys()).map(r=>new URL(r.url).pathname))');
+    const cached=await run('caches.open("bd-child-vax-public-phase2-r3").then(async c=>(await c.keys()).map(r=>new URL(r.url).pathname))');
     for(const name of ['profiles-ui.js','profiles-v1.js','profiles-v1.css'])assert.ok(cached.includes('/assets/'+name));
     disconnect();const pwa=await page();await pwa.visit('/index.html');
     assert.equal(await pwa.run('S.dob'),dob);assert.equal(await pwa.run('document.querySelector("#profile-select").value'),selected);
@@ -275,12 +280,12 @@ export async function exerciseProfiles({page,rpc,until,profile,upgrade,disconnec
     rollback();
     const updateWorker=()=>run('(async()=>{const reg=await navigator.serviceWorker.ready;await reg.update()})()');
     await updateWorker();
-    await waitFor('caches.keys().then(k=>k.includes("bd-child-vax-public-phase1-r3")&&!k.includes("bd-child-vax-public-phase2-r2"))');
+    await waitFor('caches.keys().then(k=>k.includes("bd-child-vax-public-phase1-r3")&&!k.includes("bd-child-vax-public-phase2-r3"))');
     await a.visit('/index.html');
     assert.equal(await run('!document.querySelector("#profiles") && S.name===JSON.parse(localStorage.getItem(CVPBackup.keys[0])).name'),true);
     assert.equal(await value(F),savedFamily);
     upgrade();await updateWorker();
-    await waitFor('caches.keys().then(k=>k.includes("bd-child-vax-public-phase2-r2")&&!k.includes("bd-child-vax-public-phase1-r3"))');
+    await waitFor('caches.keys().then(k=>k.includes("bd-child-vax-public-phase2-r3")&&!k.includes("bd-child-vax-public-phase1-r3"))');
     await a.visit('/index.html');
     assert.equal(await run('document.querySelector("#profile-select").value'),selected);
     assert.equal(await value(F),savedFamily);assert.equal(await value(v3),savedV3);assert.equal(await value(v4),savedV4);

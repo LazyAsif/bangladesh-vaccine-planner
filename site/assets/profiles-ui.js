@@ -12,20 +12,54 @@ function startProfiles(host) {
   let pending=null, inspectLegacy=false;
   try { pending=sessionStorage.getItem(recoveryKey); } catch {}
   const tr=(en,bn)=>host.language()==='en'?en:bn;
+  const numberKey='cvp-profile-display-numbers-v1';
+  function readNumbers(){
+    try{return JSON.parse(localStorage.getItem(numberKey)) || {}}catch{return {}}
+  }
+  function assignNumbers(f,previous){
+    const groups=new Map(), result={};
+    for(const [id,{record:r}] of Object.entries(f?.profilesById || {})){
+      const identity=JSON.stringify([r.name?.trim() || '',r.dob]);
+      if(!groups.has(identity))groups.set(identity,[]);
+      groups.get(identity).push(id);
+    }
+    for(const group of groups.values()){
+      const used=new Set();
+      for(const id of group){
+        const n=previous[id];
+        if(Number.isSafeInteger(n) && n>0 && !used.has(n)){result[id]=n;used.add(n)}
+      }
+      if(group.length<2)continue;
+      let n=1;
+      for(const id of group){
+        if(result[id])continue;
+        while(used.has(n))n++;
+        result[id]=n;used.add(n++);
+      }
+    }
+    return result;
+  }
+  let displayNumbers=assignNumbers(snap.family,readNumbers());
+  const dateFormats={bn:new Intl.DateTimeFormat('bn-BD',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}),
+    en:new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})};
+  function displayDate(dob){return dateFormats[host.language()].format(new Date(dob+'T00:00:00Z'))}
   function pageView(){
     return location.hash==='#profiles'?'children':location.hash==='#backup-panel'?'backup':'chart';
   }
   function record(){return snap.family?.profilesById[snap.family.activeChildId]?.record}
   function hasLegacy(){return legacy.some(c=>c.state!=='absent')}
   function dirty(){return !B.same(draft,record() || {}) || host.formDraft()}
-  function label(id,r){return (r.name?.trim() || tr('Unnamed child','নামহীন শিশু'))+' · '+r.dob+' · '+id.slice(-8)}
+  function label(id,r,numbers=displayNumbers){
+    const n=numbers[id], ordinal=n?' '+n.toLocaleString(host.language()==='bn'?'bn-BD':'en-GB'):'';
+    return (r.name?.trim() || tr('Unnamed child','নামহীন শিশু'))+ordinal+' · '+displayDate(r.dob);
+  }
   function summary(r){
-    return [r.name || tr('Unnamed child','নামহীন শিশু'),r.dob,
+    return [r.name?.trim() || tr('Unnamed child','নামহীন শিশু'),displayDate(r.dob),
       tr('Completed','সম্পন্ন')+' '+Object.values(r.done || {}).filter(Boolean).length,
       tr('Actual dates','প্রকৃত তারিখ')+' '+Object.keys(r.actual || {}).length,
       tr('Clinician dates','চিকিৎসকের তারিখ')+' '+Object.keys(r.ov || {}).length].join(' · ');
   }
-  function familyList(f){return Object.entries(f?.profilesById || {}).map(([id,p])=>label(id,p.record)+'\n'+summary(p.record)).join('\n\n') || tr('No saved children','কোনো শিশু সংরক্ষিত নেই')}
+  function familyList(f){const numbers=assignNumbers(f,displayNumbers);return Object.entries(f?.profilesById || {}).map(([id,p])=>label(id,p.record,numbers)+'\n'+summary(p.record)).join('\n\n') || tr('No saved children','কোনো শিশু সংরক্ষিত নেই')}
   function historical(r){return [...Object.values(r.actual || {}),...Object.values(r.ov || {})].some(d=>d<r.dob)}
   const reviewDates=()=>tr('Some recorded dates precede this DOB. Review them with your vaccinator. All history is retained.','কিছু সংরক্ষিত তারিখ জন্মতারিখের আগে। টিকাদানকারীর সঙ্গে যাচাই করুন। সব ইতিহাস রাখা হবে।');
   function note(en,bn){message=[en,bn]}
@@ -81,7 +115,7 @@ function startProfiles(host) {
   }
   function reload(){
     if (dirty() && !confirm(tr('Discard this tab’s unsaved changes and reload the stored family?','এই ট্যাবের অসংরক্ষিত পরিবর্তন বাদ দিয়ে সংরক্ষিত পরিবার লোড করবেন?'))) return;
-    snap=F.read(db);legacy=B.readCandidates(db);panel=null;message=null;stale=false;legacyMatches=false;updateChart();compareLegacy();
+    snap=F.read(db);displayNumbers=assignNumbers(snap.family,readNumbers());legacy=B.readCandidates(db);panel=null;message=null;stale=false;legacyMatches=false;updateChart();compareLegacy();
   }
   async function transact(change,{base,checkLegacy,replacement=false}={}){
     if (busy || stale) return;
@@ -98,6 +132,15 @@ function startProfiles(host) {
           if(pending!==intended)throw Error();
         }catch{B.fail('recoveryCopy')}
       }:undefined);
+      displayNumbers=assignNumbers(snap.family,displayNumbers);
+      // Presentation preference only. A quota failure here cannot undo a verified clinical save.
+      try{
+        const stored=localStorage.getItem(numberKey);
+        if(Object.keys(displayNumbers).length){
+          const encoded=JSON.stringify(displayNumbers);
+          if(encoded!==stored)localStorage.setItem(numberKey,encoded);
+        }else if(stored!==null)localStorage.removeItem(numberKey);
+      }catch{}
       if(replacement){
         try{sessionStorage.removeItem(recoveryKey);pending=sessionStorage.getItem(recoveryKey)}catch{}
       }
@@ -210,7 +253,7 @@ function startProfiles(host) {
       if(isFamily){
         text(box,'p',tr('Incoming children','ব্যাকআপে শিশু')+' · '+Object.keys(r.profilesById).length);
         text(box,'pre',familyList(r));
-        if(r.activeChildId)text(box,'p',tr('Selected child','নির্বাচিত শিশু')+' · '+label(r.activeChildId,r.profilesById[r.activeChildId].record));
+        if(r.activeChildId)text(box,'p',tr('Selected child','নির্বাচিত শিশু')+' · '+label(r.activeChildId,r.profilesById[r.activeChildId].record,assignNumbers(r,displayNumbers)));
       }else{
         text(box,'p',tr('Creates one new child. Existing legacy records are retained.','একটি নতুন শিশু তৈরি হবে। পুরোনো রেকর্ড রাখা হবে।'));
         if(migration)text(box,'p',p.c.key);

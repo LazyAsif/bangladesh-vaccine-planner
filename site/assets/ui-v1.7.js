@@ -4,13 +4,6 @@
   'use strict';
   const isEnglish = () => document.documentElement.dataset.cvpLang === 'en' || document.documentElement.lang === 'en';
   const text = (bn, en) => isEnglish() ? en : bn;
-  function inInstalledApp() {
-    return !!(navigator.standalone === true ||
-      (window.matchMedia && (
-        window.matchMedia('(display-mode: standalone)').matches ||
-        window.matchMedia('(display-mode: fullscreen)').matches
-      )) || (document.referrer || '').startsWith('android-app://'));
-  }
 
   function installControls() {
     const original = document.getElementById('site-install-button');
@@ -27,48 +20,6 @@
       caption.innerHTML = '<span class="cvp-only-bn">ওয়েবসাইটকে অ্যাপ হিসেবে ব্যবহার করুন</span><span class="cvp-only-en">Install this website as an app</span>';
       if (original) settings.insertBefore(caption, original);
     }
-    const update = () => {
-      const installed = inInstalledApp();
-      if (original) {
-        original.hidden = installed;
-        original.setAttribute('aria-hidden', String(installed));
-        original.tabIndex = installed ? -1 : 0;
-      }
-      document.querySelectorAll('.cvp-more-dialog > button:not(.cvp-more-close)').forEach(button => {
-        // v1.6 creates the mobile Install App action as the last direct button.
-        if (button.classList.contains('cvp-v17-install') || /অ্যাপ ইনস্টল|Install App/i.test(button.textContent || '')) {
-          button.classList.add('cvp-v17-install');
-          button.hidden = installed;
-          button.setAttribute('aria-hidden', String(installed));
-          button.tabIndex = installed ? -1 : 0;
-        }
-      });
-      document.querySelectorAll('.cvp-install-nudge').forEach(node => {if (installed) node.remove();});
-      const caption = settings?.querySelector('.cvp-install-caption');
-      if (caption) caption.hidden = installed;
-    };
-    update();
-    window.addEventListener('pageshow', update);
-    window.addEventListener('appinstalled', update);
-    document.addEventListener('visibilitychange', update);
-    if (window.matchMedia) {
-      ['standalone', 'fullscreen'].forEach(mode => {
-        const m = window.matchMedia('(display-mode: ' + mode + ')');
-        if (m.addEventListener) m.addEventListener('change', update);
-        else if (m.addListener) m.addListener(update);
-      });
-    }
-    // v1.6 normally creates the nudge during initialisation. Keep its standalone
-    // visibility correct even when older browser cache creates it after load.
-    const bodyObserver = new MutationObserver(mutations => {
-      if (!inInstalledApp()) return;
-      for (const m of mutations) {
-        for (const n of m.addedNodes) {
-          if (n.nodeType === 1 && n.classList?.contains('cvp-install-nudge')) n.remove();
-        }
-      }
-    });
-    bodyObserver.observe(document.body, {childList:true});
   }
 
   function timelineAccordions() {

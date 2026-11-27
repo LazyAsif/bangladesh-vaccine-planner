@@ -1,6 +1,6 @@
 /* Bangladesh Child Vaccine Planner - user-initiated PWA install helper.
    Native prompt is only possible when the browser supplies beforeinstallprompt.
-   No telemetry, no remote calls, no persistent flags. */
+   Dismissal is a browser-local UI preference, separate from vaccination data. */
 (function () {
   'use strict';
   var promptEvent = null;
@@ -8,6 +8,13 @@
   var lastFocused = null;
   var button = document.getElementById('site-install-button');
   if (!button) return;
+  var dismissKey = 'cvp-install-dismiss-until-v1';
+  var cooldown = 30 * 24 * 60 * 60 * 1000;
+  var dismissedUntil = 0, visit = 0, nudge = null, installedHere = false;
+  try {
+    visit = Number(sessionStorage.getItem('cvp-install-visit-v16') || 0) + 1;
+    sessionStorage.setItem('cvp-install-visit-v16', String(visit));
+  } catch (_) { /* Manual installation still works. */ }
 
   var text = {
     bn: {
@@ -60,8 +67,10 @@
   function isInstalledWindow() {
     return !!(window.matchMedia && (
       window.matchMedia('(display-mode: standalone)').matches ||
-      window.matchMedia('(display-mode: fullscreen)').matches
-    )) || navigator.standalone === true;
+      window.matchMedia('(display-mode: fullscreen)').matches ||
+      window.matchMedia('(display-mode: minimal-ui)').matches ||
+      window.matchMedia('(display-mode: window-controls-overlay)').matches
+    )) || navigator.standalone === true || installedHere || document.referrer.startsWith('android-app://');
   }
   function platform() {
     var ua = navigator.userAgent || '';
@@ -71,6 +80,48 @@
   }
   function element(tag, value) {
     var n = document.createElement(tag); n.textContent = value; return n;
+  }
+  function iosManual(){
+    return platform()==='ios' && /Version\/.*Safari\//.test(navigator.userAgent) &&
+      !/CriOS|FxiOS|EdgiOS|OPiOS/.test(navigator.userAgent) && typeof navigator.share==='function';
+  }
+  function rememberDismissal(){
+    dismissedUntil=Date.now()+cooldown;
+    for(const storageName of ['localStorage','sessionStorage']){
+      try{window[storageName].setItem(dismissKey,String(dismissedUntil))}catch(_){}
+    }
+    refresh();
+  }
+  function mayAdvertise(){
+    if(visit<2 || dismissedUntil>Date.now())return false;
+    try{
+      const stored=localStorage.getItem(dismissKey);
+      if(Math.max(Number(stored),Number(sessionStorage.getItem(dismissKey)))>Date.now())return false;
+      // Only advertise if this browser can retain a dismissal across restarts.
+      if(!nudge){
+        const probe='cvp-install-storage-test';
+        localStorage.setItem(probe,'1');
+        if(localStorage.getItem(probe)!=='1')return false;
+        localStorage.removeItem(probe);
+      }
+      return true;
+    }catch(_){return false}
+  }
+  function refresh(){
+    const available=!isInstalledWindow() && (!!promptEvent || iosManual());
+    document.documentElement.toggleAttribute('data-cvp-install-action',available);
+    if(!available || !mayAdvertise()){
+      if(nudge){nudge.remove();nudge=null}
+      return;
+    }
+    if(!nudge){
+      nudge=document.createElement('aside');nudge.className='cvp-install-nudge is-visible';
+      nudge.innerHTML='<span><span class="cvp-only-bn">অ্যাপ হিসেবে ব্যবহার করবেন?</span><span class="cvp-only-en">Use as an app?</span></span><button type="button" class="cvp-nudge-install"><span class="cvp-only-bn">ইনস্টল</span><span class="cvp-only-en">Install</span></button><button type="button">✕</button>';
+      nudge.querySelector('.cvp-nudge-install').onclick=tryPrompt;
+      nudge.lastElementChild.onclick=rememberDismissal;
+      document.body.append(nudge);
+    }
+    nudge.lastElementChild.setAttribute('aria-label',currentLanguage()==='en'?'Dismiss for 30 days':'৩০ দিনের জন্য বন্ধ করুন');
   }
   function ensureOverlay() {
     if (overlay) return;
@@ -94,6 +145,7 @@
     if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
   }
   function show(reason) {
+    if (isInstalledWindow()) return;
     ensureOverlay();
     var t = text[currentLanguage()];
     var copy = overlay.querySelector('#install-copy');
@@ -105,11 +157,11 @@
     if (isInstalledWindow()) {
       copy.appendChild(element('p', t.installed));
     } else {
-      var intro = reason === 'cancelled' ? t.cancelled :
+      var intro = reason === 'manual' ? t.iosTitle : reason === 'cancelled' ? t.cancelled :
                   reason === 'error' ? t.error :
                   reason === 'accepted' ? t.accepted :
                   reason === 'success' ? t.success : t.unavailable;
-      copy.appendChild(element('p', intro));
+      if(reason!=='manual')copy.appendChild(element('p', intro));
       if (reason !== 'accepted' && reason !== 'success') {
         var heading = p === 'ios' ? t.iosTitle : p === 'android' ? t.androidTitle : t.desktopTitle;
         var steps = p === 'ios' ? t.iosSteps : p === 'android' ? t.androidSteps : t.desktopSteps;
@@ -119,41 +171,53 @@
         copy.appendChild(list);
       }
       var detail = element('p', t.detail + ' ' + t.noWidget);
-      detail.className = 'install-help'; copy.appendChild(detail);
+      detail.className = 'install-help'; if(reason!=='manual')copy.appendChild(detail);
     }
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
     overlay.querySelector('.install-close').focus();
   }
   function tryPrompt() {
-    if (isInstalledWindow()) { show('installed'); return; }
-    if (!promptEvent) { show('unavailable'); return; }
+    if (isInstalledWindow()) return;
+    if (!promptEvent) { if(iosManual()){rememberDismissal();show('manual')} return; }
     // Important: prompt() is invoked synchronously in the actual click handler,
     // preserving Chrome's transient user activation on Android.
     var e = promptEvent;
     promptEvent = null; // The browser event may only be used once.
+    rememberDismissal();
     try {
       var result = e.prompt();
       Promise.resolve(e.userChoice || result).then(function (choice) {
         if (choice && choice.outcome === 'accepted') {
-          show('accepted');
-        } else if (choice && choice.outcome === 'dismissed') {
-          show('cancelled');
-        }
+          if(!isInstalledWindow())show('accepted');
+        }else if(choice && choice.outcome==='dismissed')rememberDismissal();
       }).catch(function () { show('error'); });
     } catch (_) { show('error'); }
   }
   // Capture browser permission when Chrome decides the PWA is installable.
   window.addEventListener('beforeinstallprompt', function (e) {
+    if (typeof e.prompt !== 'function' || isInstalledWindow()) return;
     e.preventDefault();
     promptEvent = e;
+    refresh();
   });
   window.addEventListener('appinstalled', function () {
     promptEvent = null;
-    if (overlay && !overlay.hidden) show('success');
+    installedHere=true;
+    if (overlay && !overlay.hidden) close();
+    refresh();
   });
   button.addEventListener('click', tryPrompt);
   function updateLabel() { button.textContent = text[currentLanguage()].button; }
   updateLabel();
+  refresh();
+  window.addEventListener('pageshow',refresh);
+  document.addEventListener('visibilitychange',refresh);
+  window.addEventListener('storage',function(e){if(!e.key || e.key===dismissKey)refresh()});
+  window.addEventListener('cvp-language-change',refresh);
+  for(const mode of ['standalone','fullscreen','minimal-ui','window-controls-overlay']){
+    const query=window.matchMedia('(display-mode: '+mode+')');
+    if(query.addEventListener)query.addEventListener('change',refresh);else if(query.addListener)query.addListener(refresh);
+  }
   new MutationObserver(updateLabel).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();

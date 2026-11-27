@@ -1,5 +1,12 @@
 # Child Vaccine Planner — Internal Changelog
 
+## Phase 2 preview · final navigation and labels
+
+- Profile selectors, previews and confirmations now show the child's name and localized birth date. Children with matching names and birth dates receive friendly numbers. These display preferences are separate from profile IDs and vaccination records.
+- Dismissing the install banner suppresses it for 30 days. Settings and More retain a manual action when a native install prompt is available or supported iOS Safari Home Screen guidance applies. Installed windows suppress installation controls.
+- The desktop header and mobile More menu now share the requested nine-link order, including Vaccine Centres between Sources and My Children. The bottom navigation keeps its existing shortcuts. The next vaccination summary separates the vaccine name and date.
+- Updated the offline cache to `bd-child-vax-public-phase2-r3`.
+
 ## Phase 2 preview · mobile details and profile navigation · 27 November 2026
 
 - Vaccine Details opens above the fixed navigation. Its title and bilingual Close button stay visible while the full information scrolls within the available viewport and safe areas. Escape and Close return focus to the opening control.

@@ -1,6 +1,19 @@
 # Phase 2 local QA report
 
-**The mobile UX update passed local regression.** The Node run passed 15 tests with zero failures or skips. The final end-to-end Chrome run passed eight scenario groups. All records, backup files and injected storage faults used for testing were synthetic.
+**The final navigation update passed local regression.** The Node run passed 15 tests with zero failures or skips. Chrome passed the three focused navigation/install/label groups, the focused mobile UX checks and the eight end-to-end scenario groups. All vaccination records and injected faults were synthetic.
+
+## Final navigation, profile labels and install controls
+
+| Check | Result |
+|---|---|
+| Profile identity | PASS. Switched between two unnamed children sharing a DOB. Their option values still selected their original IDs and all saved records stayed deep-equal. English labels used “Unnamed child 1 · 5 Nov 2024” and “Unnamed child 2 · 5 Nov 2024”. The second number survived reload and deletion of the first child. Bangla used localized digits and dates. The deletion preview exposed no internal ID suffix. |
+| Numbering scope | Friendly numbers are a local presentation preference. Family and child backups keep their existing formats. A fresh browser can assign its own numbers to duplicates when importing a family. |
+| Install eligibility and dismissal | PASS with injected browser capability events. Checked unavailable actions, a one-use native offer, dismissed native choice, Safari manual guidance, simulated installed mode and denied local writes. Verified a 30-day expiry, no banner on navigation, reload or another tab sharing the origin, continued manual access while eligible, and a new offer after expiry. Expiry was exercised by aging both stored deadlines. |
+| Navigation | PASS. Checked exact link order in desktop and More in both languages on the planner, Articles subpage, Sources, Centres, About, Privacy, Contact, medical disclaimer and 404 page. All nine links fit at the tested 320, 768, 1201 and 1440 px widths across Chart, My Children and Backup & Restore. The existing bottom navigation remains separate. |
+| Centres and offline fallback | PASS. Both homepage directory links targeted Centres. Chrome opened the cached directory offline, switched between government and private sections and displayed the offline fallback on an uncached route. |
+| Next vaccination | PASS. The former presentation copied a card's combined text content, joining its heading, vaccine and date. The updated summary matched the separately rendered vaccine name and date with a visible separator. Schedule outputs still matched all 93 frozen rows. |
+
+The install tests simulate browser eligibility, dismissal and installed-window signals. An actual OS installation, a full browser-process restart and a physical iOS or Android install prompt were not exercised.
 
 ## Environment and baseline
 
@@ -34,10 +47,12 @@ The focused test initially checked raw HTML serialization and its first hit-test
 | Conflict and lock handling | PASS. A second Phase 2 tab changed the family during preview and blocked confirmation on the stale tab. Unit tests covered exact snapshot conflicts, unreadable storage, quota and verification failures. With Web Locks explicitly absent in Chrome, Add was disabled and family export stayed available. |
 | Vaccination schedules | PASS. Six fixture cases covering 93 rows matched the frozen dates, baseline and earliest dates, dose visibility, source and warnings after family backup and selection. Historical single-record backup tests also matched the frozen rows. |
 | Responsive layout | PASS. Measured 320, 360, 390, 393, 412, 600, 767, 768 and 1280 CSS px, each in Bangla and English, Light and Dark. All 36 combinations passed page overflow, profile control separation and minimum height checks. The expanded mobile timeline passed its overlap check. Visible identity-form actions retained a 14 px gap, 44 px minimum height and text within bounds. They filled the form width through 600 px. |
-| PWA and calendar | PASS. Upgraded the released Phase 1 r3 worker to Phase 2 r2. Checked the three profile assets in the precache and an actual ICS download containing the selected child's schedule. After disconnecting the origin, a new tab reopened the correct active child's chart and loaded the Centres and Articles landing pages. |
+| PWA and calendar | PASS. Upgraded the released Phase 1 r3 worker to Phase 2 r3. Checked the three profile assets in the precache and an actual ICS download containing the selected child's schedule. After disconnecting the origin, a new tab reopened the correct active child's chart and loaded the Centres and Articles landing pages. |
 | Rollback safety | PASS. Served the verified Phase 1 r3 fixture on the same origin and activated its worker. Phase 1 showed its legacy identity. Returning to Phase 2 restored the selected child's view. The entire serialized family and both legacy values matched their pre-rollback strings. |
 
 ## Commands and test history
+
+- `node tests/browser-phase1.mjs --phase2 --navigation-only` — three focused groups passed. An initial expiry fixture aged only the local deadline while the session dismissal was still active. The final test ages both deadlines to represent elapsed time.
 
 - `node --test tests/backup-phase1.test.mjs tests/profiles-phase2.test.mjs` — 10 Phase 1 tests and 5 Phase 2 tests passed. `CVP_V110_SITE` pointed to a temporary directory containing only the archived public v1.10 `index.html`.
 - `node tests/browser-phase1.mjs --phase2 --continuity-only` — the focused Web Locks, calendar, offline and rollback checks passed.
@@ -48,12 +63,14 @@ For a browser rerun, set `CVP_PHASE1_SITE` to the absolute path of `.qa-phase2-b
 
 ## Changed-file inventory
 
-This UX revision edits nine files from the prior Phase 2 package: `site/index.html`, `site/assets/ui-v1.6.js`, `site/assets/profiles-ui.js`, `site/assets/profiles-v1.css`, `site/service-worker.js`, `tests/browser-phase2.mjs`, `CHANGELOG.md`, `QA_REPORT_PHASE_2.md` and `DEPLOY_PHASE_2.md`. The cumulative changed archive contains the following 14 files relative to the released Phase 1 r3 baseline. The complete project also includes the two supplied images in `design-references/`.
+This revision changes 12 files relative to the prior Phase 2 preview. The runtime files are `site/index.html`, `site/assets/profiles-ui.js`, `site/assets/install.js`, `site/assets/install.css`, `site/assets/ui-v1.6.js`, `site/assets/ui-v1.7.js` and `site/service-worker.js`. Test changes are `tests/browser-phase2.mjs` and the new `tests/navigation-phase2.mjs`. Documentation changes are `CHANGELOG.md`, `QA_REPORT_PHASE_2.md` and `DEPLOY_PHASE_2.md`. The cumulative changed archive contains the following 17 files relative to released Phase 1 r3.
 
 | Repository-relative path | Change |
 |---|---|
 | `site/index.html` | Integrated the profile manager and selected-child chart adapter, protected detached row controls and removed child-identifying details from calendar links. |
 | `site/assets/backup-v1.js` | Exposed the existing strict parser, field checks and legacy snapshot check for reuse. |
+| `site/assets/install.js` | Owns native and iOS manual action eligibility, installed-window suppression and the 30-day dismissal. |
+| `site/assets/install.css` | Hides installation controls until an available action is known. |
 | `site/assets/profiles-v1.js` | Added the family schema, strict backup formats, ID creation and verified commits. |
 | `site/assets/profiles-ui.js` | Added bilingual profiles, migration, drafts, confirmation, backup and recovery controls. |
 | `site/assets/profiles-v1.css` | Added responsive, theme-aware profile controls. |
@@ -62,6 +79,7 @@ This UX revision edits nine files from the prior Phase 2 package: `site/index.ht
 | `site/service-worker.js` | Revised the offline shell and limited runtime cache writes to known public paths without query strings. |
 | `tests/browser-phase1.mjs` | Extended the isolated browser harness to serve Phase 1 and Phase 2 at one origin. |
 | `tests/browser-phase2.mjs` | Added Chromium profile, file, responsive, offline and rollback scenarios. |
+| `tests/navigation-phase2.mjs` | Exercises install lifecycle, friendly duplicate labels, exact bilingual link order, summary separation and offline Centres. |
 | `tests/profiles-phase2.test.mjs` | Added family persistence, format validation, recovery and engine-parity tests. |
 | `CHANGELOG.md` | Recorded the local Phase 2 candidate. |
 | `QA_REPORT_PHASE_2.md` | Recorded test evidence, inventory and limits. |

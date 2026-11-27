@@ -485,7 +485,7 @@ function render(){
  S.actual=S.actual||{}; S.rotaBrand=S.rotaBrand||"unknown"; S.products=S.products||{};
  var ds=Math.max(0,Math.round((now-b)/864e5)),w=Math.floor(ds/7);
  var nx=rows.filter(function(r){return !S.done[r.v.id]})[0];
- $("info").innerHTML="<div><span>"+t.dobL+"</span><b>"+fmt(b)+"</b></div><div><span>"+t.age+"</span><b>"+dig(w)+t.wk+dig(ds%7)+t.dy+"</b></div><div><span>"+t.next+"</span><b>"+(nx?nx.v[lang][0]+"</b>"+fmt(nx.d):"–</b>")+"</div>";
+ $("info").innerHTML="<div><span>"+t.dobL+"</span><b>"+fmt(b)+"</b></div><div><span>"+t.age+"</span><b>"+dig(w)+t.wk+dig(ds%7)+t.dy+"</b></div><div><span>"+t.next+"</span> <b>"+(nx?nx.v[lang][0]+"</b> <time>"+fmt(nx.d)+"</time>":"–</b>")+"</div>";
  productHelp();
  $("rotaLabel").textContent=lang==="bn"?"রোটাভাইরাসের ধরন:":"Rotavirus product:";
  $("rotaHelp").textContent=lang==="bn"?"প্রকৃত ডোজ দেওয়ার দিন লিখলে পরের তারিখগুলো স্বয়ংক্রিয়ভাবে বদলাবে। ২ ডোজ হলে তৃতীয় ডোজ লুকানো থাকবে।":"Later planned dates automatically recalculate after recording actual doses. Confirmed dates override calculations. Unknown product keeps dose 3 provisional.";
