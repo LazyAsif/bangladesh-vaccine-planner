@@ -1,6 +1,6 @@
-// Child Vaccine Planner Phase 1 — offline PWA, no personal-data caching
-const CACHE='bd-child-vax-public-phase1-r3';
-const SHELL=['/','/index.html','/manifest.webmanifest','/assets/site.css','/assets/ui-v1.6.css','/assets/ui-v1.6.js','/assets/ui-v1.7.css','/assets/ui-v1.7.js','/assets/ui-v1.8.css','/assets/mobile-v1.9.css','/assets/mobile-v1.10.css','/assets/backup-v1.js','/assets/backup-v1.css','/assets/header-v1.4.css','/assets/header-v1.4.js','/assets/language-v1.5.css','/assets/language-v1.5.js','/assets/install.css','/assets/install.js','/assets/theme.css','/assets/theme.js'];
+// Child Vaccine Planner Phase 2 — offline PWA, no personal-data caching
+const CACHE='bd-child-vax-public-phase2-r3';
+const SHELL=['/','/index.html','/manifest.webmanifest','/assets/site.css','/assets/ui-v1.6.css','/assets/ui-v1.6.js','/assets/ui-v1.7.css','/assets/ui-v1.7.js','/assets/ui-v1.8.css','/assets/mobile-v1.9.css','/assets/mobile-v1.10.css','/assets/backup-v1.js','/assets/backup-v1.css','/assets/profiles-v1.js','/assets/profiles-ui.js','/assets/profiles-v1.css','/assets/header-v1.4.css','/assets/header-v1.4.js','/assets/language-v1.5.css','/assets/language-v1.5.js','/assets/install.css','/assets/install.js','/assets/theme.css','/assets/theme.js'];
 const EXTRA=['/assets/logo.svg','/assets/hero-family-v1.8.svg','/assets/icons/icon-192.png','/assets/icons/icon-512.png','/assets/icons/icon-192-maskable.png','/assets/icons/icon-512-maskable.png','/assets/social-preview.png','/assets/centres.js','/assets/private-centres.js','/assets/private-centres.json','/assets/districts.json','/centres/','/articles/','/articles/bcg/','/articles/six-weeks/','/articles/missed-vaccine/','/articles/rotavirus/','/articles/mr-mmr/','/articles/typhoid/','/about/','/privacy/','/contact/','/medical-disclaimer/','/sources/'];
 const REQUIRED_DIRECTORY=['/centres/','/articles/','/assets/centres.js','/assets/private-centres.js','/assets/private-centres.json','/assets/districts.json'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(async cache=>{
@@ -12,7 +12,7 @@ self.addEventListener('fetch',event=>{
  const req=event.request;if(req.method!=='GET'||new URL(req.url).origin!==self.location.origin)return;
  // Never cache routes that might contain personal data; this site currently only caches public static files.
  event.respondWith(fetch(req).then(response=>{
-   if(response.ok && response.type!=='opaque' && !req.url.includes('/sitemap.xml') && !req.url.includes('/robots.txt')){
+   if(response.ok && response.type!=='opaque' && !new URL(req.url).search && [...SHELL,...EXTRA].includes(new URL(req.url).pathname)){
       const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put(req,copy)).catch(()=>{}));
    }return response;
  }).catch(async()=>{

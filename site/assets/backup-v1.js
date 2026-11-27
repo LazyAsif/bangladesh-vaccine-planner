@@ -148,7 +148,7 @@ globalThis.CVPBackup = (() => {
   function runtime(record) {
     return Object.assign({name:'',dob:'',done:{},actual:{},ov:{},products:{},rotaBrand:'unknown',t:0}, copy(record || {}));
   }
-  return {keys,limit,copy,date,same,parseBackup,buildBackup,validateRecord,readCandidates,selected,editable,commitRecord,runtime,fail};
+  return {keys,limit,copy,date,same,parse,fields,checkSnapshot,parseBackup,buildBackup,validateRecord,readCandidates,selected,editable,commitRecord,runtime,fail};
 })();
 
 /* DOM adapter. The engine sees a default-filled copy; only explicit edits

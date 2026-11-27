@@ -1,5 +1,25 @@
 # Child Vaccine Planner — Internal Changelog
 
+## Phase 2 preview · final navigation and labels
+
+- Profile selectors, previews and confirmations now show the child's name and localized birth date. Children with matching names and birth dates receive friendly numbers. These display preferences are separate from profile IDs and vaccination records.
+- Dismissing the install banner suppresses it for 30 days. Settings and More retain a manual action when a native install prompt is available or supported iOS Safari Home Screen guidance applies. Installed windows suppress installation controls.
+- The desktop header and mobile More menu now share the requested nine-link order, including Vaccine Centres between Sources and My Children. The bottom navigation keeps its existing shortcuts. The next vaccination summary separates the vaccine name and date.
+- Updated the offline cache to `bd-child-vax-public-phase2-r3`.
+
+## Phase 2 preview · mobile details and profile navigation · 27 November 2026
+
+- Vaccine Details opens above the fixed navigation. Its title and bilingual Close button stay visible while the full information scrolls within the available viewport and safe areas. Escape and Close return focus to the opening control.
+- The homepage shows a compact child selector next to the chart. My Children and Backup & restore have dedicated views reached from the header menu or mobile More menu. First-use setup and legacy-record review remain discoverable on the homepage.
+- Updated the public PWA cache to `bd-child-vax-public-phase2-r2`. Local QA covers long details at three viewport heights, menu navigation while offline, and the existing profile and data-safety workflows.
+
+## Phase 2 · Multiple child profiles · local review candidate
+
+- Added My Children / আমার শিশুরা with separate charts, product choices and vaccination history for each child. Switching with unsaved edits offers Save, Discard and Cancel. DOB corrections retain recorded history and flag dates before the corrected DOB.
+- Added preview-confirmed migration from either legacy single-child source. Both original keys remain available. Family writes use a Web Lock, check the stored snapshot and verify the new value by reading it back.
+- Added family backups and individual child imports. Family restore retains child IDs and active selection. Individual, raw and Phase 1 envelope imports create a fresh ID after confirmation.
+- Updated the offline shell to `bd-child-vax-public-phase2-r1`. The spacing release is the upgrade and rollback baseline. See `QA_REPORT_PHASE_2.md` for executed checks and `DEPLOY_PHASE_2.md` for the owner release procedure.
+
 ## Phase 1 preview · homepage button spacing
 
 - Added a 14 px gap between the identity-form actions. At 600 px and below, the buttons stack at full form width. The updated homepage ships in PWA cache `bd-child-vax-public-phase1-r3`.

@@ -16,3 +16,5 @@
 .install-help{font-size:.85rem;color:var(--mute)}
 @media(max-width:700px){.site-install-btn{min-height:44px;padding:9px 11px}.install-panel{padding:20px 16px}.site-nav .site-links{align-items:center}}
 @media print{.site-install-btn,.install-overlay{display:none!important}}
+
+html:not([data-cvp-install-action]) :is(#site-install-button,.cvp-v17-install,.cvp-install-caption){display:none!important}
