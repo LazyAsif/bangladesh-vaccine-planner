@@ -1,5 +1,11 @@
 # Child Vaccine Planner — Internal Changelog
 
+## Phase 2 preview · mobile details and profile navigation · 27 November 2026
+
+- Vaccine Details opens above the fixed navigation. Its title and bilingual Close button stay visible while the full information scrolls within the available viewport and safe areas. Escape and Close return focus to the opening control.
+- The homepage shows a compact child selector next to the chart. My Children and Backup & restore have dedicated views reached from the header menu or mobile More menu. First-use setup and legacy-record review remain discoverable on the homepage.
+- Updated the public PWA cache to `bd-child-vax-public-phase2-r2`. Local QA covers long details at three viewport heights, menu navigation while offline, and the existing profile and data-safety workflows.
+
 ## Phase 2 · Multiple child profiles · local review candidate
 
 - Added My Children / আমার শিশুরা with separate charts, product choices and vaccination history for each child. Switching with unsaved edits offers Save, Discard and Cancel. DOB corrections retain recorded history and flag dates before the corrected DOB.

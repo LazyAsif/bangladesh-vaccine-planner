@@ -185,15 +185,17 @@ tr.det td{background:var(--accent-soft)!important}
 @media(max-width:650px){.site-nav{padding:12px}.site-links{gap:9px}.site-links a{font-size:.78rem}.site-footer{padding:16px}.site-main{padding:18px 14px}}
 </style>
 <link href="./assets/install.css" rel="stylesheet"/><link href="assets/theme.css" rel="stylesheet"/><link href="assets/header-v1.4.css" rel="stylesheet"/><link href="./assets/language-v1.5.css" rel="stylesheet"/><link href="assets/ui-v1.6.css" rel="stylesheet"/><link href="assets/ui-v1.7.css" rel="stylesheet"/><link href="assets/ui-v1.8.css" rel="stylesheet"/><link href="assets/mobile-v1.9.css" rel="stylesheet"/><link href="assets/mobile-v1.10.css" rel="stylesheet"/><link href="assets/backup-v1.css" rel="stylesheet"/><link href="assets/profiles-v1.css" rel="stylesheet"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="default" name="apple-mobile-web-app-status-bar-style"/></head>
-<body>
+<body data-planner-view="chart">
 <header class="app-header"><nav aria-label="Site navigation" class="site-nav"><a class="site-brand" href="./index.html">💉 <span><span class="cvp-only-bn">শিশুর টিকার চার্ট</span><span class="cvp-only-en">Child Vaccine Planner</span></span></a><button aria-controls="site-menu-panel" aria-expanded="false" aria-label="Open navigation menu" class="site-menu-toggle" type="button"><span aria-hidden="true" class="site-menu-icon"><span></span><span></span><span></span></span><span class="site-menu-label"><span class="cvp-only-bn">মেনু</span><span class="cvp-only-en">Menu</span></span></button><div class="site-links" id="site-menu-panel"><a href="./index.html"><span class="cvp-only-bn">চার্ট দেখুন</span><span class="cvp-only-en">See Chart</span></a><a href="./articles/index.html"><span class="cvp-only-bn">নিবন্ধ</span><span class="cvp-only-en">Articles</span></a><a href="./sources/index.html"><span class="cvp-only-bn">উৎস</span><span class="cvp-only-en">Sources</span></a><a href="./about/index.html"><span class="cvp-only-bn">সম্পর্কে</span><span class="cvp-only-en">About</span></a><a href="./privacy/index.html"><span class="cvp-only-bn">গোপনীয়তা</span><span class="cvp-only-en">Privacy</span></a><a href="./contact/index.html"><span class="cvp-only-bn">যোগাযোগ</span><span class="cvp-only-en">Contact</span></a><div aria-label="Language / ভাষা" class="site-language-switch" role="group"><button aria-label="বাংলা ভাষা" aria-pressed="true" data-cvp-language="bn" type="button">বাংলা</button><button aria-label="English language" aria-pressed="false" data-cvp-language="en" type="button">English</button></div><button aria-label="Toggle light and dark mode" class="site-theme-btn" id="site-theme-button" type="button">◐ Theme</button><button class="site-install-btn" data-cvp-label-bn="অ্যাপ ইনস্টল" data-cvp-label-en="Install App" id="site-install-button" type="button">⬇ অ্যাপ ইনস্টল</button></div></nav></header>
 <main>
 <div class="top cvp-v18-hero">
 <div class="cvp-v18-hero-copy"><div class="cvp-v18-eyebrow"><span class="cvp-v18-eyebrow-dot">✦</span><span class="cvp-only-bn">আপনার শিশুর সুস্থ আগামী</span><span class="cvp-only-en">A healthier start for every child</span></div><h1 id="title"></h1><p class="sub" id="sub"></p><div class="cvp-v18-hero-trust"><span><b>✓</b><span class="cvp-only-bn">সরকারি ও ঐচ্ছিক টিকা</span><span class="cvp-only-en">EPI &amp; optional vaccines</span></span><span><b>✓</b><span class="cvp-only-bn">অফলাইনে ব্যবহারযোগ্য</span><span class="cvp-only-en">Works offline</span></span><span><b>✓</b><span class="cvp-only-bn">তথ্য আপনার ডিভাইসেই</span><span class="cvp-only-en">Your records stay on device</span></span></div></div>
 <div aria-hidden="true" class="cvp-v18-hero-visual"><div class="cvp-v18-visual-halo"></div><img alt="" decoding="async" height="420" loading="eager" src="./assets/hero-family-v1.8.svg" width="560"/><div class="cvp-v18-floating-card"><span class="cvp-v18-floating-icon">♥</span><span><span class="cvp-only-bn">প্রতিটি ডোজ, সঠিক সময়ে</span><span class="cvp-only-en">Every dose, on time</span></span></div></div></div>
 <section id="profiles" class="noprint" aria-labelledby="profile-title">
-<h2 id="profile-title"></h2><label for="profile-select" id="profile-label"></label>
+<a href="#chart" id="profile-return"><span class="cvp-only-en">Back to chart</span><span class="cvp-only-bn">চার্টে ফিরুন</span></a>
+<h2 id="profile-title" tabindex="-1"></h2><label for="profile-select" id="profile-label"></label>
 <select id="profile-select"></select><p id="profile-current"></p><div id="profile-actions"></div>
+<a id="profile-entry" href="#profiles" hidden></a>
 <div id="legacy-sources"></div><p id="profile-status" role="status"></p>
 <div id="profile-preview" tabindex="-1" hidden></div>
 </section>
@@ -249,7 +251,7 @@ tr.det td{background:var(--accent-soft)!important}
 <div class="foot"><strong>Sources / উৎস (local Bangladesh approval must still be checked):</strong> <a href="https://iris.who.int/bitstream/handle/10665/378480/Bangladesh-EPI-Fact%20Sheet-2024.pdf?sequence=1" rel="noopener" target="_blank">WHO Bangladesh EPI fact sheet (schedule)</a> · <a href="https://www.bssnews.net/news-flash/405464" rel="noopener" target="_blank">BSS/DGHS TCV announcement, July 2026</a> · <a href="https://www.cdc.gov/pinkbook/hcp/table-of-contents/chapter-19-rotavirus.html" rel="noopener" target="_blank">CDC product-based vaccination notes</a> · <a href="https://www.medicines.org.uk/emc/product/2739/smpc" rel="noopener" target="_blank">Rotarix product label</a> · <a href="https://www.fda.gov/media/75718/download" rel="noopener" target="_blank">RotaTeq product label</a>. <a href="https://www.cdc.gov/flu/hcp/vax-summary/acip-recommendations.html" rel="noopener" target="_blank">Influenza dosing</a> · <a href="https://immunisationhandbook.health.gov.au/resources/tables/table-recommended-doses-and-schedules-for-monovalent-hepatitis-a-vaccines" rel="noopener" target="_blank">Hepatitis A products</a> · <a href="https://www.cdc.gov/chickenpox/hcp/vaccine-considerations/" rel="noopener" target="_blank">Varicella routine schedules</a> · <a href="https://www.cdc.gov/pinkbook/hcp/table-of-contents/chapter-22-varicella.html" rel="noopener" target="_blank">MMRV cautions</a>. Check local guidance and the child's EPI card.</div>
 </section>
 <section id="backup-panel" class="noprint" aria-labelledby="backup-title">
-<h2 id="backup-title"></h2><p id="backup-hint"></p>
+<h2 id="backup-title" tabindex="-1"></h2><p id="backup-hint"></p>
 <div id="backup-actions" class="backup-actions"></div>
 <label for="backup-file" id="file-label"></label>
 <input type="file" id="backup-file" accept=".json,application/json"/>
@@ -265,7 +267,7 @@ tr.det td{background:var(--accent-soft)!important}
 <details><summary><span class="cvp-only-bn">আমার শিশুর তথ্য কি অন্য কেউ দেখতে পাবে?</span><span class="cvp-only-en">Can other people access my child's records?</span></summary><p><span class="cvp-only-bn">এই অ্যাপে রেকর্ড সাধারণত আপনার ডিভাইসের ব্রাউজার স্টোরেজে থাকে; কোনো অ্যাকাউন্টে স্বয়ংক্রিয়ভাবে পাঠানো হয় না। তবে একই ডিভাইস বা ব্রাউজার প্রোফাইল ব্যবহারকারী এটি দেখতে পারেন। শেয়ার বা এক্সপোর্ট করলে তথ্য অন্যের কাছে যেতে পারে।</span><span class="cvp-only-en">Records are stored locally in this browser, not automatically uploaded to an account. Others using the same device or browser profile may be able to view them. Exporting or sharing may disclose information.</span></p></details>
 </section>
 </main>
-<div class="mo hide" id="mo"><div aria-modal="true" class="dlg" id="dlg" role="dialog" tabindex="-1"><button class="x" id="dx" type="button">✕</button><div id="dc"></div></div></div>
+<dialog class="mo hide" id="mo" aria-labelledby="details-title"><div class="dlg" id="dlg"><div class="details-head"><h2 id="details-title"></h2><button class="x" id="dx" type="button"></button></div><div id="dc" tabindex="0" role="region" aria-labelledby="details-title"></div></div></dialog>
 <script src="./assets/backup-v1.js"></script>
 <script src="./assets/profiles-v1.js"></script>
 <script src="./assets/profiles-ui.js"></script>
@@ -364,9 +366,21 @@ function calList(){
  return list;
 }
 function det(id){var t=T[lang];return K[id].map(function(k){var d=D[k][lang],f=[d[1],R[k][lang],d[2],d[3],t.act[AT[k]||"inj"],d[4]];return "<div class=dv><h4>"+d[0]+"</h4>"+t.dl.map(function(l,i){return "<p><b>"+l+":</b> "+f[i]+"</p>"}).join("")+"</div>"}).join("")+"<p class=sm>"+t.dn+"</p>"}
-function fillDet(){if(curId==="__cal")$("dc").replaceChildren(calList());else $("dc").innerHTML=det(curId);$("dx").setAttribute("aria-label",T[lang].hide);$("dlg").setAttribute("aria-label",T[lang].view)}
-function openDet(id,b){curId=id;lastBtn=b;fillDet();$("mo").classList.remove("hide");document.body.style.overflow="hidden";$("dx").focus()}
-function closeDet(){curId=null;$("mo").classList.add("hide");document.body.style.overflow="";if(lastBtn&&document.contains(lastBtn))lastBtn.focus()}
+function fillDet(){
+ if(curId==="__cal")$("dc").replaceChildren(calList());else $("dc").innerHTML=det(curId);
+ $("details-title").textContent=curId==="__cal"?(lang==="bn"?"টিকার ক্যালেন্ডার":"Vaccination calendar"):T[lang].view;
+ $("dx").textContent=lang==="bn"?"বন্ধ করুন":"Close";
+}
+var priorOverflow="";
+function openDet(id,b){
+ curId=id;lastBtn=b;fillDet();var modal=$("mo");priorOverflow=document.body.style.overflow;
+ document.body.style.overflow="hidden";modal.classList.remove("hide");modal.showModal();
+ $("dc").scrollTop=0;$("dx").focus();
+}
+function closeDet(){
+ curId=null;$("mo").close();$("mo").classList.add("hide");document.body.style.overflow=priorOverflow;
+ if(lastBtn&&lastBtn.isConnected)lastBtn.focus({preventScroll:true});
+}
 var sec="a",lang="bn",S={name:"",dob:"",done:{},ov:{},actual:{},rotaBrand:"unknown",products:{},t:0},$=function(i){return document.getElementById(i)};
 function dig(s){return lang==="bn"?String(s).replace(/\d/g,function(c){return "০১২৩৪৫৬৭৮৯"[c]}):String(s)}
 function pd(s){var p=s.split("-");return new Date(+p[0],p[1]-1,+p[2])}
@@ -550,6 +564,7 @@ $("csv").onclick=async function(){var fn="vaccine-reminders-"+(sec==="g"?"govt":
   else{var bl=new Blob([data],{type:"text/csv;charset=utf-8"}),u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download=fn;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},1000)}
   mk="icsOk";msgx=""}catch(e){mk="icsNo";msgx=e&&e.code?" ("+e.code+")":""}showMsg()};
 $("edit").onclick=function(){
+ if(location.hash!=="#profiles")location.hash="profiles";
  editingProfile=true;$("nm").value=S.name||"";$("dob").value=S.dob||"";
  formStart={name:$("nm").value,dob:$("dob").value};$("err").textContent="";route();$("dob").focus();
 };
@@ -561,7 +576,8 @@ $("setup").onsubmit=function(e){
 };
 $("dob").max=iso(today());
 function setLang(l){lang=l;route()}
-$("mo").onclick=function(e){if(e.target===$("mo"))closeDet()};$("dx").onclick=closeDet;document.addEventListener("keydown",function(e){if(e.key==="Escape"&&curId)closeDet()});
+$("mo").onclick=function(e){if(e.target===$("mo"))closeDet()};$("dx").onclick=closeDet;
+$("mo").oncancel=function(e){e.preventDefault();closeDet()};
 $("s-g").onclick=function(){sec="g";route()};$("s-p").onclick=function(){sec="p";route()};$("s-a").onclick=function(){sec="a";route()};
 
 window.addEventListener("cvp-language-change",function(e){if(e.detail&&e.detail.lang)setLang(e.detail.lang)});

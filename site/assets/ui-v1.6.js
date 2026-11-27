@@ -9,6 +9,16 @@
    const btn=shell.querySelector('button');btn.addEventListener('click',()=>{const opened=!panel.hidden;panel.hidden=opened;btn.setAttribute('aria-expanded',String(!opened));});document.addEventListener('pointerdown',e=>{if(!shell.contains(e.target)){panel.hidden=true;btn.setAttribute('aria-expanded','false');}});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){panel.hidden=true;btn.setAttribute('aria-expanded','false');btn.focus();}});
    }
    const homeLink=brand?.getAttribute('href')||'/';const prefix=homeLink.slice(0,homeLink.lastIndexOf('index.html'));const path=(p)=>prefix+p;
+   function plannerLink(hash,bn,en){
+     const a=document.createElement('a');
+     a.href=(document.getElementById('profiles')?'':homeLink)+hash;
+     for(const [code,label] of [['bn',bn],['en',en]]){
+       const span=document.createElement('span');span.className='cvp-only-'+code;span.textContent=label;a.append(span);
+     }
+     return a;
+   }
+   const plannerLinks=[plannerLink('#profiles','আমার শিশুরা','My Children'),plannerLink('#backup-panel','ব্যাকআপ ও পুনরুদ্ধার','Backup & restore')];
+   if(links)links.prepend(...plannerLinks.map(a=>a.cloneNode(true)));
    const nav=document.createElement('nav');nav.className='cvp-mobnav';nav.setAttribute('aria-label','Primary mobile navigation');
    const opts=[['⌂','চার্ট','Chart','index.html'],['⌖','কেন্দ্র','Centres','centres/index.html'],['▤','নিবন্ধ','Articles','articles/index.html']];
    for(const [ico,bn,en,target] of opts){const a=document.createElement('a');a.href=path(target);a.innerHTML='<span class="cvp-nav-icon" aria-hidden="true">'+ico+'</span><span class="cvp-only-bn">'+bn+'</span><span class="cvp-only-en">'+en+'</span>';if(new URL(a.href).pathname===location.pathname)a.setAttribute('aria-current','page');nav.appendChild(a);}
@@ -16,6 +26,9 @@
    const overlay=document.createElement('div');overlay.className='cvp-more-overlay';overlay.id='cvp-more-overlay';overlay.hidden=true;overlay.innerHTML='<div class="cvp-more-dialog" role="dialog" aria-modal="true" aria-label="More navigation"><button type="button" class="cvp-more-close" aria-label="Close">✕</button><h2><span class="cvp-only-bn">আরও তথ্য ও সেটিংস</span><span class="cvp-only-en">More & settings</span></h2></div>';
    const dlg=overlay.firstElementChild;for(const [bn,en,href] of [['উৎস','Sources','sources/index.html'],['সম্পর্কে','About','about/index.html'],['গোপনীয়তা','Privacy','privacy/index.html'],['যোগাযোগ','Contact','contact/index.html']]){const a=document.createElement('a');a.href=path(href);a.innerHTML='<span class="cvp-only-bn">'+bn+'</span><span class="cvp-only-en">'+en+'</span>';dlg.appendChild(a)}
    const switchArea=document.createElement('section');switchArea.style.display='grid';switchArea.style.gap='8px';switchArea.innerHTML='<strong><span class="cvp-only-bn">ভাষা ও থিম</span><span class="cvp-only-en">Language & appearance</span></strong>';if(langSwitch){const mobileSwitch=langSwitch.cloneNode(true);mobileSwitch.querySelectorAll('[data-cvp-language]').forEach(b=>{b.removeAttribute('id');b.addEventListener('click',()=>window.cvpLanguage?.set(b.dataset.cvpLanguage))});switchArea.appendChild(mobileSwitch)}
+   dlg.querySelector('h2').after(...plannerLinks);
+   if(document.getElementById('profiles'))nav.querySelector('a').href='#chart';
+   for(const a of plannerLinks)a.addEventListener('click',()=>{overlay.hidden=true});
    if(theme){const mobileTheme=document.createElement('button');mobileTheme.type='button';mobileTheme.innerHTML='<span class="cvp-only-bn">◐ থিম পরিবর্তন</span><span class="cvp-only-en">◐ Change theme</span>';mobileTheme.addEventListener('click',()=>theme.click());switchArea.appendChild(mobileTheme)}dlg.appendChild(switchArea);
    if(install){const inst=document.createElement('button');inst.type='button';inst.innerHTML='<span class="cvp-only-bn">অ্যাপ ইনস্টল</span><span class="cvp-only-en">Install App</span>';inst.addEventListener('click',()=>install.click());dlg.appendChild(inst);if(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone)inst.hidden=true;}
    document.body.appendChild(overlay);const open=()=>{overlay.hidden=false;dlg.querySelector('button').focus()};const close=()=>{overlay.hidden=true;more.focus()};more.addEventListener('click',open);dlg.querySelector('button').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)close()});

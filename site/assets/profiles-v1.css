@@ -27,3 +27,46 @@
 #profiles :empty { margin: 0 }
 #profiles input[type=checkbox] { width: 1.25rem; vertical-align: middle; margin-right: .5rem }
 @media(max-width:600px) { #profiles button { width: 100% } }
+
+/* Same-document views share the active profile, pending preview and editor. */
+#profile-return, #profile-entry {
+  display: inline-flex; align-items: center; min-height: 44px; color: var(--accent);
+}
+body[data-planner-view="chart"] :is(#profile-return,#profile-current,#profile-actions,#legacy-sources,#profile-title,#backup-panel),
+body[data-planner-view="chart"] #profiles[data-empty] :is(#profile-select,#profile-label),
+body[data-planner-view="children"] main > :not(#profiles,#homeStart),
+body[data-planner-view="children"]:not([data-editing-child]) #homeStart,
+body[data-planner-view="children"] .home-centres,
+body[data-planner-view="backup"] main > :not(#profiles,#backup-panel),
+body[data-planner-view="backup"] #profiles > :not(#profile-return,#profile-preview,#profile-status) { display: none }
+body[data-planner-view="chart"] #profiles { padding: .5rem 1rem }
+body[data-planner-view="chart"] #profile-select { width: min(100%, 30rem) }
+body[data-planner-view="children"] #homeStart { grid-template-columns: minmax(0,1fr) }
+#profile-preview, #profile-title, #backup-title, #dob { scroll-margin-block-start: calc(var(--header-height,70px) + 12px) }
+
+/* The native dialog sits above sticky navigation and makes the page inert. */
+html:has(#mo[open]) { overflow: hidden; overscroll-behavior: none }
+#mo {
+  box-sizing: border-box; position: fixed; inset: 0; margin: 0; border: 0;
+  width: 100%; max-width: none; height: 100%; height: 100dvh; max-height: none;
+  padding: max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right))
+           max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));
+  align-items: center; justify-content: center; overflow: hidden; background: transparent;
+}
+#mo:not([open]) { display: none }
+#mo::backdrop { background: rgba(0,0,0,.55) }
+#mo .dlg {
+  display: flex; flex-direction: column; min-height: 0; max-height: 100%;
+  box-sizing: border-box; padding: 0; overflow: hidden;
+}
+.details-head {
+  flex: none; display: flex; align-items: center; justify-content: space-between; gap: .6rem;
+  padding: .4rem .8rem; background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.details-head h2 { margin: 0; font-size: 1.1rem; overflow-wrap: anywhere }
+#mo #dx {
+  position: static; flex: none; width: auto; height: auto; min-width: 44px; min-height: 44px;
+  padding: .35rem .6rem; border: 1px solid var(--line); color: var(--ink); font: inherit;
+}
+#dc { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: .7rem 1rem 1rem; overflow-wrap: anywhere }
+#dc:focus-visible, #dx:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px }

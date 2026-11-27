@@ -1,11 +1,11 @@
 # Phase 2 owner deployment and rollback guide
 
-This is a local review candidate for the released Phase 1 project with the homepage spacing update. The baseline worker uses `bd-child-vax-public-phase1-r3`. The Phase 2 worker uses `bd-child-vax-public-phase2-r1`.
+This is a local review candidate for the released Phase 1 project with the homepage spacing update. The baseline worker uses `bd-child-vax-public-phase1-r3`. The mobile UX update uses `bd-child-vax-public-phase2-r2`.
 
 ## Review and preview
 
 1. Retain the current production revision, its complete source and the Phase 1 spacing update as the rollback target. The Phase 1 complete ZIP alone has the earlier r2 worker.
-2. Independently review the 13 files in `Child_Vaccine_Planner_v2_Phase2_Changed_Files.zip` against the inventory in `QA_REPORT_PHASE_2.md`. The complete ZIP also contains the matching Phase 1 site under `.qa-phase2-baseline/` for local upgrade tests.
+2. Independently review the 14 files in `Child_Vaccine_Planner_v2_Phase2_Changed_Files.zip` against the inventory in `QA_REPORT_PHASE_2.md`. This cumulative archive also updates the previous Phase 2 preview. The complete ZIP includes the Phase 1 fixture under `.qa-phase2-baseline/` and the two owner-supplied design references outside the public site.
 3. When ready, the owner creates `v2-phase2-preview` from the current production `main` and manually uploads the changed files at their existing repository-relative paths. Keep `site/`, `tests/` and the root Markdown files in their respective locations. Keep the existing Cloudflare Pages configuration with `site/` as the public output and keep the existing Pages Functions.
 4. On the resulting preview, open the planner online. Check that the new worker activates and all three `profiles-*` assets load. Test a normal browser and an installed PWA. Use the same preview origin for migration, reload and offline checks. Production and preview origins have independent browser storage.
 5. With synthetic records, cancel a migration, then confirm it. Compare the full imported record, including false completion flags, completed doses without actual dates, hidden doses and clinician dates. Create another child, change a product, switch back, and inspect both records. Test Save, Discard and Cancel on an unsaved name or DOB change.

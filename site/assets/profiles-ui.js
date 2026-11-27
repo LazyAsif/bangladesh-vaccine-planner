@@ -12,6 +12,9 @@ function startProfiles(host) {
   let pending=null, inspectLegacy=false;
   try { pending=sessionStorage.getItem(recoveryKey); } catch {}
   const tr=(en,bn)=>host.language()==='en'?en:bn;
+  function pageView(){
+    return location.hash==='#profiles'?'children':location.hash==='#backup-panel'?'backup':'chart';
+  }
   function record(){return snap.family?.profilesById[snap.family.activeChildId]?.record}
   function hasLegacy(){return legacy.some(c=>c.state!=='absent')}
   function dirty(){return !B.same(draft,record() || {}) || host.formDraft()}
@@ -56,7 +59,7 @@ function startProfiles(host) {
     else download(raw,name);
   }
   function familyCopy(){if(snap.family)download(F.backup('family',snap.family),'cvp-family.json');else if(snap.state==='damaged')rawCopy(snap.raw,'cvp-damaged-family.txt')}
-  function close(){panel=null;el('backup-file').value='';draw();el('profile-select').focus()}
+  function close(){panel=null;el('backup-file').value='';draw();(pageView()==='backup'?el('backup-file'):record()?el('profile-select'):el('profile-title')).focus()}
   function preview(p){if(busy)return;panel=p;message=null;draw();el('profile-preview').focus()}
   function updateChart(){
     draft=B.copy(record() || {});
@@ -227,12 +230,22 @@ function startProfiles(host) {
   }
   function draw(){
     const valid=!!snap.family, selected=record(), id=snap.family?.activeChildId;
+    const view=pageView(), chart=view==='chart';
+    const anchor=chart && selected && !host.editing()?el('view'):el('homeStart');
+    if(el('profiles').nextElementSibling!==anchor)anchor.before(el('profiles'));
+    document.body.dataset.plannerView=view;
+    document.body.toggleAttribute('data-editing-child',host.editing());
     const trapped=!!panel || busy, blocked=trapped || !locks || stale || snap.state==='unreadable';
     const lockedSetup=snap.state==='damaged' || snap.state==='unreadable' || (!valid && hasLegacy());
     el('setup').inert=trapped || lockedSetup || stale;el('view').inert=trapped || stale;
     el('setup').toggleAttribute('hidden',lockedSetup);
     el('profile-title').textContent=tr('My Children','আমার শিশুরা');
-    el('profile-label').textContent=tr('View child','শিশুর রেকর্ড দেখুন');
+    el('profile-label').textContent=chart?tr('Viewing chart for','যার টিকার চার্ট দেখছেন'):tr('View child','শিশুর রেকর্ড দেখুন');
+    const entry=el('profile-entry'), needsReview=lockedSetup || pending!==null || stale || (hasLegacy() && !legacyMatches);
+    entry.hidden=!chart || (!!selected && !needsReview);
+    entry.href=needsReview?'#profiles':'#dob';
+    entry.textContent=needsReview?tr('Review saved records','সংরক্ষিত রেকর্ড দেখুন'):tr('Add your first child','প্রথম শিশুকে যোগ করুন');
+    el('profiles').toggleAttribute('data-empty',!selected);
     const sel=el('profile-select');sel.replaceChildren();sel.disabled=blocked || !selected;
     for(const [pid,p] of Object.entries(snap.family?.profilesById || {}))sel.add(new Option(label(pid,p.record),pid));
     if(id)sel.value=id;else sel.add(new Option(tr('No child selected','কোনো শিশু নির্বাচিত নেই'),''));
@@ -299,6 +312,14 @@ function startProfiles(host) {
     renderPreview();
   }
   el('profile-select').onchange=e=>{const id=e.target.value;e.target.value=snap.family.activeChildId;switchChild(id)};
+  window.addEventListener('hashchange',()=>{
+    draw();
+    if(panel){el('profile-preview').focus();return}
+    const view=pageView();
+    if(view==='children')(host.editing()?el('dob'):el('profile-title')).focus();
+    else if(view==='backup')el('backup-title').focus();
+    else if(location.hash==='#chart')(record()?el('profile-select'):el('profile-entry')).focus();
+  });
   el('backup-file').onchange=e=>chooseFile(e.target.files[0]);
   el('setup').addEventListener('input',()=>{if(!busy && !panel){message=null;dateIssue=null;el('err').textContent='';draw()}});
   window.addEventListener('storage',e=>{
